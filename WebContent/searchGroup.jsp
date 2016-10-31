@@ -33,85 +33,16 @@
 <![endif]-->
 
 <link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
 <style type="text/css">
-	/** 헤더메뉴 바 배경색 */
-	.navbar-wrapper {
-		background-color:#4db8bd;
-	}
+	
 </style>
 
 </head>
 
-<body>
-	<header class="navbar-wrapper">
-		<div class="container">
-			<!-- 메뉴바 -->
-			<div class="navbar navbar-static-top" role="navigation">
-				<!-- 로고 영역 -->
-				<div class="navbar-header">
-					<!-- 반응형 메뉴 버튼 -->
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span> 
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!--// 반응형 메뉴 버튼 -->
-					<!-- 로고 -->
-					<a class="navbar-brand" href="/">StudyMate</a>
-					<!--// 로고 -->
-				</div>
-				<!--// 로고 영역 -->
-				<!-- 메뉴 영역 -->
-				<div class="navbar-collapse collapse">
-					<!-- 메인메뉴 -->
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/semi/index.jsp">Home</a></li>
-						<li class="active"><a href="/semi/searchGroup.jsp">스터디그룹</a></li>
-						<li><a href="#">그룹등록</a></li>
-						<!-- Trigger the modal with a button -->
-						<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
-						<li><a href="#">마이페이지</a></li>
-					</ul>
-					<!--// 메인메뉴 -->
-				</div>
-				<!--// 메뉴 영역 -->
-			</div>
-			<!--// 메뉴바 -->
-		</div>
-		
-		<!-- Modal -->
-		<div id="login_modal" class="modal fade" role="dialog">
-		  <div class="modal-dialog modal-sm">
-		
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">로그인</h4>
-		      </div>
-		      <div class="modal-body text-center">
-		        <form id="login_form" action="" name="login_form" method="post">
-							<div class="form-group"><input type="text" placeholder="Email" class="form-control"></div>
-							<div class="form-group"><input type="password" placeholder="Password" class="form-control"></div>
-							<div class="row modal_login_btns">
-								<button type="submit" class="col-sm-6 btn btn-default">Login</button>
-								<button type="button" class="col-sm-6 btn btn-info">Join</button>
-							</div>
-						</form>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		
-		  </div>
-		</div>
-		<!-- //Modal -->
-		
-	</header>
+<body class="non_background">
 
-	<!-- 내용영역 -->
+	<!-- searchGroup 내용영역 -->
 	<div class="container" style="margin-top: 80px;">
 		<div class="row featurette">
 			<form name="" action="" method="post">
@@ -162,6 +93,34 @@
 									<span class="col-sm-2 big_category_detail"><strong>기   타</strong></span>
 									<div class="col-sm-10">
 										<label class="checkbox-inline"><input type="checkbox" value="">기타</label>
+									</div>
+								</li>
+								
+								<li class="row list-group-item">
+									<span class="col-sm-2 big_category_detail"><strong>인원수</strong></span>
+									<div class="col-sm-10">
+										<label class="checkbox-inline"><input type="checkbox" value="">3명</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">4명</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">5명</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">6명 이상</label>
+									</div>
+								</li>
+								<li class="row list-group-item">
+									<span class="col-sm-2 big_category_detail"><strong>모임횟수</strong></span>
+									<div class="col-sm-10">
+										<label class="checkbox-inline"><input type="checkbox" value="">1회/주</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">2회/주</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">3회/주</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">4회 이상/주</label>
+									</div>
+								</li>
+								<li class="row list-group-item">
+									<span class="col-sm-2 big_category_detail"><strong>등록일</strong></span>
+									<div class="col-sm-10">
+										<label class="checkbox-inline"><input type="checkbox" value="">오늘</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">3일이내</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">5일이내</label>
+										<label class="checkbox-inline"><input type="checkbox" value="">1주일이내</label>
 									</div>
 								</li>
 							</ul>
@@ -324,36 +283,7 @@
 			</ul>
 		</div>
 	</div>
-	<!--// 내용영역 -->
+	<!--// searchGroup 내용영역 -->
 
-	<!-- 푸터 -->
-	<footer class="footer-wrapper" >
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 text-center">
-					<h1><a href="/semi/index.jsp">StudyMate</a></h1>
-				</div>
-				<div class="col-sm-8 footer_content text-center">
-					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="">고객지원</a></li>
-						<li><a href="">이용안내</a></li>
-						<li><a href="">개인정보 취급방침</a></li>
-						<li><a href="">탈퇴하기</a></li>
-					</ul>
-					<br />
-					<address>
-						<p><span class="address">주소 : 서울특별시 강남구 역삼동</span><span class="tel">Tel 	: 1234-5678</span></p>
-						<p>Copyright&copy;2016. <a href="/semi/index.jsp">studymate.co.kr</a>. All rights resurved</p>
-					</address>
-				</div>
-				
-			</div>
-		</div>
-	</footer>
-	<!--// 푸터 -->
-
-	<!-- Javascript -->
-	<script src="assets/js/jquery-3.1.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>
