@@ -249,11 +249,11 @@
 	<footer class="footer-wrapper" >
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4 article">
-					<h1><a href="/">StudyMate</a></h1>
+				<div class="col-sm-4 text-center">
+					<h1><a href="/semi/index.jsp">StudyMate</a></h1>
 				</div>
-				<div class="col-sm-8 article footer_content">
-					<ul class="nav navbar-nav footer_menu">
+				<div class="col-sm-8 footer_content text-center">
+					<ul class="nav navbar-nav footer_menu text-center">
 						<li><a href="">고객지원</a></li>
 						<li><a href="">이용안내</a></li>
 						<li><a href="">개인정보 취급방침</a></li>
@@ -262,7 +262,7 @@
 					<br />
 					<address>
 						<p><span class="address">주소 : 서울특별시 강남구 역삼동</span><span class="tel">Tel 	: 1234-5678</span></p>
-						<p>Copyright&copy;2016. <a href="/">studymate.co.kr</a>. All rights resurved</p>
+						<p>Copyright&copy;2016. <a href="/semi/index.jsp">studymate.co.kr</a>. All rights resurved</p>
 					</address>
 				</div>
 				
