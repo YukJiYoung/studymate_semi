@@ -223,10 +223,11 @@ address {
 .footer_menu {
 	float:none;
 }
-.footer_menu li {
+.footer_menu.nav li {
 	float:none;
 	display:inline-block;
 	border-right:1px solid #aaa;
+	margin-left:0;
 }
 .footer_menu li:last-child {
 	border-right:none;

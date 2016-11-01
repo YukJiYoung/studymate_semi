@@ -7,7 +7,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
+<title><decorator:title default="StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다." /></title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="assets/ico/favicon.png" />
@@ -34,8 +34,15 @@
 	<script type="text/javascript" src="assets/js/ie10.js"></script>
 <![endif]-->
 
-<link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
+<!-- css link  -->
+	<link href="assets/css/layout.css" type="text/css" rel="stylesheet" />
+	<decorator:head /> 
+<!-- //css link  -->
+
+<!-- Javascript -->
+<script src="assets/js/jquery-3.1.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 	/** 메뉴바 배경색 */
 .non_background .navbar-wrapper {
@@ -182,8 +189,6 @@
 	</footer>
 	<!--// 푸터 -->
 
-	<!-- Javascript -->
-	<script src="assets/js/jquery-3.1.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+
 </body>
 </html>
