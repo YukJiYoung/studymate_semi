@@ -1,43 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
-
-<!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="assets/ico/favicon.png" />
-<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-144-precomposed.png" />
-
-<!-- bootstrap -->
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
-
-<!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css" href="assets/css/nanumfont.css" />
-
-<!-- 반응형 웹을 지원하지 않을 경우 -->
-<!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
-
-<!-- IE8 이하 버전 지원 -->
-<!--[if lt IE 9]>
-	<script type="text/javascript" src="assets/js/html5shiv.js"></script>
-	<script type="text/javascript" src="assets/js/respond.min.js"></script>
-<![endif]-->
-
-<!-- IE10 반응형 웹 버그 보완 -->
-<!--[if gt IE 9]>
-	<link rel="stylesheet" type="text/css" href="assets/css/ie10.css" />
-	<script type="text/javascript" src="assets/js/ie10.js"></script>
-<![endif]-->
-
-<link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
-<style type="text/css">
+	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
-</style>
-
+	<link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
 </head>
 
 <body class="non_background">
@@ -160,13 +129,13 @@
 								<img src="images/item_sample_01.jpg" />
 								<figcaption class="item_description">
 									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_label label label-danger">HOT</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
+										<span class="item_title">영어 회화 스터디</span>
+										<span class="item_status label label-primary">모집중</span>
+										<span class="item_label label label-danger">HOT</span>
+										<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
 									</p>
 									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
+										<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
 									</p>
 								</figcaption>
 								<div class="item_entry">
