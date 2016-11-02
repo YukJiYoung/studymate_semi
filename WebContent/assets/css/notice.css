@@ -1,5 +1,46 @@
 @charset "utf-8";
 
+.notice .container .container {
+	padding-left:10%;
+	padding-right:10%;
+}
 .notice_header {
 	padding-bottom:50px;
+}
+.notice .btn-info {
+	background-color:#7fcacd;
+	border-color:#7fcacd;
+}
+.btns {
+	padding:0 10% 20px 0;
+}
+.notice .btn-info:hover,
+.notice .btn-info:active,
+.notice .btn-info:focus {
+	background-color:#4db8bd;
+	border-color:#4db8bd;
+}
+.notice table {
+	margin-top:5px;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+.notice th,
+.notice td {
+	/* background-color:#fff; */
+}
+.notice textarea,
+.notice pre {
+	min-height:200px;
+	background-color:#fff;
+}
+.notice .notice_content_table th {
+	text-align:right;
+}
+.notice .notice_content_table td {
+	padding-right:10%;
+}
+.notice_delete_form>.row {
+	padding:0 30%;
+	margin-top:20px;
 }

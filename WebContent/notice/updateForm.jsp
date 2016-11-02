@@ -8,48 +8,45 @@
 </head>
 <body class="non_background">
 	<div class="container">
-		<b>글수정</b><br />
 		<form method="post" name="writeform" action="/semi/notice/updatePro.do?pageNum=${ pageNum }" onsubmit="return writeSave()">
-			<table class="table table-hover">
+			<table class="table notice_content_table">
 				<tr>
-					<td width="70" align="center">이    름</td>
-					<td width="330" align="left">
-						<input type="text" size="10" maxlength="10" name="writer" value="${ article.writer }" />
+					<th>이    름</th>
+					<td>
+						<input class="form-control" type="text" size="10" maxlength="10" name="writer" value="${ article.writer }" />
 						<input type="hidden" name="num" value="${ article.num }">
 					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">제    목</td>
-					<td width="330" align="left">
-						<input type="text" size="40" maxlength="50" name="subject" value="${ article.subject }" />
+					<th>제    목</th>
+					<td>
+						<input class="form-control" type="text" size="40" maxlength="50" name="subject" value="${ article.subject }" />
 					</td>
 				</tr>
 				<tr>
-					<td width="70" bgcolor="${ value_c }" align="center">Email</td>
-					<td width="330" align="left">
-						<input type="text" size="40" maxlength="30" name="email" value="${ article.email }" />
+					<th>Email</th>
+					<td>
+						<input class="form-control" type="text" size="40" maxlength="30" name="email" value="${ article.email }" />
 					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">내    용</td>
-					<td width="330" align="left">
-						<textarea name="content" rows="13" cols="40">${ article.content }</textarea>
+					<th>내    용</th>
+					<td>
+						<textarea class="form-control" name="content" rows="13" cols="40">${ article.content }</textarea>
 					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">비밀번호</td>
-					<td width="330" align="left">
-						<input type="password" size="8" maxlength="12" name="passwd" />
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="글수정" />
-						<input type="reset" value="다시작성" />
-						<input type="button" value="목록보기" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'" />
+					<th>비밀번호</th>
+					<td>
+						<input class="form-control" type="password" size="8" maxlength="12" name="passwd" />
 					</td>
 				</tr>
 			</table>
+			<div class="row text-right btns">
+				<input class="btn btn-info" type="submit" value="글수정" />
+				<input class="btn btn-default" type="reset" value="다시작성" />
+				<input class="btn btn-default" type="button" value="목록보기" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'" />
+			</div>
 		</form>
 	</div>
 </body>

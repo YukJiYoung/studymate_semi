@@ -8,54 +8,54 @@
 </head>
 <body class="non_background">
 	<div class="container">
-		<b>글쓰기</b><br />
 		<form method="post" name="writeform" action="/semi/notice/writePro.do" onsubmit="return writeSave()">
 			<input type="hidden" name="num" value="${ num }" />
 			<input type="hidden" name="ref" value="${ ref }" />
 			<input type="hidden" name="re_step" value="${ re_step }" />
 			<input type="hidden" name="re_level" value="${ re_level }" />
 			
-			<table class="table table-hover">
+			<table class="table table-responsive notice_content_table">
 				<tr>
-					<td align="right" colspan="2">
-						<a href="/semi/notice/list.do">글목록</a>
+					<th>이    름</th>
+					<td>
+						<input class="form-control" type="text" name="writer" />
 					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">이      름</td>
-					<td width="330"><input type="text" size="10" maxlength="10" name="writer"></td>
-				</tr>
-				<tr>
-					<td width="70" align="center">제      목</td>
-					<td width="330">
+					<th>제      목</th>
+					<td>
 						<c:if test="${ num == 0 }">
-						<input type="text" size="40" maxlength="50" name="subject" />
+						<input class="form-control" type="text" name="subject" />
 						</c:if>
 						<c:if test="${ num != 0 }">
-						<input type="text" size="40" maxlength="50" name="subject" value="[답변]" />
+						<input class="form-control" type="text" name="subject" value="[답변]" />
 						</c:if>
 					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">Email</td>
-					<td width="330"><input type="text" size="40" maxlength="30" name="email"></td>
+					<th>Email</th>
+					<td>
+						<input class="form-control" type="text" name="email" />
+					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">내      용</td>
-					<td width="330"><textarea name="content" rows="13" cols="40"></textarea></td>
+					<th>내    용</th>
+					<td>
+						<textarea class="form-control" name="content"></textarea>
+					</td>
 				</tr>
 				<tr>
-					<td width="70" align="center">비밀번호</td>
-					<td width="330"><input type="password" size="8" maxlength="12" name="passwd"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="글쓰기" />
-						<input type="reset" value="다시작성" />
-						<input type="button" value="목록보기" onclick="window.location='/semi/notice/list.do'" />
+					<th>비밀번호</th>
+					<td>
+						<input class="form-control" type="password" name="passwd" />
 					</td>
 				</tr>
 			</table>
+			<div class="row text-right btns">
+				<input class="btn btn-info" type="submit" value="글쓰기" />
+				<input class="btn btn-default" type="reset" value="다시작성" />
+				<input class="btn btn-default" type="button" value="목록보기" onclick="document.location.href='/semi/notice/list.do'" />
+			</div>
 		</form>
 	</div>
 </body>

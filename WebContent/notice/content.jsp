@@ -7,38 +7,35 @@
 </head>
 <body>
 	<div class="container">
-		<h5>글내용 보기</h5>
 		<form>
-			<table class="table table-responsive">
+			<table class="table table-responsive notice_content_table">
 				<tr>
-					<td>글번호</td>
+					<th>글번호</th>
 					<td>${ article.num }</td>
-					<td>조회수</td>
+					<th>조회수</th>
 					<td>${ article.readcount }</td>
 				</tr>
 				<tr>
-					<td>작성자</td>
+					<th>작성자</th>
 					<td>${ article.writer }</td>
-					<td>작성일</td>
+					<th>작성일</th>
 					<td>${ article.reg_date }</td>
 				</tr>
 				<tr>
-					<td>글제목</td>
+					<th>글제목</th>
 					<td colspan="3">${ article.subject }</td>
 				</tr>
 				<tr>
-					<td>글내용</td>
+					<th>글내용</th>
 					<td colspan="3"><pre>${ article.content }</pre></td>
 				</tr>
-				<tr>
-					<td align="right">
-						<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='/semi/notice/updateForm.do?num=${ article.num }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='/semi/notice/deleteForm.do?num=${ article.num }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-default" type="button" value="답글쓰기" onclick="document.location.href='/semi/notice/writeForm.do?num=${ article.num }&re_step=${ article.re_step }&re_level=${ article.re_level }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-default" type="button" value="글목록" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'" />
-					</td>
-				</tr>
 			</table>
+			<div class="row text-right btns">
+				<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='/semi/notice/updateForm.do?num=${ article.num }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='/semi/notice/deleteForm.do?num=${ article.num }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-info" type="button" value="답글쓰기" onclick="document.location.href='/semi/notice/writeForm.do?num=${ article.num }&re_step=${ article.re_step }&re_level=${ article.re_level }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-default" type="button" value="글목록" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'" />
+			</div>
 		</form>
 	</div>
 </body>

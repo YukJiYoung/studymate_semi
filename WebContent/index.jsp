@@ -195,7 +195,7 @@
 		</div>
 		
 		<div class="result_more text-center">
-			<a href="<c:url value="searchGroup.jsp" />">+ 더보기</a>
+			<a href="<c:url value="/searchGroup.jsp" />">+ 더보기</a>
 		</div>
 		
 	</div>

@@ -16,24 +16,19 @@
 </head>
 <body>
 	<div class="container">
-		<h5>글삭제</h5>
-		<form method="post" name="delForm" action="/semi/notice/deletePro.do?pageNum=${ pageNum }" onsubmit="return deleteSave()">
-			<table border="1" align="center" cellspacing="0" cellpadding="0" width="360">
-				<tr>
-					<td><h5>비밀번호를 입력해 주세요.</h5></td>
-				</tr>
-				<tr>
-					<td>비밀번호 : <input type="password" name="passwd" size="8" maxlength="12" />
-						<input type="hidden" name="num" value="${ num }" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="submit" value="글삭제" />
-						<input type="button" value="글목록" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'" />
-					</td>
-				</tr>
-			</table>
+		<form class="notice_delete_form" method="post" id="delForm" name="delForm" action="/semi/notice/deletePro.do?pageNum=${ pageNum }" onsubmit="return deleteSave()">
+			<div class="row text-center">
+				<h4>글을 삭제하려면<br> 비밀번호를 입력해 주세요.</h4>
+			</div>
+			<div class="row">
+				<label class="col-sm-3 sr-only">비밀번호 : </label>
+				<input class="col-sm-9 form-control" type="password" name="passwd" placeholder="Password" />
+			</div>
+			<input type="hidden" name="num" value="${ num }" />
+			<div class="row btns">
+				<button class="btn btn-danger btn-block" type="submit">글삭제</button>
+				<button class="btn btn-default btn-block" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'">글목록</button>
+			</div>
 		</form>
 	</div>
 </body>

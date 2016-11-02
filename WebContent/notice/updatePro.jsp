@@ -6,5 +6,5 @@
 </c:if>
 <c:if test="${ check == 0 }">
 	비밀번호가 다릅니다.
-	<a href="javascript:history.go(-1)">[글수정 폼으로 돌라아기]</a>
+	<a href="javascript:history.go(-1)">[글수정 폼으로 돌아가기]</a>
 </c:if>

@@ -8,6 +8,7 @@ public class WriteFormAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
+		
 		int num = 0, ref = 1, re_step = 0, re_level = 0; //원글 정보 초기화
 		try{
 			if(request.getParameter("num") != null){ //원글의 정보가 있다면 (=답변글 이라면)
