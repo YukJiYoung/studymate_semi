@@ -10,10 +10,6 @@ html, body {
 	padding: 0px;
 	background-color: #f3f2f2;
 }
-img {
-	width:100%;
-	vertical-align:top;
-}
 a,
 a:hover,
 a:active,
@@ -35,6 +31,10 @@ a:focus{
 			 -------------------------------------------------- */
 .carousel {
 	/* height: 460px; */
+}
+.catousel img {
+	width:100%;
+	vertical-align:top;
 }
 
 .carousel-inner>.item>img {

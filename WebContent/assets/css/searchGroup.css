@@ -99,6 +99,10 @@
 	position:relative;
 	margin-bottom:10px;
 }
+.result_item img {
+	width:100%;
+	vertical-align:top;
+}
 .result_item .item_category {
 	position:absolute;
 	top:0;

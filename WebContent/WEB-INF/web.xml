@@ -19,6 +19,19 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   
+  <servlet>
+		<servlet-name>NoticeControllerUsingURI</servlet-name>
+		<servlet-class>notice.board.controller.NoticeControllerUsingURI</servlet-class>
+		<init-param>
+			<param-name>propertyConfig</param-name>
+			<param-value>/WEB-INF/noticeCommandHandlerURI.properties</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NoticeControllerUsingURI</servlet-name>
+		<url-pattern>*.do</url-pattern> 
+	</servlet-mapping>
+  
   <filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>

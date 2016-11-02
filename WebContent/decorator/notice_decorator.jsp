@@ -8,37 +8,42 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title><decorator:title default="StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다." /></title>
+<title>StudyMate :: 공지사항 게시판</title>
 
 <!-- 모바일 웹 페이지 설정 -->
-<link rel="shortcut icon" href="assets/ico/favicon.png" />
-<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="../assets/ico/favicon.png" />
+<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-144-precomposed.png" />
 
 <!-- bootstrap -->
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css" />
 
 <!-- 나눔고딕 웹 폰트 적용 -->
-<link rel="stylesheet" type="text/css" href="assets/css/nanumfont.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/nanumfont.css" />
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
-<!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
+<!-- <link rel="stylesheet" href="../assets/css/non-responsive.css" /> -->
 
 <!-- IE8 이하 버전 지원 -->
 <!--[if lt IE 9]>
-	<script type="text/javascript" src="assets/js/html5shiv.js"></script>
-	<script type="text/javascript" src="assets/js/respond.min.js"></script>
+	<script type="text/javascript" src="../assets/js/html5shiv.js"></script>
+	<script type="text/javascript" src="../assets/js/respond.min.js"></script>
 <![endif]-->
 
 <!-- IE10 반응형 웹 버그 보완 -->
 <!--[if gt IE 9]>
-	<link rel="stylesheet" type="text/css" href="assets/css/ie10.css" />
-	<script type="text/javascript" src="assets/js/ie10.js"></script>
+	<link rel="stylesheet" type="text/css" href="../assets/css/ie10.css" />
+	<script type="text/javascript" src="../assets/js/ie10.js"></script>
 <![endif]-->
 
 <!-- css link  -->
-	<link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/notice.css" />
 	<decorator:head /> 
 <!-- //css link  -->
+
+<!-- Javascript -->
+<script src="../assets/js/jquery-3.1.1.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 	/** 메뉴바 배경색 */
@@ -49,7 +54,7 @@
 
 </head>
 
-<body <decorator:getProperty property="body.class" writeEntireProperty="true" />>
+<body class="notice non_background">
 	<header class="navbar-wrapper">
 		<div class="container">
 			<!-- 메뉴바 -->
@@ -77,7 +82,7 @@
 						<li class="active"><a href="<c:url value="/searchGroup.jsp" />">스터디그룹</a></li>
 						<li><a href="<c:url value="/addGroup.jsp" />">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
-						<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
+						<li><a href="<c:url value="/" />" data-toggle="modal" data-target="#login_modal">로그인</a></li>
 						<li><a href="<c:url value="/" />">마이페이지</a></li>
 					</ul>
 					<!--// 메인메뉴 -->
@@ -123,7 +128,12 @@
 	</header>
 
 	<!-- 내용영역 -->
-	<decorator:body />
+	<div class="container" style="margin-top:100px; min-height:600px;">
+		<div class="notice_header text-center">
+			<h3>- 공지사항 (전체 글:${ count }) -</h3>
+		</div>
+		<decorator:body />
+	</div>
 	<!--// 내용영역 -->
 
 	<!-- 푸터 -->
@@ -186,8 +196,6 @@
 	</footer>
 	<!--// 푸터 -->
 
-	<!-- Javascript -->
-	<script src="assets/js/jquery-3.1.1.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+
 </body>
 </html>

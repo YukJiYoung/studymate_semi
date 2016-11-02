@@ -6,7 +6,7 @@
 <head>
 	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
-	<link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
 </head>
 
 <body class="non_background">
