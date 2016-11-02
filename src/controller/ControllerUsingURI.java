@@ -1,4 +1,4 @@
-package notice.board.controller;
+package controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import notice.board.action.CommandAction;
 
-public class NoticeControllerUsingURI extends HttpServlet {
+public class ControllerUsingURI extends HttpServlet {
 	
 	private Map commandMap = new HashMap();
 	

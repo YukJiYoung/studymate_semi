@@ -24,12 +24,12 @@
 		<div class="carousel-inner">
 			<!-- 항목 (1) -->
 			<div class="item active">
-				<a href="#"><img src="images/index-slide-1.png" alt="[스터디메이트] - 처음 오셨나요?"></a>
+				<a href="<c:url value="/notice.jsp" />"><img src="images/index-slide-1.png" alt="[스터디메이트] - 처음 오셨나요?"></a>
 			</div>
 
 			<!-- 항목 (2) -->
 			<div class="item">
-				<a href="#"><img src="images/index-slide-2.png" alt="[스터디룸 할인이벤트] - 스터디메이트 회원이라면 제휴 스터디룸  50% 특별할인!!"></a>
+				<a href="<c:url value="/notice.jsp" />"><img src="images/index-slide-2.png" alt="[스터디룸 할인이벤트] - 스터디메이트 회원이라면 제휴 스터디룸  50% 특별할인!!"></a>
 			</div>
 
 		</div>
