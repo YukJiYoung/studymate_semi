@@ -17,38 +17,30 @@
 			<table class="table table-responsive notice_content_table">
 				<tr>
 					<th>이    름</th>
-					<td>
-						<input class="form-control" type="text" name="writer" />
-					</td>
+					<td><input class="form-control" type="text" name="writer" /></td>
 				</tr>
 				<tr>
-					<th>제      목</th>
+					<th>제    목</th>
 					<td>
 						<c:if test="${ num == 0 }">
-						<input class="form-control" type="text" name="subject" />
+							<input class="form-control" type="text" name="subject" />
 						</c:if>
 						<c:if test="${ num != 0 }">
-						<input class="form-control" type="text" name="subject" value="[답변]" />
+							<input class="form-control" type="text" name="subject" value="[답변]" />
 						</c:if>
 					</td>
 				</tr>
 				<tr>
 					<th>Email</th>
-					<td>
-						<input class="form-control" type="text" name="email" />
-					</td>
+					<td><input class="form-control" type="text" name="email" /></td>
 				</tr>
 				<tr>
 					<th>내    용</th>
-					<td>
-						<textarea class="form-control" name="content"></textarea>
-					</td>
+					<td><textarea class="form-control" name="content"></textarea></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td>
-						<input class="form-control" type="password" name="passwd" />
-					</td>
+					<td><input class="form-control" type="password" name="passwd" /></td>
 				</tr>
 			</table>
 			<div class="row text-right btns">
