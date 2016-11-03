@@ -113,6 +113,24 @@ a:focus{
 	border-color:#184749;
 } 
 
+/** modal :: 회원가입 
+			-------------------------------------------------- */
+.loginform .form-control{
+	width:80%;
+	font-size:16px;
+}
+.Loginbody .form-control{
+	margin:8px;
+	font-size:16px;
+}
+.loginform .form-control{
+	width:80%;
+	font-size:16px;
+}
+.loginform .btn{
+	margin-top:9px;
+}
+
 .navbar-collapse {
 	background-color: none !important;
 }

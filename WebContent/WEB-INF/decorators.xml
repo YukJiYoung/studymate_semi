@@ -9,5 +9,7 @@
 		<pattern>/notice/*</pattern>
 	</decorator>
 	
-
+	<excludes>
+		<pattern></pattern>
+	</excludes>
 </decorators>

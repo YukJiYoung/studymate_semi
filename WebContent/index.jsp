@@ -74,7 +74,7 @@
 					<%-- 검색결과가 있을 때 --%>
 					<!-- item -->
 					<li class="result_item">
-						<a href="#" class="item">
+						<a href="<c:url value="/groupPage.jsp" />" class="item">
 							<figure>
 								<span class="item_category">영어 > 영어회화</span>
 								<img src="images/item_sample_01.jpg" />
@@ -98,7 +98,7 @@
 					<!-- //item -->
 					<!-- item -->
 					<li class="result_item">
-						<a href="#" class="item">
+						<a href="<c:url value="/groupPage.jsp" />" class="item">
 							<figure>
 								<span class="item_category">영어 > 영어회화</span>
 								<img src="images/item_sample_02.jpg" />
@@ -121,7 +121,7 @@
 					<!-- //item -->
 					<!-- item -->
 					<li class="result_item">
-						<a href="#" class="item">
+						<a href="<c:url value="/groupPage.jsp" />" class="item">
 							<figure>
 								<span class="item_category">영어 > 영어회화</span>
 								<img src="images/item_sample_01.jpg" />
@@ -145,7 +145,7 @@
 					<!-- //item -->
 					<!-- item -->
 					<li class="result_item">
-						<a href="#" class="item">
+						<a href="<c:url value="/groupPage.jsp" />" class="item">
 							<figure>
 								<span class="item_category">영어 > 영어회화</span>
 								<img src="images/item_sample_02.jpg" />
@@ -168,7 +168,7 @@
 					<!-- //item -->
 					<!-- item -->
 					<li class="result_item">
-						<a href="#" class="item">
+						<a href="<c:url value="/groupPage.jsp" />" class="item">
 							<figure>
 								<span class="item_category">영어 > 영어회화</span>
 								<img src="images/item_sample_01.jpg" />

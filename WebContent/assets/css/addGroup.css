@@ -1,4 +1,6 @@
-/** ����޴� �� ���� */
+@charset "utf-8";
+
+/** 占쏙옙占쏙옙濱占� 占쏙옙 占쏙옙占쏙옙 */
 .navbar-wrapper {
 	background-color: #4db8bd;
 }
@@ -7,11 +9,18 @@
 .form-control {
 	font-size: 16px;
 	width: 500px;
+	height: 44px;
 }
 
 
+.add-title {
+	font-size: 28px;
+	margin-bottom: 36px;
+	color: #4e4e4e;
+}
+
 .add-container {
-	max-width:960px;
+	max-width:750px;
     height:auto;
     margin:0 auto;
     /*border-left:1px solid #bbb;
@@ -24,10 +33,8 @@
 	margin-bottom:40px;
 }
 
-.form-control {
-	height: 25px;
-}
-/*�ʼ��׸� ��ǥ��*/
+
+/*占십쇽옙占쌓몌옙 占쏙옙표占쏙옙*/
 .compulsory {
 	color: #FF5D2A;
 	padding-left: 4px;
@@ -37,11 +44,21 @@
 .input-header {
 	padding: 40px 0 16px 4px;
 	font-size: 20px;
-	color: #4e4e4e;
 	position: relative;
+	 color:#287175;
 }
 
-/*��ǲ�ȿ� ���� ����ִ� ����*/
+
+/*占십쇽옙 占쌓몌옙 占쏙옙표*/
+.input-header .asterisk{
+    font-size: 10px;
+    color: #ff4a4a;
+    position: absolute;
+    top: 53px;
+    left: -9px;
+}
+
+/*占쏙옙풋占싫울옙 占쏙옙占쏙옙 占쏙옙占쏙옙獵占� 占쏙옙占쏙옙*/
 .input-inner-text-wrap{
     padding:0 4px;
 }
@@ -76,7 +93,7 @@
     color:#797979;
 }
 
-/*ī�װ��� select*/
+/*카占쌓곤옙 select*/
 .category-container{
     padding: 10px 4px;
     line-height: 40px;
@@ -87,7 +104,7 @@
     margin-bottom:10px;
 }
 
-/*üũ�ڽ�*/
+/*체크占쌘쏙옙*/
 .check-box-container{
     margin:14px 4px;
 }
@@ -126,9 +143,350 @@
     text-align:center
 }
 
+
+
+/* 타占쏙옙占쏙옙占싱븝옙 */
+.time-table{
+    display:table;
+    width:100%;
+    /*border-top:1px solid #ddd;*/
+    /*border-bottom:1px solid #ddd;*/
+    border: 1px solid #ececec;
+}
+
+.time-table-cell{
+    float:none;
+    display:table-cell;
+    width:14.28%
+}
+
+.time-table-cell-top{
+    background-color:#f9f9f9;
+    border-bottom:1px solid #ececec;
+}
+
+.time-table-cell-top,.time-table-cell-bottom {
+    width:100%;
+    height:50%;
+    padding:10px 10px;
+    text-align:center;
+   
+}
+
+.time-table-cell-top.last, .time-table-cell-bottom.last{
+    border-right:0;
+    border-right:none;
+}
+
+#time-table-lg{
+    display:table;
+}
+
+#time-table-xs{
+    display:none;
+}
+
+
+
+.selectBoxOveray{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 占시곤옙 CSS */
+.dayBox,.divisionBox{
+    height: 20px;
+    display:table;
+    padding: 0;
+}
+.divisionBox {
+    width:100%;
+}
+.dayLabel,.divisionLine{
+    display:table-cell;
+    vertical-align:middle;
+    padding:0 !important;
+}
+    .dayLabel input[type=checkbox] {
+        display: inline-block;
+        position: relative;
+        top: -2px;
+        margin-right: 8px;
+    }
+    
+.divisionLine{
+    text-align:center
+}
+
+
+/*占쏙옙풋占쏙옙 占쏙옙튼占쏙옙 占쌕억옙占쌍댐옙 占쏙옙占쏙옙*/
+.inner-btn-wrap{
+    max-width:504px;
+    margin-bottom:10px;
+    display:inline-block;
+    position:relative;
+}
+
+.inner-btn-input{
+    float:left;
+    width: 402px;
+    margin-right: 2px;
+}
+
+.inner-btn-button{
+    float:left;
+    width:100px;
+}
+
+.inner-btn-button>button {
+    width:100%;
+    height:44px;
+    border:1px solid #00b7ee;
+    background-color:#fff;
+    color:#00b7ee;
+    font-size:13px;
+}
 @media screen and (max-width: 1480px) {
 
     .side-box-container{
         display:none;
     }
+}
+
+
+
+.map_wrap, .map_wrap * {
+	margin: 0;
+	padding: 0;
+	font-family: 'Malgun Gothic', dotum, '�룍��', sans-serif;
+	font-size: 12px;
+}
+
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+	color: #000;
+	text-decoration: none;
+}
+
+.map_wrap {
+	position: relative;
+	width: 100%;
+	height: 500px;
+}
+
+#map {
+	width: 60%;
+	height: 90%;
+	margin-left: 40%;
+	margin-top: 1%;
+}
+
+#menu_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 40%;
+	padding: 5px;
+	overflow-y: auto;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 1;
+	font-size: 12px;
+	border-radius: 10px;
+}
+
+.bg_white {
+	background: #fff;
+}
+
+#menu_wrap hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #5F5F5F;
+	margin: 3px 0;
+}
+
+#menu_wrap .option {
+	text-align: center;
+}
+
+#menu_wrap .option p {
+	margin: 10px 0;
+}
+
+#menu_wrap .option button {
+	margin-left: 5px;
+}
+
+#placesList li {
+	list-style: none;
+}
+
+#placesList .item {
+	position: relative;
+	border-bottom: 1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+/* #placesList .item:hover {background-color:#F1F1F1;} */
+#placesList .item span {
+	display: block;
+	margin-top: 4px;
+}
+
+#placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#placesList .item .info {
+	padding: 10px 0 10px 55px;
+}
+
+#placesList .info .gray {
+	color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+	padding-left: 26px;
+	background:
+		url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+		no-repeat;
+}
+
+#placesList .info .tel {
+	color: #009900;
+	display: inline-block;
+}
+
+#placesList .item .markerbg {
+	float: left;
+	position: absolute;
+	width: 36px;
+	height: 37px;
+	margin: 10px 0 0 10px;
+	background:
+		url(http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+		no-repeat;
+}
+
+#placesList .item .marker_1 {
+	background-position: 0 -10px;
+}
+
+#placesList .item .marker_2 {
+	background-position: 0 -56px;
+}
+
+#placesList .item .marker_3 {
+	background-position: 0 -102px
+}
+
+#placesList .item .marker_4 {
+	background-position: 0 -148px;
+}
+
+#placesList .item .marker_5 {
+	background-position: 0 -194px;
+}
+
+#placesList .item .marker_6 {
+	background-position: 0 -240px;
+}
+
+#placesList .item .marker_7 {
+	background-position: 0 -286px;
+}
+
+#placesList .item .marker_8 {
+	background-position: 0 -332px;
+}
+
+#placesList .item .marker_9 {
+	background-position: 0 -378px;
+}
+
+#placesList .item .marker_10 {
+	background-position: 0 -423px;
+}
+
+#placesList .item .marker_11 {
+	background-position: 0 -470px;
+}
+
+#placesList .item .marker_12 {
+	background-position: 0 -516px;
+}
+
+#placesList .item .marker_13 {
+	background-position: 0 -562px;
+}
+
+#placesList .item .marker_14 {
+	background-position: 0 -608px;
+}
+
+#placesList .item .marker_15 {
+	background-position: 0 -654px;
+}
+
+.btn-info {
+	margin-right: 20px;
+	float: right;
+	width: 20%;
+	background-color: #7FCACD;
+	border-color: #7FCACD;
+}
+
+.bth-info:hover, .bth-info:active, bth-info:focus {
+	background-color: #4DB8BD;
+	border-color: #4DB8BD;
+}
+
+#pagination {
+	margin: 10px auto;
+	text-align: center;
+}
+
+#pagination a {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#pagination .on {
+	font-weight: bold;
+	cursor: default;
+	color: #777;
+}
+
+.search {
+	width: 15%;
+	display: inline;
+}
+
+.keywordInput {
+	float: left;
+	margin-left: 2%;
+	width: 20%;
+}
+
+.option {
+	margin-top: 1%;
+}
+
+.btn-default, .btn-sm {
+	width: 10%;
+	margin-left: 1%;
+}
+
+.bg_white {
+	margin-top: 3%;
+}
+
+.modal-dialog {
+	width: 80%;
 }
