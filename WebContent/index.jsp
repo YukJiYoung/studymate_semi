@@ -36,9 +36,8 @@
 		<!-- // 내용영역 구성 -->
 
 		<!-- 이동 버튼 -->
-		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="icon-prev"></span>
-		</a> <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="icon-next"></span>
-		</a>
+		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"> <span class="icon-prev"></span></a>
+		<a class="right carousel-control" href="#carousel-example-generic" data-slide="next"> <span class="icon-next"></span></a>
 	</div>
 	<!-- 캐러셀 영역 끝 -->
 	

@@ -6,8 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.javafx.image.impl.IntArgb;
-
 import notice.board.BoardDBBean;
 
 public class ListAction implements CommandAction {
