@@ -55,11 +55,11 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><a href="" class="active btn btn-info">영 어</a></li>
-				<li><a href="" class="btn btn-info">외국어</a></li>
-				<li><a href="" class="btn btn-info">취 업</a></li>
-				<li><a href="" class="btn btn-info">국가고시<br>공무원</a></li>
-				<li><a href="" class="btn btn-info">기 타</a></li>
+				<li><a href="./searchGroup.do?pageNum=1&bcategory=1" class="active btn btn-info">영 어</a></li>
+				<li><a href="./searchGroup.do?pageNum=1&bcategory=2" class="btn btn-info">외국어</a></li>
+				<li><a href="./searchGroup.do?pageNum=1&bcategory=3" class="btn btn-info">취 업</a></li>
+				<li><a href="./searchGroup.do?pageNum=1&bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
+				<li><a href="./searchGroup.do?pageNum=1&bcategory=5" class="btn btn-info">기 타</a></li>
 			</ul>
 		</div>
 
@@ -194,7 +194,7 @@
 		</div>
 		
 		<div class="result_more text-center">
-			<a href="<c:url value="/searchGroup.jsp" />">+ 더보기</a>
+			<a href="./searchGroup.do">+ 더보기</a>
 		</div>
 		
 	</div>

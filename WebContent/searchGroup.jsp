@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -7,6 +8,8 @@
 	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
+	
+	
 </head>
 
 <body class="non_background">
@@ -104,25 +107,13 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=영어" class="active btn btn-info">영 어</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=외국어" class="btn btn-info">외국어</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=취업" class="btn btn-info">취 업</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=국가고시공무원" class="btn btn-info">국가고시<br>공무원</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=기타" class="btn btn-info">기 타</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=1" class="active btn btn-info">영 어</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=2" class="btn btn-info">외국어</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=3" class="btn btn-info">취 업</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=5" class="btn btn-info">기 타</a></li>
 			</ul>
 		</div>
-		<script>
-			$(document).ready(function(){
-				$(".big_category>ul>li>a").click(function(e){
-					e.preventDefault();
-					var tg = $(this);
-					var url = tg.attr("href");
-					$(".big_category>ul>li>button").removeClass("active");
-					tg.addClass("active").siblings().removeClass("active)");
-					window.location.href = url;
-				});
-			});
-		</script>
 		
 		<hr class="featurette-divider"><!-- 구분선 -->
 
@@ -143,11 +134,28 @@
 					
 					<c:if test="${ count > 0 }">
 					<c:forEach var="article" items="${ articleList }"> 
+						<c:choose>
+							<c:when test = "${ article.bcategory == 1 }">
+								<c:set var="bcategoryKR" value="영어" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 2 }">
+								<c:set var="bcategoryKR" value="외국어" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 3 }">
+								<c:set var="bcategoryKR" value="취업" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 4 }">
+								<c:set var="bcategoryKR" value="국가고시&공무원" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 5 }">
+								<c:set var="bcategoryKR" value="기타" />
+							</c:when>
+						</c:choose>
 					<!-- item -->
 					<li class="result_item">
 						<a href="./groupPage.do?num=${ article.num }&pageNum=${ currentPage }" class="item">
 							<figure>
-								<span class="item_category">${ article.bcategory }&lt;${ article.scategory }</span>
+								<span class="item_category">${ bcategoryKR }&lt;${ article.scategory }</span>
 								<img src="./${ article.imgpath }" />
 								<figcaption class="item_description">
 									<p>
@@ -179,17 +187,17 @@
 		<div class="page text-center">
 		<c:if test="${ count > 0 }">
 			<c:set var="pageCount" value="${ count / pageSize + (count%pageSize==0 ? 0 : 1) }" />
-			<c:set var="pageBlock" value="${ 10 }" />
-			<fmt:parseNumber var="result" value="${ currentPage / 10 }" integerOnly="true" />
+			<c:set var="pageBlock" value="${ 5 }" />
+			<fmt:parseNumber var="result" value="${ currentPage / 5 }" integerOnly="true" />
 			<%-- result에 페이지 나눈값 저장. 정수만 입력. --%>
-			<c:set var="startPage" value="${ result * 10 + 1 }" />
+			<c:set var="startPage" value="${ result * 5 + 1 }" />
 			<c:set var="endPage" value="${ startPage + pageBlock - 1 }" />
 			<c:if test="${ endPage > pageCount }">
 				<c:set var="endPage" value="${ pageCount }" />
 			</c:if>
 			<div class="page text-center">
-				<c:if test="${ startPage > 10 }">
-					<a href="/semi/searchGroup.do?pageNum=${ start - 10 }">[이전]</a>
+				<c:if test="${ startPage > 5 }">
+					<a href="/semi/searchGroup.do?pageNum=${ start - 5 }">[이전]</a>
 				</c:if>
 				<ul class="pagination">
 					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
@@ -197,13 +205,27 @@
 					</c:forEach>
 				</ul>
 				<c:if test="${ endPage < pageCount }">
-					<a href="/semi/searchGroup.do?pageNum=${ start + 10 }">[이후]</a>
+					<a href="/semi/searchGroup.do?pageNum=${ start + 5 }">[이후]</a>
 				</c:if>
 			</div>
 		</c:if>
 		</div>
 	</div>
 	<!--// searchGroup 내용영역 -->
-
+	<script>
+		$(document).ready(function(){
+			var big_category = $(".big_category>ul>li>a");
+			var big_index = '${bcategoryNum}';
+			$(".big_category>ul>li>a").removeClass("active");
+			big_category.eq(big_index-1).addClass("active");
+			big_category.click(function(e){
+				e.preventDefault();
+				var tg = $(this);
+				var index = tg.index();
+				var url = tg.attr("href");
+				window.location.href = url;
+			});
+		});
+	</script>
 </body>
 </html>

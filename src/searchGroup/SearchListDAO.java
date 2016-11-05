@@ -52,19 +52,18 @@ public class SearchListDAO {
 	}
 
 	// list.jsp ==> Paging!!! DB로부터 여러행을 결과로 받는다.
-	public List<SearchListDTO> getArticles(int start, int end, String bcategory) throws Exception {
+	public List<SearchListDTO> getArticles(int start, int end, int bcategory) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<SearchListDTO> articleList = null;
 		try {
 			conn = getConnection();
-			
 			String query = "";
-			if(bcategory != null){
-				query = "select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath from group_list where bcategory='?'";
+			if(bcategory > 0){
+				query = "select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath from group_list where bcategory=?";
 				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, bcategory);
+				pstmt.setInt(1, bcategory); 
 			}else{
 				query = "select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath from group_list";
 				pstmt = conn.prepareStatement(query);
@@ -73,12 +72,12 @@ public class SearchListDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				articleList = new ArrayList(end);
+				articleList = new ArrayList<SearchListDTO>(end);
 				do {
 					SearchListDTO article = new SearchListDTO();
 
 					article.setNum(rs.getInt("num"));
-					article.setBcategory(rs.getString("bcategory"));
+					article.setBcategory(rs.getInt("bcategory"));
 					article.setScategory(rs.getString("scategory"));
 					article.setTitle(rs.getString("title"));
 					article.setHost(rs.getString("host"));

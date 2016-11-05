@@ -1,6 +1,6 @@
-@charset "utf-8";
 
-/** 占쏙옙占쏙옙濱占� 占쏙옙 占쏙옙占쏙옙 */
+
+/** ����޴� �� ���� */
 .navbar-wrapper {
 	background-color: #4db8bd;
 }
@@ -34,7 +34,7 @@
 }
 
 
-/*占십쇽옙占쌓몌옙 占쏙옙표占쏙옙*/
+/*�ʼ��׸� ��ǥ��*/
 .compulsory {
 	color: #FF5D2A;
 	padding-left: 4px;
@@ -49,7 +49,7 @@
 }
 
 
-/*占십쇽옙 占쌓몌옙 占쏙옙표*/
+/*�ʼ� �׸� ��ǥ*/
 .input-header .asterisk{
     font-size: 10px;
     color: #ff4a4a;
@@ -58,7 +58,7 @@
     left: -9px;
 }
 
-/*占쏙옙풋占싫울옙 占쏙옙占쏙옙 占쏙옙占쏙옙獵占� 占쏙옙占쏙옙*/
+/*��ǲ�ȿ� ���� ����ִ� ����*/
 .input-inner-text-wrap{
     padding:0 4px;
 }
@@ -93,7 +93,7 @@
     color:#797979;
 }
 
-/*카占쌓곤옙 select*/
+/*ī�װ� select*/
 .category-container{
     padding: 10px 4px;
     line-height: 40px;
@@ -104,7 +104,7 @@
     margin-bottom:10px;
 }
 
-/*체크占쌘쏙옙*/
+/*üũ�ڽ�*/
 .check-box-container{
     margin:14px 4px;
 }
@@ -145,7 +145,7 @@
 
 
 
-/* 타占쏙옙占쏙옙占싱븝옙 */
+/* Ÿ�����̺� */
 .time-table{
     display:table;
     width:100%;
@@ -195,7 +195,7 @@
 }
 
 
-/* 占시곤옙 CSS */
+/* �ð� CSS */
 .dayBox,.divisionBox{
     height: 20px;
     display:table;
@@ -221,7 +221,7 @@
 }
 
 
-/*占쏙옙풋占쏙옙 占쏙옙튼占쏙옙 占쌕억옙占쌍댐옙 占쏙옙占쏙옙*/
+/*��ǲ�� ��ư�� �پ��ִ� ����*/
 .inner-btn-wrap{
     max-width:504px;
     margin-bottom:10px;
@@ -260,7 +260,7 @@
 .map_wrap, .map_wrap * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '�룍��', sans-serif;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
 	font-size: 12px;
 }
 

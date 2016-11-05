@@ -15,11 +15,14 @@ public class SearchListAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
-		String bcategory = request.getParameter("bcategory");
+		int bcategory = 1;
+		String bcategoryKR = null;
+		if(request.getParameter("bcategory") != null) 
+			bcategory = Integer.parseInt(request.getParameter("bcategory"));
 		
-		if(pageNum == null){
+		if(pageNum == null)
 			pageNum = "1";
-		}
+		
 		int pageSize = 5;
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage -1) * pageSize + 1;
@@ -32,10 +35,10 @@ public class SearchListAction implements CommandAction {
 		count = dbPro.getArticleCount(); //전체 글 개수
 		
 		if(count > 0){
-			System.out.println(bcategory);
 			articleList = dbPro.getArticles(startRow, endRow, bcategory);
+			count = articleList.size();
 		}else { 
-			articleList = Collections.EMPTY_LIST;
+			articleList = Collections.emptyList();
 		}
 		
 		number = count - (currentPage - 1) * pageSize;
@@ -48,6 +51,7 @@ public class SearchListAction implements CommandAction {
 		request.setAttribute("pageSize", new Integer(pageSize));
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
+		request.setAttribute("bcategoryNum", new Integer(bcategory));
 		
 		
 		return "/searchGroup.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터

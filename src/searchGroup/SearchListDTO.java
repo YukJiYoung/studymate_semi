@@ -3,7 +3,7 @@ import java.sql.Timestamp;
 
 public class SearchListDTO{
     private int num;
-    private String bcategory;
+    private int bcategory;
     private String scategory;
     private String title;
     private String host;
@@ -21,10 +21,10 @@ public class SearchListDTO{
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getBcategory() {
+	public int getBcategory() {
 		return bcategory;
 	}
-	public void setBcategory(String bcategory) {
+	public void setBcategory(int bcategory) {
 		this.bcategory = bcategory;
 	}
 	public String getScategory() {
