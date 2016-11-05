@@ -55,11 +55,11 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><button type="button" class="active btn btn-info">영 어</button></li>
-				<li><button type="button" class="btn btn-info">외국어</button></li>
-				<li><button type="button" class="btn btn-info">취 업</button></li>
-				<li><button type="button" class="btn btn-info">국가고시<br>공무원</button></li>
-				<li><button type="button" class="btn btn-info">기 타</button></li>
+				<li><a href="" class="active btn btn-info">영 어</a></li>
+				<li><a href="" class="btn btn-info">외국어</a></li>
+				<li><a href="" class="btn btn-info">취 업</a></li>
+				<li><a href="" class="btn btn-info">국가고시<br>공무원</a></li>
+				<li><a href="" class="btn btn-info">기 타</a></li>
 			</ul>
 		</div>
 

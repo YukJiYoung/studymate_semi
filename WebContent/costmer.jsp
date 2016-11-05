@@ -4,14 +4,208 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 
+<!-- 모바일 웹 페이지 설정 -->
+<link rel="shortcut icon" href="assets/ico/favicon.png" />
+<link rel="apple-touch-icon-precomposed"
+	href="assets/ico/apple-touch-icon-144-precomposed.png" />
+
+<!-- bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="assets/css/bootstrap.min.css" />
+
+<!-- 나눔고딕 웹 폰트 적용 -->
+<link rel="stylesheet" type="text/css" href="assets/css/nanumfont.css" />
+
+<!-- 반응형 웹을 지원하지 않을 경우 -->
+<!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
+
+<!-- IE8 이하 버전 지원 -->
+<!--[if lt IE 9]>
+		<script type="text/javascript" src="assets/js/html5shiv.js"></script>
+		<script type="text/javascript" src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+<!-- IE10 반응형 웹 버그 보완 -->
+<!--[if gt IE 9]>
+		<link rel="stylesheet" type="text/css" href="assets/css/ie10.css" />
+		<script type="text/javascript" src="assets/js/ie10.js"></script>
+		<![endif]-->
+<style type="text/css">
+body {
+	/** 메뉴바의 자리가 없어졌으므로, 상단 여백을 제거 */
+	/** padding-top: 50px; */
+	padding-bottom: 20px;
+}
+
+.carousel {
+	height: 500px;
+	margin-bottom: 60px;
+}
+
+.carousel-inner>.item>img {
+	min-width: 100%;
+	height: 500px; 
+}
+
+.carousel-inner .carousel-caption {
+	padding-left: 30px;
+	padding-right: 30px;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/** 캐러셀의 반응형 기능 */
+@media ( min-width : 768px) {
+	.carousel-caption p {
+		margin-bottom: 20px;
+		font-size: 21px;
+		line-height: 1.4;
+	}
+}
+
+/* 떠 있는 메뉴바
+			 -------------------------------------------------- */
+/** 떠 있는 영역 */
+.navbar-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 20;
+}
+
+/** 메뉴바 안의 컨테이너 좌우 여백 제거 */
+.navbar-wrapper .container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/** 메뉴바 자체의 좌우 여백 조절 */
+.navbar-wrapper .navbar {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.navbar-collapse {
+	background-color: none !important;
+}
+
+/** 떠 있는 메뉴바의 반응형 기능 */
+@media ( min-width : 768px) {
+	.navbar-wrapper {
+		margin-top: 5px;
+	}
+	.navbar-wrapper .container { 
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.navbar-wrapper .navbar {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.navbar-wrapper .navbar {
+		border-radius: 4px;
+	}
+	.navbar-wrapper .navbar-right {
+		margin-right: 20px !important;
+	}
+}
+
+/* 상세 내용 영역
+			 ------------------------- */
+/** hr 태그에 대한 상하 여백 확보 */
+.featurette-divider {
+	margin: 80px 0;
+}
+
+/** 제목 텍스트 모양 */
+.featurette-heading {
+	font-weight: bold;
+	line-height: 1;
+	letter-spacing: -1px;
+}
+
+/** 상세 내용영역의 반응형 기능 >> 제목의 글자 크기 재설정 */
+@media ( min-width : 768px) {
+	.featurette-heading {
+		font-size: 50px;
+	}
+}
+
+@media ( min-width : 992px) {
+	.featurette-heading {
+		margin-top: 120px;
+	}
+}
+</style>
 </head>
 
-<body class="non_background">
+<body>
+	<div class="navbar-wrapper">
+		<div class="container">
+			<!-- 메뉴바 -->
+			<div class="navbar navbar-inverse navbar-static-top"
+				role="navigation">
+				<!-- 배경을 제외한 메뉴 항목의 영역 제한 -->
+				<div class="container">
+					<!-- 로고 영역 -->
+					<div class="navbar-header">
+						<!-- 반응형 메뉴 버튼 -->
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<!--// 반응형 메뉴 버튼 -->
+						<!-- 로고 -->
+						<a class="navbar-brand" href="/">StudyMate</a>
+						<!--// 로고 -->
+					</div>
+					<!--// 로고 영역 -->
+					<!-- 메뉴 영역 -->
+					<div class="navbar-collapse collapse">
+						<!-- 메인메뉴 -->
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">스터디그룹</a></li>
+							<li><a href="#">그룹등록</a></li>
+							<li><a href="#">로그인</a></li>
+							<li><a href="#">메인페이지</a></li>
+						</ul>
+						<!--// 메인메뉴 -->
+						<!-- 로그인(메뉴 우측) -->
+						<!-- <form class="navbar-form navbar-right" action="" name="" method="">
+								<div class="form-group">
+									<input type="text" placeholder="Email" class="form-control">
+								</div>
+								<div class="form-group">
+									<input type="password" placeholder="Password" class="form-control">
+								</div>
+								<button type="submit" class="btn btn-success">
+									Login
+								</button>
+								<button type="button" class="btn btn-warning">
+									Join
+								</button>
+							</form> -->
+						<!--// 로그인(메뉴 우측) -->
+					</div>
+					<!--// 메뉴 영역 -->
+				</div>
+				<!--// 배경을 제외한 메뉴 항목의 영역 제한 -->
+			</div>
+			<!--// 메뉴바 -->
+		</div>
+	</div>
+
 	<div class="container">
 		<ul class="nav nav-tabs" style="padding-top: 80px;">
 			<li class="active"><a data-toggle="tab" href="#home">자주 묻는 질문</a></li>
@@ -322,7 +516,18 @@
 				<br>
 				<!-- 문의하기 끝 -->
 			</div>
-			</div>
+			
 		</div>
+	</div>
+
+
+
+
+
+	<!--// 내용영역 -->
+
+	<!-- Javascript -->
+	<script src="assets/js/jquery-3.1.1.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

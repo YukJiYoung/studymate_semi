@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.board.action.CommandAction;
+import action.CommandAction;
 
 public class ControllerUsingURI extends HttpServlet {
 	
@@ -68,7 +68,7 @@ public class ControllerUsingURI extends HttpServlet {
 		CommandAction com = null;
 		try{
 			String command = request.getRequestURI(); //uri에서 패스 부분만 가져옴
-//			System.out.println("command : " + command);
+			System.out.println("command : " + command);
 			if(command.indexOf(request.getContextPath()) == 0){ //프로젝트명으로 시작한다면
 				command = command.substring(request.getContextPath().length()); //프로젝트명 이후부터 '/mvc_board/mvc/list.do' 리턴
 			}

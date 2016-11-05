@@ -1,4 +1,4 @@
-package notice.board.action;
+package customer.board.action;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
+import customer.board.BoardDBBean;
 
 public class ListAction implements CommandAction {
 
@@ -47,7 +47,7 @@ public class ListAction implements CommandAction {
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
 		
-		return "/notice/list.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터
+		return "/customer/list.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터
 	} //end requestPro()
 
 }

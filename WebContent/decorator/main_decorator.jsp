@@ -80,7 +80,7 @@
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="<c:url value="/" />">Home</a></li>
-						<li class="active"><a href="<c:url value="/searchGroup.jsp" />">스터디그룹</a></li>
+						<li class="active"><a href="<c:url value="/searchGroup.do" />">스터디그룹</a></li>
 						<li><a href="<c:url value="/addGroup.jsp" />">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
 						<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
@@ -226,7 +226,7 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="<c:url value="/costmer.jsp" />">고객지원</a></li>
+						<li><a href="/semi/customer/list.do"">고객지원</a></li>
 						<li><a href="<c:url value="/" />">이용안내</a></li>
 						<li><a href="<c:url value="/" />">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->

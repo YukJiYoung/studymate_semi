@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>StudyMate :: 공지사항 게시판</title>
+<title>StudyMate :: 고객지원 게시판</title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="../assets/ico/favicon.png" />
@@ -80,7 +80,7 @@
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="<c:url value="/" />">Home</a></li>
-						<li class="active"><a href="<c:url value="/searchGroup.jsp" />">스터디그룹</a></li>
+						<li class="active"><a href="<c:url value="/searchGroup.do" />">스터디그룹</a></li>
 						<li><a href="<c:url value="/addGroup.jsp" />">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
 						<li><a href="<c:url value="/" />" data-toggle="modal" data-target="#login_modal">로그인</a></li>
@@ -130,10 +130,147 @@
 
 	<!-- 내용영역 -->
 	<div class="container" style="margin-top:100px; min-height:600px;">
-		<div class="notice_header text-center">
-			<h3>- 공지사항 (전체 글:${ count }) -</h3>
+		<ul class="nav nav-tabs">
+			<li><a data-toggle="tab" href="#answer">자주 묻는 질문</a></li>
+			<li class="active"><a data-toggle="tab" href="#qnalist">문의/답변 목록</a></li>
+			<li><a data-toggle="tab" href="#question">문의하기</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<!-- 자주 묻는 질문 -->
+			<div id="answer" class="tab-pane fade">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> 자주 묻는 질문 1</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse">
+							<div class="panel-body">내용1</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> 자주 묻는 질문 2</a>
+							</h4>
+						</div>
+						<div id="collapse2" class="panel-collapse collapse">
+							<div class="panel-body">내용2</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> 자주 묻는 질문 3</a>
+							</h4>
+						</div>
+						<div id="collapse3" class="panel-collapse collapse">
+							<div class="panel-body">내용3</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> 자주 묻는 질문 4</a>
+							</h4>
+						</div>
+						<div id="collapse4" class="panel-collapse collapse">
+							<div class="panel-body">내용4</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> 자주 묻는 질문 5</a>
+							</h4>
+						</div>
+						<div id="collapse5" class="panel-collapse collapse">
+							<div class="panel-body">내용5</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse6"> 자주 묻는 질문 6</a>
+							</h4>
+						</div>
+						<div id="collapse6" class="panel-collapse collapse">
+							<div class="panel-body">내용6</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse7"> 자주 묻는 질문 7</a>
+							</h4>
+						</div>
+						<div id="collapse7" class="panel-collapse collapse">
+							<div class="panel-body">내용7</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse8"> 자주 묻는 질문 8</a>
+							</h4>
+						</div>
+						<div id="collapse8" class="panel-collapse collapse">
+							<div class="panel-body">내용8</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse9"> 자주 묻는 질문 9</a>
+							</h4>
+						</div>
+						<div id="collapse9" class="panel-collapse collapse">
+							<div class="panel-body">내용9</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //자주 묻는 질문 -->
+			
+			<!-- qna -->
+			<div id="qnalist" class="tab-pane fade in active">
+				
+				<decorator:body />
+				
+			</div>
+			<!-- //qna -->
+			
+			<!-- 문의하기 -->
+			<div id="question" class="tab-pane fade">
+
+				<form>
+					<div class="form-group">
+						<label for="name">이름:</label> <input type="text"
+							class="form-control" id="name" style="width: 30%">
+					</div>
+					<div class="form-group">
+						<label for="tel">연락처:</label> <input type="tel"
+							class="form-control" id="tel" style="width: 30%">
+					</div>
+					<div class="form-group">
+						<label for="email">이메일:</label> <input type="email"
+							class="form-control" id="email" style="width: 30%">
+					</div>
+
+					<div class="form-group">
+						<label for="comment">문의하기:</label>
+						<textarea class="form-control" rows="5" id="comment"
+							style="width: 50%"></textarea>
+					</div>
+
+					<button type="submit" class="btn btn-default">등록</button>
+				</form>
+
+			</div>
+			<!-- //문의하기 -->
 		</div>
-		<decorator:body />
 	</div>
 	<!--// 내용영역 -->
 
@@ -146,7 +283,7 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="<c:url value="/costmer.jsp" />">고객지원</a></li>
+						<li><a href="<c:url value="/costmer.do" />">고객지원</a></li>
 						<li><a href="<c:url value="/" />">이용안내</a></li>
 						<li><a href="<c:url value="/" />">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->

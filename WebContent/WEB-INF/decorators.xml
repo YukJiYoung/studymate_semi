@@ -9,7 +9,12 @@
 		<pattern>/notice/*</pattern>
 	</decorator>
 	
+	<decorator name="customer" page="customer_decorator.jsp">
+		<pattern>/customer/*</pattern>
+	</decorator>
+	
 	<excludes>
 		<pattern></pattern>
 	</excludes>
+	
 </decorators>

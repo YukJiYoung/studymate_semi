@@ -12,7 +12,7 @@
 <body class="non_background">
 
 	<!-- searchGroup 내용영역 -->
-	<div class="container" style="margin-top: 80px;">
+	<div class="container" style="margin-top: 80px; min-height:600px;">
 		<div class="row featurette">
 			<form name="" action="" method="post">
 				<div class="row search">
@@ -104,152 +104,103 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><button type="button" class="active btn btn-info">영 어</button></li>
-				<li><button type="button" class="btn btn-info">외국어</button></li>
-				<li><button type="button" class="btn btn-info">취 업</button></li>
-				<li><button type="button" class="btn btn-info">국가고시<br>공무원</button></li>
-				<li><button type="button" class="btn btn-info">기 타</button></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=영어" class="active btn btn-info">영 어</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=외국어" class="btn btn-info">외국어</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=취업" class="btn btn-info">취 업</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=국가고시공무원" class="btn btn-info">국가고시<br>공무원</a></li>
+				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=기타" class="btn btn-info">기 타</a></li>
 			</ul>
 		</div>
-
+		<script>
+			$(document).ready(function(){
+				$(".big_category>ul>li>a").click(function(e){
+					e.preventDefault();
+					var tg = $(this);
+					var url = tg.attr("href");
+					$(".big_category>ul>li>button").removeClass("active");
+					tg.addClass("active").siblings().removeClass("active)");
+					window.location.href = url;
+				});
+			});
+		</script>
+		
 		<hr class="featurette-divider"><!-- 구분선 -->
+
+
+							<div><c:out value="${ number }" />
+								<c:set var="number" value="${ number-1 }" /></div>
+								
 
 		<div class="row featurette">
 			<div class="result_item_wrapper">
 				<ul class="list result_item_list">
-					<%-- 검색결과가 없을 때 --%>
-					<li class="result_item no_result text-center"><h4>검색 결과가 없습니다.</h4></li>
-					<hr class="featurette-divider"><!-- 구분선 -->
-					<%-- 검색결과가 있을 때 --%>
+					<c:if test="${ count == 0 }">
+						<%-- 검색결과가 없을 때 --%>
+						<li class="result_item no_result text-center"><h4>검색 결과가 없습니다.</h4></li>
+						<hr class="featurette-divider"><!-- 구분선 -->
+						<%-- 검색결과가 있을 때 --%>
+					</c:if>
+					
+					<c:if test="${ count > 0 }">
+					<c:forEach var="article" items="${ articleList }"> 
 					<!-- item -->
 					<li class="result_item">
-						<a href="#" class="item">
+						<a href="./groupPage.do?num=${ article.num }&pageNum=${ currentPage }" class="item">
 							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_01.jpg" />
+								<span class="item_category">${ article.bcategory }&lt;${ article.scategory }</span>
+								<img src="./${ article.imgpath }" />
 								<figcaption class="item_description">
 									<p>
-										<span class="item_title">영어 회화 스터디</span>
-										<span class="item_status label label-primary">모집중</span>
-										<span class="item_label label label-danger">HOT</span>
-										<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
+										<span class="item_title">${ article.title }</span>
+										<span class="item_status label label-primary">${ article.status }</span>
+										<c:if test="${ article.recommendcount >= 20 }">
+											<span class="item_label label label-danger">HOT</span>
+										</c:if>
+										<span class="item_introduce"> - ${ article.introduce } </span>
 									</p>
 									<p>
-										<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
+										<span class="item_host">${ article.host }</span> | <span class="item_date">${ article.duedate }</span>
 									</p>
 								</figcaption>
 								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
+									<span class="entry_number">${ article.currentnum }</span> / <span class="entry_total">${ article.total }</span> 명
 								</div>
 							</figure>
 						</a>
 					</li>
 					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="#" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_02.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="#" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_01.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_label label label-danger">HOT</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="#" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_02.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="#" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_01.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
+					</c:forEach>
+					</c:if>
+					
 				</ul>
 			</div>
 		</div>
 		
 		<div class="page text-center">
-			<ul class="pagination">
-			  <li class="active"><a href="#">1</a></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li><a href="#">4</a></li>
-			  <li><a href="#">5</a></li>
-			</ul>
+		<c:if test="${ count > 0 }">
+			<c:set var="pageCount" value="${ count / pageSize + (count%pageSize==0 ? 0 : 1) }" />
+			<c:set var="pageBlock" value="${ 10 }" />
+			<fmt:parseNumber var="result" value="${ currentPage / 10 }" integerOnly="true" />
+			<%-- result에 페이지 나눈값 저장. 정수만 입력. --%>
+			<c:set var="startPage" value="${ result * 10 + 1 }" />
+			<c:set var="endPage" value="${ startPage + pageBlock - 1 }" />
+			<c:if test="${ endPage > pageCount }">
+				<c:set var="endPage" value="${ pageCount }" />
+			</c:if>
+			<div class="page text-center">
+				<c:if test="${ startPage > 10 }">
+					<a href="/semi/searchGroup.do?pageNum=${ start - 10 }">[이전]</a>
+				</c:if>
+				<ul class="pagination">
+					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+						<li><a href="/semi/searchGroup.do?pageNum=${ i }">${ i }</a></li>
+					</c:forEach>
+				</ul>
+				<c:if test="${ endPage < pageCount }">
+					<a href="/semi/searchGroup.do?pageNum=${ start + 10 }">[이후]</a>
+				</c:if>
+			</div>
+		</c:if>
 		</div>
 	</div>
 	<!--// searchGroup 내용영역 -->

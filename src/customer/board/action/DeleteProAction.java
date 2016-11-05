@@ -1,26 +1,28 @@
-package notice.board.action;
+package customer.board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
-import notice.board.BoardDataBean;
+import customer.board.BoardDBBean;
 
-public class UpdateFormAction implements CommandAction {
+public class DeleteProAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		request.setCharacterEncoding("utf-8");
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");
+		String passwd = request.getParameter("passwd");
 		
 		BoardDBBean dbPro = BoardDBBean.getInstance();
-		BoardDataBean article = dbPro.updateGetArticle(num);
+		int check = dbPro.deleteArticle(num, passwd);
 		
 		request.setAttribute("pageNum", new Integer(pageNum));
-		request.setAttribute("article", article);
+		request.setAttribute("check", new Integer(check));
 		
-		return "/notice/updateForm.jsp";
+		return "/customer/deletePro.jsp";
 	} //end requestPro()
-	
+
 }

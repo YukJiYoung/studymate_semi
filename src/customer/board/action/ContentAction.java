@@ -1,26 +1,24 @@
-package notice.board.action;
+package customer.board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
-import notice.board.BoardDataBean;
+import customer.board.BoardDBBean; 
+import customer.board.BoardDataBean;
 
-public class UpdateFormAction implements CommandAction {
-
-	@Override
+public class ContentAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");
 		
 		BoardDBBean dbPro = BoardDBBean.getInstance();
-		BoardDataBean article = dbPro.updateGetArticle(num);
+		BoardDataBean article = dbPro.getArticle(num);
 		
+		request.setAttribute("num", new Integer(num));
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("article", article);
 		
-		return "/notice/updateForm.jsp";
+		return "/customer/content.jsp";
 	} //end requestPro()
-	
-}
+} 

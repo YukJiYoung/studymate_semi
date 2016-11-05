@@ -1,11 +1,11 @@
-package notice.board.action;
+package customer.board.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
-import notice.board.BoardDataBean;
+import customer.board.BoardDBBean;
+import customer.board.BoardDataBean;
 
 public class UpdateProAction implements CommandAction {
 
@@ -29,7 +29,7 @@ public class UpdateProAction implements CommandAction {
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("check", new Integer(check));
 		
-		return "/notice/updatePro.jsp";
+		return "/customer/updatePro.jsp";
 	} //end requestPro()
 
 }

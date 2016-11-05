@@ -3,6 +3,7 @@ package notice.board.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.CommandAction;
 import notice.board.BoardDBBean;
 
 public class DeleteProAction implements CommandAction {

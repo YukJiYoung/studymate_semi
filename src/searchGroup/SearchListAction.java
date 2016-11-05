@@ -1,4 +1,4 @@
-package notice.board.action;
+package searchGroup;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,29 +9,31 @@ import javax.servlet.http.HttpServletResponse;
 import action.CommandAction;
 import notice.board.BoardDBBean;
 
-public class ListAction implements CommandAction {
+public class SearchListAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
 		String pageNum = request.getParameter("pageNum");
+		String bcategory = request.getParameter("bcategory");
 		
 		if(pageNum == null){
 			pageNum = "1";
 		}
-		int pageSize = 10;
+		int pageSize = 5;
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage -1) * pageSize + 1;
 		int endRow = currentPage * pageSize;
 		int count = 0;
 		int number = 0;
 		
-		List articleList = null;
-		BoardDBBean dbPro = BoardDBBean.getInstance();
+		List<SearchListDTO> articleList = null;
+		SearchListDAO dbPro = SearchListDAO.getInstance();
 		count = dbPro.getArticleCount(); //전체 글 개수
 		
 		if(count > 0){
-			articleList = dbPro.getArticles(startRow, endRow);
+			System.out.println(bcategory);
+			articleList = dbPro.getArticles(startRow, endRow, bcategory);
 		}else { 
 			articleList = Collections.EMPTY_LIST;
 		}
@@ -47,7 +49,8 @@ public class ListAction implements CommandAction {
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
 		
-		return "/notice/list.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터
+		
+		return "/searchGroup.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터
 	} //end requestPro()
 
 }
