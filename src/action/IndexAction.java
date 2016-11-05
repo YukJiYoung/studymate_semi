@@ -1,4 +1,4 @@
-package searchGroup;
+package action;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.CommandAction;
+import searchGroup.SearchListDAO;
+import searchGroup.SearchListDTO;
 
 public class IndexAction implements CommandAction {
 
@@ -21,10 +22,11 @@ public class IndexAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
+		count = dbPro.getArticleCount(bcategory); //전체 글 개수
 		
 		if(count > 0){
 			articleList = dbPro.getArticles(bcategory);
-			count = articleList.size();
+//			count = articleList.size();
 		}else { 
 			articleList = Collections.emptyList();
 		}

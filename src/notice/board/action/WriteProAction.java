@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
-import notice.board.BoardDataBean;
+import notice.board.NoticeDAO;
+import notice.board.NoticeDTO;
 
 public class WriteProAction implements CommandAction {
 
@@ -15,21 +15,13 @@ public class WriteProAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
 		
-		BoardDataBean article = new BoardDataBean();
-		article.setNum(Integer.parseInt(request.getParameter("num")));
+		NoticeDTO article = new NoticeDTO();
 		article.setWriter(request.getParameter("writer"));
-		article.setEmail(request.getParameter("email"));
-		article.setSubject(request.getParameter("subject"));
+		article.setNoticeTitle(request.getParameter("noticeTitle"));
 		article.setContent(request.getParameter("content"));
-		article.setPasswd(request.getParameter("passwd"));
-		article.setReg_date(new Timestamp(System.currentTimeMillis()));
-		article.setRef(Integer.parseInt(request.getParameter("ref")));
-		article.setRe_step(Integer.parseInt(request.getParameter("re_step")));
-		article.setRe_level(Integer.parseInt(request.getParameter("re_level")));
-		article.setContent(request.getParameter("content"));
-		article.setIp(request.getRemoteAddr());
+		article.setNoticeDate(new Timestamp(System.currentTimeMillis()));
 		
-		BoardDBBean dbPro = BoardDBBean.getInstance();
+		NoticeDAO dbPro = NoticeDAO.getInstance();
 		dbPro.insertArticle(article);
 		
 		return "/notice/writePro.jsp";

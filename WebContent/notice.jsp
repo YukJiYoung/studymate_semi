@@ -10,6 +10,6 @@
 </head>
 
 <body class="non_background">
-	<% response.sendRedirect("/semi/notice/list.do"); %>
+	<% response.sendRedirect("./notice/list.do"); %>
 </body>
 </html>

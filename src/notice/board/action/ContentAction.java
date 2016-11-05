@@ -4,18 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
-import notice.board.BoardDataBean;
+import notice.board.NoticeDAO;
+import notice.board.NoticeDTO;
 
 public class ContentAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		int num = Integer.parseInt(request.getParameter("num"));
+		int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
 		String pageNum = request.getParameter("pageNum");
 		
-		BoardDBBean dbPro = BoardDBBean.getInstance();
-		BoardDataBean article = dbPro.getArticle(num);
+		NoticeDAO dbPro = NoticeDAO.getInstance();
+		NoticeDTO article = dbPro.getArticle(noticeNum);
 		
-		request.setAttribute("num", new Integer(num));
+		request.setAttribute("noticeNum", new Integer(noticeNum));
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("article", article);
 		

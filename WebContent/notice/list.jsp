@@ -13,7 +13,7 @@
 	<!-- 공지사항 내용영역 -->
 	<div class="container">
 		<div class="row text-right">
-			<a href="/semi/notice/writeForm.do" class="btn btn-info btn-lg">글쓰기</a>
+			<a href="./writeForm.do" class="btn btn-info btn-lg">글쓰기</a>
 		</div>
 		<div class="table-responsive">
 			<c:if test="${ count == 0 }">
@@ -27,30 +27,23 @@
 				<table class="table">
 					<tr>
 						<th width="50">#</th>
-						<th width="250">제 목</th>
+						<th width="250">제   목</th>
 						<th width="100">작성자</th>
 						<th width="150">작성일</th>
-						<th width="50">조 회</th>
-						<th width="100">IP</th>
+						<th width="50">조  회</th>
 					</tr>
 					<c:forEach var="article" items="${ articleList }">
 						<%-- 배열이나 구조체는 'items'로 사용 --%>
 						<tr>
 							<td width="50"><c:out value="${ number }" />
 								<c:set var="number" value="${ number-1 }" /></td>
-							<td width="250"><c:if test="${ article.re_level > 0 }">
-									<img src="images/level.gif" width="${ 5*article.re_level }" height="16" />
-									<img src="images/re.gif" />
-								</c:if> <c:if test="${ article.re_level == 0 }">
-									<img src="images/level.gif" width="${ 5*article.re_level }" height="16" />
-								</c:if> <a href="/semi/notice/content.do?num=${ article.num }&pageNum=${ currentPage }">${ article.subject }</a>
-								<c:if test="${ article.readcount >= 20 }">
+							<td width="250"><a href="./content.do?noticeNum=${ article.noticeNum }&pageNum=${ currentPage }">${ article.noticeTitle }</a>
+								<c:if test="${ article.ncount >= 20 }">
 									<span class="label label-danger">HOT</span>
 								</c:if></td>
-							<td width="100"><a href="mailto:${ article.email }">${ article.writer }</a></td>
-							<td width="150">${ article.reg_date }</td>
-							<td width="50">${ article.readcount }</td>
-							<td width="100">${ article.ip }</td>
+							<td width="100">${ article.writer }</td>
+							<td width="150">${ article.noticeDate }</td>
+							<td width="50">${ article.ncount }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -69,15 +62,15 @@
 			</c:if>
 			<div class="page text-center">
 				<c:if test="${ startPage > 10 }">
-					<a href="/semi/notice/list.do?pageNum=${ start - 10 }">[이전]</a>
+					<a href="./list.do?pageNum=${ start - 10 }">[이전]</a>
 				</c:if>
 				<ul class="pagination">
 					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-						<li><a href="/semi/notice/list.do?pageNum=${ i }">${ i }</a></li>
+						<li><a href="./list.do?pageNum=${ i }">${ i }</a></li>
 					</c:forEach>
 				</ul>
 				<c:if test="${ endPage < pageCount }">
-					<a href="/semi/notice/list.do?pageNum=${ start + 10 }">[이후]</a>
+					<a href="./list.do?pageNum=${ start + 10 }">[이후]</a>
 				</c:if>
 			</div>
 		</c:if>

@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
-import notice.board.BoardDataBean;
+import notice.board.NoticeDAO;
+import notice.board.NoticeDTO;
 
 public class UpdateProAction implements CommandAction {
 
@@ -14,17 +14,16 @@ public class UpdateProAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
+		String passwd = request.getParameter("passwd");
 		
-		BoardDataBean article = new BoardDataBean();
-		article.setNum(Integer.parseInt(request.getParameter("num")));
+		NoticeDTO article = new NoticeDTO();
+		article.setNoticeNum(Integer.parseInt(request.getParameter("noticeNum")));
 		article.setWriter(request.getParameter("writer"));
-		article.setEmail(request.getParameter("email"));
-		article.setSubject(request.getParameter("subject"));
+		article.setNoticeTitle(request.getParameter("noticeTitle"));
 		article.setContent(request.getParameter("content"));
-		article.setPasswd(request.getParameter("passwd"));
 		
-		BoardDBBean dbPro = BoardDBBean.getInstance();
-		int check = dbPro.updateArticle(article);
+		NoticeDAO dbPro = NoticeDAO.getInstance();
+		int check = dbPro.updateArticle(article, passwd);
 		
 		request.setAttribute("pageNum", new Integer(pageNum));
 		request.setAttribute("check", new Integer(check));

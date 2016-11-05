@@ -148,7 +148,7 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="/semi/customer/list.do"">고객지원</a></li>
+						<li><a href="./customer/list.do"">고객지원</a></li>
 						<li><a href="#">이용안내</a></li>
 						<li><a href="#">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->
@@ -157,7 +157,7 @@
 					<br />
 					<address>
 						<p><span class="address">주소 : 서울특별시 강남구 역삼동</span><span class="tel">Tel : 1234-5678</span></p>
-						<p>Copyright&copy;2016. <a href="./index.do">studymate.co.kr</a>.All rights resurved</p>
+						<p>Copyright&copy;2016. <a href="./index.do">studymate.co.kr</a>.All rights reserved</p>
 					</address>
 				</div>
 

@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.CommandAction;
-import notice.board.BoardDBBean;
+import notice.board.NoticeDAO;
+import notice.board.NoticeDTO;
 
 public class ListAction implements CommandAction {
 
@@ -26,8 +27,8 @@ public class ListAction implements CommandAction {
 		int count = 0;
 		int number = 0;
 		
-		List articleList = null;
-		BoardDBBean dbPro = BoardDBBean.getInstance();
+		List<NoticeDTO> articleList = null;
+		NoticeDAO dbPro = NoticeDAO.getInstance();
 		count = dbPro.getArticleCount(); //전체 글 개수
 		
 		if(count > 0){

@@ -19,7 +19,7 @@ public class SearchListDAO {
 	}
 
 	// list.jsp : 페이징을 위해서 전체 DB에 입력된 행의수가 필요하다...!!!
-	public int getArticleCount() throws Exception {
+	public int getArticleCount(int bcategory) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -29,7 +29,8 @@ public class SearchListDAO {
 		try {
 			conn = getConnection();
 
-			pstmt = conn.prepareStatement("select count(*) from group_list");
+			pstmt = conn.prepareStatement("select count(*) from group_list where bcategory=?");
+			pstmt.setInt(1, bcategory);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {

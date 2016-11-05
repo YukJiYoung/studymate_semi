@@ -11,30 +11,29 @@
 			<table class="table table-responsive notice_content_table">
 				<tr>
 					<th>글번호</th>
-					<td>${ article.num }</td>
+					<td>${ article.noticeNum }</td>
 					<th>조회수</th>
-					<td>${ article.readcount }</td>
+					<td>${ article.ncount }</td>
 				</tr>
 				<tr>
 					<th>작성자</th>
 					<td>${ article.writer }</td>
 					<th>작성일</th>
-					<td>${ article.reg_date }</td>
+					<td>${ article.noticeDate }</td>
 				</tr>
 				<tr>
-					<th>글제목</th>
-					<td colspan="3">${ article.subject }</td>
+					<th>제&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+					<td colspan="3">${ article.noticeTitle }</td>
 				</tr>
 				<tr>
-					<th>글내용</th>
+					<th>내&nbsp;&nbsp;&nbsp;&nbsp;용</th>
 					<td colspan="3"><pre>${ article.content }</pre></td>
 				</tr>
 			</table>
 			<div class="row text-right btns">
-				<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='/semi/notice/updateForm.do?num=${ article.num }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='/semi/notice/deleteForm.do?num=${ article.num }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="btn btn-info" type="button" value="답글쓰기" onclick="document.location.href='/semi/notice/writeForm.do?num=${ article.num }&re_step=${ article.re_step }&re_level=${ article.re_level }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="btn btn-default" type="button" value="글목록" onclick="document.location.href='/semi/notice/list.do?pageNum=${ pageNum }'" />
+				<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='./updateForm.do?noticeNum=${ article.noticeNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='./deleteForm.do?noticeNum=${ article.noticeNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-default" type="button" value="글목록" onclick="document.location.href='./list.do?pageNum=${ pageNum }'" />
 			</div>
 		</form>
 	</div>

@@ -9,7 +9,6 @@
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
 	
-	
 </head>
 
 <body class="non_background">
@@ -107,19 +106,19 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=1" class="active btn btn-info">영 어</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=2" class="btn btn-info">외국어</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=3" class="btn btn-info">취 업</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
-				<li><a href="/semi/searchGroup.do?pageNum=${ currentPage }&bcategory=5" class="btn btn-info">기 타</a></li>
+				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=1" class="active btn btn-info">영 어</a></li>
+				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=2" class="btn btn-info">외국어</a></li>
+				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=3" class="btn btn-info">취 업</a></li>
+				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
+				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=5" class="btn btn-info">기 타</a></li>
 			</ul>
 		</div>
 		
 		<hr class="featurette-divider"><!-- 구분선 -->
 
 
-							<div><c:out value="${ number }" />
-								<c:set var="number" value="${ number-1 }" /></div>
+						<%-- 	<div><c:out value="${ number }" />
+								<c:set var="number" value="${ number-1 }" /></div> --%>
 								
 
 		<div class="row featurette">
@@ -197,15 +196,15 @@
 			</c:if>
 			<div class="page text-center">
 				<c:if test="${ startPage > 5 }">
-					<a href="/semi/searchGroup.do?pageNum=${ start - 5 }">[이전]</a>
+					<a href="./searchGroup.do?pageNum=${ start - 5 }">[이전]</a>
 				</c:if>
 				<ul class="pagination">
 					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-						<li><a href="/semi/searchGroup.do?pageNum=${ i }">${ i }</a></li>
+						<li><a href="./searchGroup.do?pageNum=${ i }&bcategory=${ bcategoryNum }">${ i }</a></li>
 					</c:forEach>
 				</ul>
 				<c:if test="${ endPage < pageCount }">
-					<a href="/semi/searchGroup.do?pageNum=${ start + 5 }">[이후]</a>
+					<a href="./searchGroup.do?pageNum=${ start + 5 }">[이후]</a>
 				</c:if>
 			</div>
 		</c:if>
