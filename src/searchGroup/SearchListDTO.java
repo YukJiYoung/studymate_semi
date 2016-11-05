@@ -1,4 +1,5 @@
 package searchGroup;
+
 import java.sql.Timestamp; 
 
 public class SearchListDTO{

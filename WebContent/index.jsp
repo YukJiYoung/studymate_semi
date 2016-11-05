@@ -55,11 +55,11 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><a href="./searchGroup.do?pageNum=1&bcategory=1" class="active btn btn-info">영 어</a></li>
-				<li><a href="./searchGroup.do?pageNum=1&bcategory=2" class="btn btn-info">외국어</a></li>
-				<li><a href="./searchGroup.do?pageNum=1&bcategory=3" class="btn btn-info">취 업</a></li>
-				<li><a href="./searchGroup.do?pageNum=1&bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
-				<li><a href="./searchGroup.do?pageNum=1&bcategory=5" class="btn btn-info">기 타</a></li>
+				<li><a href="./index.do?bcategory=1" class="active btn btn-info">영 어</a></li>
+				<li><a href="./index.do?bcategory=2" class="btn btn-info">외국어</a></li>
+				<li><a href="./index.do?bcategory=3" class="btn btn-info">취 업</a></li>
+				<li><a href="./index.do?bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
+				<li><a href="./index.do?bcategory=5" class="btn btn-info">기 타</a></li>
 			</ul>
 		</div>
 
@@ -68,136 +68,83 @@
 		<div class="row featurette">
 			<div class="result_item_wrapper">
 				<ul class="list result_item_list">
-					<%-- 검색결과가 없을 때 --%>
-					<li class="result_item no_result text-center"><h4>검색 결과가 없습니다.</h4></li>
-					<hr class="featurette-divider"><!-- 구분선 -->
-					<%-- 검색결과가 있을 때 --%>
+					<c:if test="${ count == 0 }">
+						<%-- 검색결과가 없을 때 --%>
+						<li class="result_item no_result text-center"><h4>검색 결과가 없습니다.</h4></li>
+						<hr class="featurette-divider"><!-- 구분선 -->
+						<%-- 검색결과가 있을 때 --%>
+					</c:if>
+					
+					<c:if test="${ count > 0 }">
+					<c:forEach var="article" items="${ articleList }"> 
+						<c:choose>
+							<c:when test = "${ article.bcategory == 1 }">
+								<c:set var="bcategoryKR" value="영어" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 2 }">
+								<c:set var="bcategoryKR" value="외국어" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 3 }">
+								<c:set var="bcategoryKR" value="취업" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 4 }">
+								<c:set var="bcategoryKR" value="국가고시&공무원" />
+							</c:when>
+							<c:when test = "${ article.bcategory == 5 }">
+								<c:set var="bcategoryKR" value="기타" />
+							</c:when>
+						</c:choose>
 					<!-- item -->
 					<li class="result_item">
-						<a href="<c:url value="/groupPage.jsp" />" class="item">
+						<a href="./groupPage.do?num=${ article.num }&pageNum=${ currentPage }" class="item">
 							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_01.jpg" />
+								<span class="item_category">${ bcategoryKR }&lt;${ article.scategory }</span>
+								<img src="./${ article.imgpath }" />
 								<figcaption class="item_description">
 									<p>
-										<span class="item_title">영어 회화 스터디</span>
-										<span class="item_status label label-primary">모집중</span>
-										<span class="item_label label label-danger">HOT</span>
-										<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
+										<span class="item_title">${ article.title }</span>
+										<span class="item_status label label-primary">${ article.status }</span>
+										<c:if test="${ article.recommendcount >= 20 }">
+											<span class="item_label label label-danger">HOT</span>
+										</c:if>
+										<span class="item_introduce"> - ${ article.introduce } </span>
 									</p>
 									<p>
-										<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
+										<span class="item_host">${ article.host }</span> | <span class="item_date">${ article.duedate }</span>
 									</p>
 								</figcaption>
 								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
+									<span class="entry_number">${ article.currentnum }</span> / <span class="entry_total">${ article.total }</span> 명
 								</div>
 							</figure>
 						</a>
 					</li>
 					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="<c:url value="/groupPage.jsp" />" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_02.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="<c:url value="/groupPage.jsp" />" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_01.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_label label label-danger">HOT</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="<c:url value="/groupPage.jsp" />" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_02.jpg" />
-								<figcaption class="item_description">
-									<p>
-									<span class="item_title">영어 회화 스터디</span>
-									<span class="item_status label label-primary">모집중</span>
-									<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
-					<!-- item -->
-					<li class="result_item">
-						<a href="<c:url value="/groupPage.jsp" />" class="item">
-							<figure>
-								<span class="item_category">영어 > 영어회화</span>
-								<img src="images/item_sample_01.jpg" />
-								<figcaption class="item_description">
-									<p>
-										<span class="item_title">영어 회화 스터디</span>
-										<span class="item_status label label-primary">모집중</span>
-										<span class="item_introduce"> - 해외 이민을 목표로 영어회화 스터디 하실 분 모십니다~~! </span>
-									</p>
-									<p>
-									<span class="item_host">최순실</span> | <span class="item_date">2016.10.17</span>
-									</p>
-								</figcaption>
-								<div class="item_entry">
-									<span class="entry_number">2</span> / <span class="entry_total">4</span> 명
-								</div>
-							</figure>
-						</a>
-					</li>
-					<!-- //item -->
+					</c:forEach>
+					</c:if>
+					
 				</ul>
 			</div>
 		</div>
 		
 		<div class="result_more text-center">
-			<a href="./searchGroup.do">+ 더보기</a>
+			<a href="./searchGroup.do?pageNum=1&bcategory=${ bcategoryNum }">+ 더보기</a>
 		</div>
 		
 	</div>
 	<!--// index 내용영역 -->
+	<script>
+		$(document).ready(function(){
+			var big_category = $(".big_category>ul>li>a");
+			var big_index = '${bcategoryNum}';
+			$(".big_category>ul>li>a").removeClass("active"); 
+			big_category.eq(big_index-1).addClass("active");
+			big_category.click(function(e){
+				e.preventDefault();
+				var url = $(this).attr("href");
+				window.location.href = url;
+			});
+		});
+	</script>
 </body>
 </html>

@@ -71,7 +71,7 @@
 					</button>
 					<!--// 반응형 메뉴 버튼 -->
 					<!-- 로고 -->
-					<a class="navbar-brand" href="<c:url value="/" />">StudyMate</a>
+					<a class="navbar-brand" href="./index.do">StudyMate</a>
 					<!--// 로고 -->
 				</div>
 				<!--// 로고 영역 -->
@@ -79,12 +79,12 @@
 				<div class="navbar-collapse collapse">
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="<c:url value="/" />">Home</a></li>
+						<li><a href="./index.do">Home</a></li>
 						<li><a href="./searchGroup.do">스터디그룹</a></li>
 						<li><a href="./addGroup.do">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
 						<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
-						<li><a href="<c:url value="/" />">마이페이지</a></li>
+						<li><a href="#">마이페이지</a></li>
 					</ul>
 					<!--// 메인메뉴 -->
 				</div>
@@ -143,21 +143,21 @@
 			<div class="row">
 				<div class="col-sm-4 text-center">
 					<h1>
-						<a href="<c:url value="/" />">StudyMate</a>
+						<a href="./index.do">StudyMate</a>
 					</h1>
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
 						<li><a href="/semi/customer/list.do"">고객지원</a></li>
-						<li><a href="<c:url value="/" />">이용안내</a></li>
-						<li><a href="<c:url value="/" />">개인정보 취급방침</a></li>
+						<li><a href="#">이용안내</a></li>
+						<li><a href="#">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->
 						<li><a href="#" data-toggle="modal" data-target="#leave_modal">탈퇴하기</a></li>
 					</ul>
 					<br />
 					<address>
 						<p><span class="address">주소 : 서울특별시 강남구 역삼동</span><span class="tel">Tel : 1234-5678</span></p>
-						<p>Copyright&copy;2016. <a href="<c:url value="/" />">studymate.co.kr</a>.All rights resurved</p>
+						<p>Copyright&copy;2016. <a href="./index.do">studymate.co.kr</a>.All rights resurved</p>
 					</address>
 				</div>
 
