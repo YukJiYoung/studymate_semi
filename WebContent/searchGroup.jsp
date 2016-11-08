@@ -2,17 +2,35 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
-	
 </head>
 
 <body class="non_background">
-
+	<script>
+		function loadNextPage(pageNum,bcategoryNum) {
+			var big_category = $(".big_category>ul>li>button");
+			var big_index = '${bcategoryNum}';
+			big_category.removeClass("active"); 
+			big_category.eq(big_index-1).addClass("active");
+			
+			var param = "pageNum=" + pageNum + "&bcategory=" + bcategoryNum;
+			var url = "searchGroup.do?" + param;
+			history.pushState(null, null, url); // 페이지의 상태를 history객체에 넣어줌. push라면 젤 끝에 넣어주는것.
+			$('.result_item_wrapper').load("searchGroupAjax.do?" + param);
+		}
+		//<-버튼으로 이전페이지로 이동할때 그 페이지의 내용을 로드
+		$(window).on('popstate', function(event){
+			var param = "pageNum=" + '${pageNum}' + "&bcategory=" + '${bcategoryNum}';
+			var url = "searchGroup.do?" + param;
+			$('.result_item_wrapper').load("searchGroupAjax.do?" + param);
+		});
+	</script>
 	<!-- searchGroup 내용영역 -->
 	<div class="container" style="margin-top: 80px; min-height:600px;">
 		<div class="row featurette">
@@ -106,21 +124,16 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=1" class="active btn btn-info">영 어</a></li>
-				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=2" class="btn btn-info">외국어</a></li>
-				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=3" class="btn btn-info">취 업</a></li>
-				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=4" class="btn btn-info">국가고시<br>공무원</a></li>
-				<li><a href="./searchGroup.do?pageNum=${ currentPage }&bcategory=5" class="btn btn-info">기 타</a></li>
+				<li><button class="active btn btn-info" onclick="loadNextPage(1,1)">영 어</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,2)">외국어</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,3)">취 업</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,4)">국가고시<br>공무원</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,5)">기 타</button></li>
 			</ul>
 		</div>
 		
 		<hr class="featurette-divider"><!-- 구분선 -->
-
-
-						<%-- 	<div><c:out value="${ number }" />
-								<c:set var="number" value="${ number-1 }" /></div> --%>
-								
-
+		
 		<div class="row featurette">
 			<div class="result_item_wrapper">
 				<ul class="list result_item_list">
@@ -178,53 +191,42 @@
 					<!-- //item -->
 					</c:forEach>
 					</c:if>
-					
 				</ul>
+				
+				<!-- page -->
+				<div class="page text-center">
+				<c:if test="${ count > 0 }">
+					<c:set var="pageCount" value="${ count / pageSize + (count%pageSize==0 ? 0 : 1) }" />
+					<c:set var="pageBlock" value="${ 5 }" />
+					<fmt:parseNumber var="result" value="${ currentPage / 5 }" integerOnly="true" />
+					<%-- result에 페이지 나눈값 저장. 정수만 입력. --%>
+					<c:set var="startPage" value="${ result * 5 + 1 }" />
+					<c:set var="endPage" value="${ startPage + pageBlock - 1 }" />
+					<c:if test="${ endPage > pageCount }">
+						<c:set var="endPage" value="${ pageCount }" />
+					</c:if>
+					<div class="page text-center">
+						<c:if test="${ startPage > 5 }">
+							<a href="./searchGroup.do?pageNum=${ start - 5 }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${start - 5},${bcategoryNum})">[이전]</a>
+						</c:if>
+						<ul class="pagination">
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+								<li><a href="./searchGroup.do?pageNum=${ i }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${i},${bcategoryNum})">${ i }</a></li>
+							</c:forEach>
+						</ul>
+						<c:if test="${ endPage < pageCount }">
+							<a href="./searchGroup.do?pageNum=${ start + 5 }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${start + 5},${ bcategoryNum })">[이후]</a>
+						</c:if>
+					</div>
+				</c:if>
+				</div>
+				<!-- //page -->
 			</div>
 		</div>
 		
-		<div class="page text-center">
-		<c:if test="${ count > 0 }">
-			<c:set var="pageCount" value="${ count / pageSize + (count%pageSize==0 ? 0 : 1) }" />
-			<c:set var="pageBlock" value="${ 5 }" />
-			<fmt:parseNumber var="result" value="${ currentPage / 5 }" integerOnly="true" />
-			<%-- result에 페이지 나눈값 저장. 정수만 입력. --%>
-			<c:set var="startPage" value="${ result * 5 + 1 }" />
-			<c:set var="endPage" value="${ startPage + pageBlock - 1 }" />
-			<c:if test="${ endPage > pageCount }">
-				<c:set var="endPage" value="${ pageCount }" />
-			</c:if>
-			<div class="page text-center">
-				<c:if test="${ startPage > 5 }">
-					<a href="./searchGroup.do?pageNum=${ start - 5 }">[이전]</a>
-				</c:if>
-				<ul class="pagination">
-					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-						<li><a href="./searchGroup.do?pageNum=${ i }&bcategory=${ bcategoryNum }">${ i }</a></li>
-					</c:forEach>
-				</ul>
-				<c:if test="${ endPage < pageCount }">
-					<a href="./searchGroup.do?pageNum=${ start + 5 }">[이후]</a>
-				</c:if>
-			</div>
-		</c:if>
-		</div>
+		
 	</div>
 	<!--// searchGroup 내용영역 -->
-	<script>
-		$(document).ready(function(){
-			var big_category = $(".big_category>ul>li>a");
-			var big_index = '${bcategoryNum}';
-			$(".big_category>ul>li>a").removeClass("active");
-			big_category.eq(big_index-1).addClass("active");
-			big_category.click(function(e){
-				e.preventDefault();
-				var tg = $(this);
-				var index = tg.index();
-				var url = tg.attr("href");
-				window.location.href = url;
-			});
-		});
-	</script>
+	
 </body>
 </html>

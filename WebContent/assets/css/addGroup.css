@@ -336,7 +336,9 @@
 	display: block;
 	margin-top: 4px;
 }
-
+.info {
+	float: left;
+}
 #placesList .item h5, #placesList .item .info {
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -433,7 +435,9 @@
 #placesList .item .marker_15 {
 	background-position: 0 -654px;
 }
-
+#inputFrm {
+	margin-top: 13%;
+}
 .btn-info {
 	margin-right: 20px;
 	float: right;
@@ -471,15 +475,15 @@
 .keywordInput {
 	float: left;
 	margin-left: 2%;
-	width: 20%;
+	width: 20%; 
 }
 
-.option {
+.option { 
 	margin-top: 1%;
 }
 
 .btn-default, .btn-sm {
-	width: 10%;
+	
 	margin-left: 1%;
 }
 
@@ -487,6 +491,18 @@
 	margin-top: 3%;
 }
 
-.modal-dialog {
-	width: 80%;
+
+.adrText1 {
+	font-size: 15px;
+	display: inline-box;  
+}
+.adrText2 {
+	display: inline-box; 
+	color: #777777;
+}
+.idForm {
+	width:100%;
+}
+.passwdForm {
+	width: 100%;
 }

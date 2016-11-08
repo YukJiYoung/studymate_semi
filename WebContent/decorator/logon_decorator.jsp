@@ -1,14 +1,16 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String url = String.valueOf(request.getRequestURL()); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>StudyMate :: 공지사항 게시판</title>
+<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="../assets/ico/favicon.png" />
@@ -21,42 +23,40 @@
 <link rel="stylesheet" type="text/css" href="../assets/css/nanumfont.css" />
 
 <!-- 반응형 웹을 지원하지 않을 경우 -->
-<!-- <link rel="stylesheet" href="../assets/css/non-responsive.css" /> -->
+<!-- <link rel="stylesheet" href="assets/css/non-responsive.css" /> -->
 
 <!-- IE8 이하 버전 지원 -->
 <!--[if lt IE 9]>
-	<script type="text/javascript" src="../assets/js/html5shiv.js"></script>
-	<script type="text/javascript" src="../assets/js/respond.min.js"></script>
+	<script type="text/javascript" src="assets/js/html5shiv.js"></script>
+	<script type="text/javascript" src="assets/js/respond.min.js"></script>
 <![endif]-->
 
 <!-- IE10 반응형 웹 버그 보완 -->
 <!--[if gt IE 9]>
-	<link rel="stylesheet" type="text/css" href="../assets/css/ie10.css" />
-	<script type="text/javascript" src="../assets/js/ie10.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/ie10.css" />
+	<script type="text/javascript" src="assets/js/ie10.js"></script>
 <![endif]-->
 
 <!-- css link  -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/layout.css" />
-	<link rel="stylesheet" type="text/css" href="../assets/css/notice.css" />
-	<decorator:head /> 
+<link rel="stylesheet" type="text/css" href="../assets/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/searchGroup.css" />
+<decorator:head />
 <!-- //css link  -->
 
 <!-- Javascript -->
 <script src="../assets/js/jquery-3.1.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script src="script.js"></script>
 
 <style type="text/css">
-	/** 메뉴바 배경색 */
+/** 메뉴바 배경색 */
 .non_background .navbar-wrapper {
-	background-color:#4db8bd;
+	background-color: #4db8bd;
 }
 </style>
 
 </head>
-
 <c:set var="memId" value="${ memId }" />
-<body class="notice non_background">
+<body <decorator:getProperty property="body.class" writeEntireProperty="true" />>
 	<!-- 헤더 -->
 	<header class="navbar-wrapper">
 		<div class="container">
@@ -65,7 +65,8 @@
 				<!-- 로고 영역 -->
 				<div class="navbar-header">
 					<!-- 반응형 메뉴 버튼 -->
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -90,13 +91,9 @@
 						</c:if>
 						<c:if test="${ memId != null }">
 							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
-							<c:if test="${ memId ne 'admin' }">
-								<li><a href="#">마이페이지</a></li>
-							</c:if>
-							<c:if test="${ memId eq 'admin' }">
-								<li><a href="#">관리자페이지</a></li>
-							</c:if>
+							<li><a href="#">마이페이지</a></li>
 						</c:if>
+						
 					</ul>
 					<!--// 메인메뉴 -->
 				</div>
@@ -116,8 +113,7 @@
 						<h4 class="modal-title">로그인</h4>
 					</div>
 					<div class="modal-body text-center">
-						<form id="login_form" action="../logon/loginPro.do" name="login_form" method="post">
-						<% String url = String.valueOf(request.getRequestURL()); %>
+						<form id="login_form" action="./loginPro.do" name="login_form" method="post">
 							<input type="hidden" name="url" value="<%= url %>" />
 							<div class="form-group">
 								<input type="text" name="id" placeholder="ID" class="form-control">
@@ -127,7 +123,7 @@
 							</div>
 							<div class="row modal_login_btns">
 								<button type="submit" class="col-sm-6 btn btn-default">로그인</button>
-								<button type="button" class="btn btn-default" onclick="window.location.href='../logon/inputForm.do'">회원가입</button>
+								<button type="button" class="btn btn-default" onclick="window.location.href='./inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">
 								<button type="button" class="col-sm-6 btn btn-default">ID찾기</button>
@@ -172,16 +168,12 @@
 			</div>
 		</div>
 		<!-- //Modal -->
+		
 	</header>
 	<!-- //헤더 -->
 
 	<!-- 내용영역 -->
-	<div class="container" style="margin-top:100px; min-height:600px;">
-		<div class="notice_header text-center">
-			<h3>- 공지사항 (전체 글:${ count }) -</h3>
-		</div>
-		<decorator:body />
-	</div>
+	<decorator:body />
 	<!--// 내용영역 -->
 
 	<!-- 푸터 -->
@@ -235,13 +227,10 @@
 							<p class="row">탈퇴하시면 고객님의 모든 정보가 삭제됩니다.<br />탈퇴하시겠습니까?</p>
 
 							<div class="row modal_leave_btns">
-								<button type="button" class="col-sm-6 btn btn-warning">취소</button>
+								<button type="button" class="col-sm-6 btn btn-warning" data-dismiss="modal">취소</button>
 								<button type="submit" class="col-sm-6 btn btn-danger">확인</button>
 							</div>
 						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 

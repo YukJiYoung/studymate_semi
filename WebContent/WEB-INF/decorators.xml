@@ -9,12 +9,16 @@
 		<pattern>/notice/*</pattern>
 	</decorator>
 	
+	<decorator name="logon" page="logon_decorator.jsp">
+		<pattern>/logon/*</pattern>
+	</decorator>
+	
 	<decorator name="customer" page="customer_decorator.jsp">
 		<pattern>/customer/*</pattern>
 	</decorator>
 	
 	<excludes>
-		<pattern></pattern>
+		<pattern>/searchGroupAjax.do*</pattern>
 	</excludes>
 	
 </decorators>

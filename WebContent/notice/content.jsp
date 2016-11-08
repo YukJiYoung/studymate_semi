@@ -31,8 +31,10 @@
 				</tr>
 			</table>
 			<div class="row text-right btns">
-				<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='./updateForm.do?noticeNum=${ article.noticeNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='./deleteForm.do?noticeNum=${ article.noticeNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${ memId eq 'admin' }">
+					<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='./updateForm.do?noticeNum=${ article.noticeNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='./deleteForm.do?noticeNum=${ article.noticeNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if>
 				<input class="btn btn-default" type="button" value="글목록" onclick="document.location.href='./list.do?pageNum=${ pageNum }'" />
 			</div>
 		</form>

@@ -53,6 +53,7 @@
 
 </head>
 
+<c:set var="memId" value="${ memId }" />
 <body <decorator:getProperty property="body.class" writeEntireProperty="true" />>
 	<!-- 헤더 -->
 	<header class="navbar-wrapper">
@@ -83,8 +84,14 @@
 						<li><a href="./searchGroup.do">스터디그룹</a></li>
 						<li><a href="./addGroup.do">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
-						<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
-						<li><a href="#">마이페이지</a></li>
+						<c:if test="${ memId == null }">
+							<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
+						</c:if>
+						<c:if test="${ memId != null }">
+							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
+							<li><a href="#">마이페이지</a></li>
+						</c:if>
+						
 					</ul>
 					<!--// 메인메뉴 -->
 				</div>
@@ -104,16 +111,18 @@
 						<h4 class="modal-title">로그인</h4>
 					</div>
 					<div class="modal-body text-center">
-						<form id="login_form" action="" name="login_form" method="post">
+						<form id="login_form" action="./logon/loginPro.do" name="login_form" method="post">
+							<% String url = String.valueOf(request.getRequestURL()); %>
+							<input type="hidden" name="url" value="<%= url %>" />
 							<div class="form-group">
-								<input type="text" placeholder="ID" class="form-control">
+								<input type="text" name="id" placeholder="ID" class="form-control">
 							</div>
 							<div class="form-group">
-								<input type="password" placeholder="Password" class="form-control">
+								<input type="password" name="passwd" placeholder="Password" class="form-control">
 							</div>
 							<div class="row modal_login_btns">
-								<button type="submit" class="col-sm-6 btn btn-default">Login</button>
-								<button type="button" class="btn btn-default " id="joinUserButton" data-toggle="modal" data-target='#myModal2'>Join</button>
+								<button type="submit" class="col-sm-6 btn btn-default">로그인</button>
+								<button type="button" class="btn btn-default" onclick="window.location.href='./logon/inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">
 								<button type="button" class="col-sm-6 btn btn-default">ID찾기</button>
@@ -130,9 +139,38 @@
 		</div>
 		<!-- //Modal -->
 		
+		<!-- Modal -->
+		<div id="logout_modal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-sm">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">로그아웃</h4>
+					</div>
+					<div class="modal-body text-center">
+						<form id="logout_form" action="./logon/logout.do" name="logout_form" method="post">
+							<input type="hidden" name="url" value="<%= url %>" />
+							<div class="text-center">
+								${ memId }">님<br />
+								로그아웃 하시겠습니까?<br /><br /><br />
+							</div>
+							<div class="row modal_login_btns">
+								<button type="submit" class="col-sm-6 btn btn-danger">로그아웃</button>
+								<button type="button" class="col-sm-6 btn btn-default" data-dismiss="modal">취소하기</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- //Modal -->
+		
 	</header>
 	<!-- //헤더 -->
-
+	
 	<!-- 내용영역 -->
 	<decorator:body />
 	<!--// 내용영역 -->
@@ -152,7 +190,9 @@
 						<li><a href="#">이용안내</a></li>
 						<li><a href="#">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->
-						<li><a href="#" data-toggle="modal" data-target="#leave_modal">탈퇴하기</a></li>
+						<c:if test="${ memId != null }">
+							<li><a href="#" data-toggle="modal" data-target="#leave_modal">탈퇴하기</a></li>
+						</c:if>
 					</ul>
 					<br />
 					<address>

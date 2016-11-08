@@ -1,0 +1,48 @@
+
+#Join-Form {
+	margin-top: 10%;
+}
+.loginbtns {
+	margin-left: 38%;
+}  
+.loginbtns .btn {
+	height: 40px;
+	margin-bottom: 10%;
+	margin-top: 5%;
+	margin-left: 1%;
+}
+
+.Loginbody .form-control {
+	width: 35%; 
+	font-size: 16px;
+}
+
+.loginform .btn {
+	height: 33px;
+	width: 90px;
+	display: inherit;
+}
+ 
+.formform { 
+	margin-left: 35% !important;
+}
+
+.formTitle {
+	margin-bottom: 1%;
+	font-size: 20px;
+	color: #287175;
+	margin-left: 35%;
+}
+.checkMan {
+	padding-left: 0;
+}
+.dateFrm {
+	margin-left: 0 !important;
+}
+.marginForm {
+	margin-bottom: 3% !important; 
+}
+.categoryFrm {
+	margin-left: 35%;
+	margin-top: 1%;
+}

@@ -9,11 +9,14 @@
 
 </head>
 
+<c:set var="memId" value="${ memId }" />
 <body class="non_background">
 	<!-- 공지사항 내용영역 -->
 	<div class="container">
 		<div class="row text-right">
-			<a href="./writeForm.do" class="btn btn-info btn-lg">글쓰기</a>
+			<c:if test="${ memId eq 'admin' }">
+				<a href="./writeForm.do" class="btn btn-info btn-lg">글쓰기</a>
+			</c:if>
 		</div>
 		<div class="table-responsive">
 			<c:if test="${ count == 0 }">

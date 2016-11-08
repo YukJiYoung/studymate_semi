@@ -31,6 +31,54 @@ function checkAdd(){
 		return true;		
 	}
 
+//input file 이미지만 받게하는 코드
+function fileCheck(obj) {
+	var textnode = document.createTextNode("이미지 파일이 아닐경우 등록버튼이 비활성화 됩니다.");
+	var font = document.createElement("font");
+	font.style.cssText='color:#F00;';
+	var oriText = document.getElementById("text");
+    pathpoint = obj.value.lastIndexOf('.');
+    filepoint = obj.value.substring(pathpoint+1,obj.length);
+    filetype = filepoint.toLowerCase();
+    if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp' || filetype=='') {
+        // 정상적인 이미지 확장자 파일일 경우 ...  	
+    	$('input[type="submit"]').prop('disabled', false);
+    } else {
+        alert('이미지 파일만 선택할 수 있습니다.');
+        $('input[type="submit"]').prop('disabled', true);
+        oriText.replaceNode(font.textnode,oriText.val());
+        return false;
+    }
+    if(filetype=='bmp') {
+        upload = confirm('BMP 파일은 웹상에서 사용하기엔 적절한 이미지 포맷이 아닙니다.\n그래도 계속 하시겠습니까?');
+        if(!upload) return false;
+    }
+}
+//이미지 미리보기 코드 
+
+function readURL(input) {
+	 
+    if (input.files && input.files[0]) {
+        var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+        reader.onload = function (e) {
+        //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+            $('#preImg').attr('src', e.target.result);
+            //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정
+            //(아래 코드에서 읽어들인 dataURL형식)
+        }       
+        reader.readAsDataURL(input.files[0]);
+        //File내용을 읽어 dataURL형식의 문자열로 저장
+    
+		}
+	}//readURL()--
+
+	//file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
+	$("#groupImage").change(function(){
+		//alert(this.value); //선택한 이미지 경로 표시
+		readURL(this);
+	
+});
+
 
 
 // HTML속성을 모달안에서 실행하기 위한 코드
@@ -91,12 +139,12 @@ function checkAdd(){
 					// 페이지 번호를 표출합니다
 					displayPagination(pagination);
 
-				} else if (status === daum.maps.services.Status.ZERO_RESULT) {
+				} else if (status == daum.maps.services.Status.ZERO_RESULT) {
 
 					alert('검색 결과가 존재하지 않습니다.');
 					return;
 
-				} else if (status === daum.maps.services.Status.ERROR) {
+				} else if (status == daum.maps.services.Status.ERROR) {
 
 					alert('검색 결과 중 오류가 발생했습니다.');
 					return;
@@ -106,8 +154,9 @@ function checkAdd(){
 
 			// 검색 결과 목록과 마커를 표출하는 함수입니다
 			function displayPlaces(places) {
-
-				var listEl = document.getElementById('placesList'), 
+				var placeAdr = "";
+					placeTitle = "";
+					listEl = document.getElementById('placesList'), 
 					menuEl = document.getElementById('menu_wrap'), 
 					fragment = document.createDocumentFragment(), 
 					bounds = new daum.maps.LatLngBounds(), 
@@ -118,14 +167,15 @@ function checkAdd(){
 
 				// 지도에 표시되고 있는 마커를 제거합니다
 				removeMarker();
-
+				
 				for (var i = 0; i < places.length; i++) {
 
 					// 마커를 생성하고 지도에 표시합니다
 					var placePosition = new daum.maps.LatLng(places[i].latitude, places[i].longitude), 
 						marker = addMarker(placePosition, i), 
 						itemEl = getListItem(i, places[i], marker); // 검색 결과 항목 Element를 생성합니다
-									
+					
+																	
 						// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 						// LatLngBounds 객체에 좌표를 추가합니다
 						bounds.extend(placePosition);
@@ -144,17 +194,33 @@ function checkAdd(){
 								infowindow.close();
 							});
 
-						/* 	itemEl.onmouseover = function() {
+						 	/*itemEl.onmouseover = function() {
 								displayInfowindow(marker, title);
 							};
-
+						
 							itemEl.onmouseout = function() {
 								infowindow.close();
 							}; */
 							
+							// 목록 클릭 시 선택한 마커를 중심좌표로 이동하고 배경화면 색상 넣기
 							itemEl.onclick = function() {
-								alert(address);
+								displayInfowindow(marker, title);					
+								map.setCenter(marker.getPosition());
+								$('.item').css('background-color','#F3F2F2');
+								$(this).css('background-color','#C5E4E6');
+								placeTitle = title;
+								placeAdr = address;		
+								$('#text3').html(title);
 							};
+							// modal 창 내 등록버튼 클릭 시 상호명과 주소 가져오기 
+							$('#btnSave').click(function() {
+								$('.adrText1').html(placeTitle);					    					   
+							    $('.adrText2').html(placeAdr);
+							    $('#inputPlace_modal').modal('hide');
+							     	    
+							  });
+
+ 
 							
 						})
 						
@@ -193,10 +259,8 @@ function checkAdd(){
 				}
 
 					itemStr += '  <span class="tel">'
-							+ places.phone + '</span>';
+							+ places.phone + '</span>'+"</div>";
 
-					itemStr += "<button class='btn btn-info' type='submit'>등록</button>"
-							+ "</div>";
 
 					el.innerHTML = itemStr;
 					el.className = 'item';
@@ -280,5 +344,65 @@ function checkAdd(){
 					el.removeChild(el.lastChild);
 				}
 			}
+			
+})
+ 
+$('#inputPlace_modal').on('hidden.bs.modal', function() {
+	
+		$('#map_p').css("width", 500).css("height", 450);
+			/************ 	modal폼에서 선택했을 때 신청 페이지에 지도를 표시하는 코드   *************/	
+			var infowindow_p = new daum.maps.InfoWindow({zIndex:1});
 
-		})
+		var mapContainer_p = document.getElementById('map_p'), // 지도를 표시할 div 
+		    mapOption_p = {
+		        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+
+		// 지도를 생성합니다     
+		var map_p = new daum.maps.Map(mapContainer_p, mapOption_p); 
+
+		// 장소 검색 객체를 생성합니다
+		var ps_p = new daum.maps.services.Places(); 
+
+		// 키워드로 장소를 검색합니다
+		var inputKeyword = $('.adrText1').html()+$('.adrText2').html();
+		ps_p.keywordSearch(inputKeyword, placesSearchCB_p); 
+		
+		// 키워드 검색 완료 시 호출되는 콜백함수 입니다    
+		function placesSearchCB_p (status, data, pagination) {
+		    if (status === daum.maps.services.Status.OK) {
+
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+		        // LatLngBounds 객체에 좌표를 추가합니다
+		        var bounds_p = new daum.maps.LatLngBounds();
+
+		        for (var i=0; i<data.places.length; i++) {
+		            displayMarker_p(data.places[i]);    
+		            bounds_p.extend(new daum.maps.LatLng(data.places[i].latitude, data.places[i].longitude));
+		        }       
+
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+		        map_p.setBounds(bounds_p);
+		    } 
+		}
+
+		// 지도에 마커를 표시하는 함수입니다
+		function displayMarker_p(place) {
+		    
+		    // 마커를 생성하고 지도에 표시합니다
+		    var marker_p = new daum.maps.Marker({
+		        map: map_p, 
+		        position: new daum.maps.LatLng(place.latitude, place.longitude) 
+		    });
+
+		    // 마커에 클릭이벤트를 등록합니다
+		    daum.maps.event.addListener(marker_p, 'click', function() {
+		        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+		        infowindow_p.setContent('<div style="padding:5px;font-size:12px;">' + place.title + '</div>');
+		        infowindow_p.open(map_p, marker_p);
+		    });
+		}	
+		
+})
+
