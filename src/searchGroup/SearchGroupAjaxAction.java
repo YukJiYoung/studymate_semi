@@ -13,13 +13,13 @@ public class SearchGroupAjaxAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
+		
 		String pageNum = request.getParameter("pageNum");
 		int bcategory = 1;
-		if(request.getParameter("bcategory") != null) 
-			bcategory = Integer.parseInt(request.getParameter("bcategory"));
 		
-		if(pageNum == null)
-			pageNum = "1";
+		if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
+		
+		if(pageNum == null) pageNum = "1";
 		
 		int pageSize = 5;
 		int currentPage = Integer.parseInt(pageNum);
@@ -30,7 +30,7 @@ public class SearchGroupAjaxAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
-		count = dbPro.getArticleCount(bcategory); //전체 글 개수
+		count = dbPro.getArticleCount(bcategory); //전체 글 개수	
 		
 		if(count > 0){
 			articleList = dbPro.getArticles(startRow, endRow, bcategory);

@@ -245,7 +245,7 @@
 			<!-- 문의하기 -->
 			<div id="question" class="tab-pane fade">
 
-				<form>
+				<form action="./writePro.do" method="post" name="">
 					<div class="form-group">
 						<label for="name">이름:</label> <input type="text"
 							class="form-control" id="name" style="width: 30%">

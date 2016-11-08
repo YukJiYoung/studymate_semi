@@ -19,6 +19,13 @@
 	
 	<excludes>
 		<pattern>/searchGroupAjax.do*</pattern>
+		<pattern>/logon/loginPro*</pattern>
+		<pattern>/logon/logout*</pattern>
+		<pattern>/logon/confirmId*</pattern>
+		<pattern>/logon/inputPro*</pattern>
+		<pattern>/logon/searchId.do*</pattern>
+		<pattern>/logon/changePwPro.do*</pattern>
+		<pattern>/logon/deletePro.do*</pattern>
 	</excludes>
 	
 </decorators>

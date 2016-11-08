@@ -13,10 +13,19 @@ public class SearchGroupAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
+		
 		String pageNum = request.getParameter("pageNum");
 		int bcategory = 1;
-		if(request.getParameter("bcategory") != null) 
-			bcategory = Integer.parseInt(request.getParameter("bcategory"));
+		String[] searchCategory = null;
+		int searchMembers = 0;
+		int searchMeetcount = 0;
+		String searchRegdate = "";
+		
+		if(request.getParameter("members") != null) searchMembers = Integer.parseInt(request.getParameter("members"));
+		if(request.getParameter("meetcount") != null) searchMeetcount = Integer.parseInt(request.getParameter("meetcount"));
+		if(request.getParameter("regdate") != null) searchRegdate = request.getParameter("regdate");
+		if(request.getParameter("category") != null) searchCategory = request.getParameterValues("category");
+		if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
 		
 		if(pageNum == null)
 			pageNum = "1";
@@ -30,11 +39,11 @@ public class SearchGroupAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
-		count = dbPro.getArticleCount(bcategory); //전체 글 개수
+		count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate); //전체 글 개수
 		
 		if(count > 0){
-			articleList = dbPro.getArticles(startRow, endRow, bcategory);
-//			count = articleList.size();
+			articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
+			count = articleList.size();
 		}else { 
 			articleList = Collections.emptyList();
 		}

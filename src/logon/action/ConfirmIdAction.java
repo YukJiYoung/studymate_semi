@@ -22,7 +22,6 @@ public class ConfirmIdAction implements CommandAction {
 		request.setAttribute("id", id);
 		request.setAttribute("checkId", checkId);
 		request.setAttribute("check", new Integer(check));
-		
 		return "/logon/confirmId.jsp";
 	}
 

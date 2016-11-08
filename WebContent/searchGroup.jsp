@@ -13,11 +13,10 @@
 
 <body class="non_background">
 	<script>
-		function loadNextPage(pageNum,bcategoryNum) {
+		function loadNextPage(pageNum,bcategoryNum,event) {
 			var big_category = $(".big_category>ul>li>button");
-			var big_index = '${bcategoryNum}';
 			big_category.removeClass("active"); 
-			big_category.eq(big_index-1).addClass("active");
+			$(event).addClass("active");
 			
 			var param = "pageNum=" + pageNum + "&bcategory=" + bcategoryNum;
 			var url = "searchGroup.do?" + param;
@@ -26,10 +25,37 @@
 		}
 		//<-버튼으로 이전페이지로 이동할때 그 페이지의 내용을 로드
 		$(window).on('popstate', function(event){
-			var param = "pageNum=" + '${pageNum}' + "&bcategory=" + '${bcategoryNum}';
-			var url = "searchGroup.do?" + param;
-			$('.result_item_wrapper').load("searchGroupAjax.do?" + param);
+			var big_category = $(".big_category>ul>li>button");
+			big_category.removeClass("active");
+			big_category.blur();
+			//var big_index = parseInt('${bcategoryNum}');
+			//console.log(big_index);
+			//big_category.eq(big_index).addClass("active");
+			$('.result_item_wrapper').load(location.href + ' .result_item_wrapper');
 		});
+		
+		$("#detail_search_collapse label").click(function(){
+				var name = $(this).children().text();
+				console.log(name);
+				var addspan = "";
+				addspan += "<span class='btn btn-default'>" + name + "</span>";
+				$("#select_detail").append(addspan);
+		});
+		$(document).on('click','#select_detail>span',function(event){
+			var name = $(this).text();
+			console.log(name);
+			$(event).outerHTML().remove();
+			$("#detail_search_collapse input[type='checkbox']").each(function(){
+				var inputText = $(this).text();
+				
+				if(inputText.match(name)){
+					$(this).removeAttr('checked');
+					
+				}
+			});
+			
+		});
+		
 	</script>
 	<!-- searchGroup 내용영역 -->
 	<div class="container" style="margin-top: 80px; min-height:600px;">
@@ -45,7 +71,7 @@
 				<div class="row panel-group search-detail">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<span class="select_detail"><span class="btn btn-default">토익</span><span class="btn btn-default">토익스피킹</span></span>
+							<span id="select_detail" class="select_detail"><span class="btn btn-default">토익</span><span class="btn btn-default">토익스피킹</span></span>
 							<a data-toggle="collapse" href="#detail_search_collapse"><button type="button" class="btn btn-info">상세검색</button></a>
 						</div>
 						
@@ -54,62 +80,70 @@
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>영   어</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">토익</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">토익스피킹</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">오픽</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="1">토익</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="2">토익스피킹</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="3">오픽</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="4">회화</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>외국어</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">토익</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">토익스피킹</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">오픽</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="5">일본어</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="6">중국어</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="7">프랑스어</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="8">외국어-기타</label>
+									</div>
+								</li>
+								<li class="row list-group-item">
+									<span class="col-sm-2 big_category_detail"><strong>취    업</strong></span>
+									<div class="col-sm-10">
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="9">인적성</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="10">면접</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="11">자소서</abel>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="12">취업-기타</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>국가고시/공무원</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">토익</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">토익스피킹</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">오픽</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="13">국가고시</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="14">공무원</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="15">고시-기타</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>기   타</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="16">기타-기타</label>
 									</div>
 								</li>
 								
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>인원수</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">3명</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">4명</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">5명</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">6명 이상</label>
+										<label class="checkbox-inline"><input type="checkbox" name="members" value="3">3명</label>
+										<label class="checkbox-inline"><input type="checkbox" name="members" value="4">4명</label>
+										<label class="checkbox-inline"><input type="checkbox" name="members" value="5">5명</label>
+										<label class="checkbox-inline"><input type="checkbox" name="members" value="6">6명 이상</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>모임횟수</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">1회/주</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">2회/주</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">3회/주</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">4회 이상/주</label>
+										<label class="checkbox-inline"><input type="checkbox" name="meetcount" value="1">1회/주</label>
+										<label class="checkbox-inline"><input type="checkbox" name="meetcount" value="2">2회/주</label>
+										<label class="checkbox-inline"><input type="checkbox" name="meetcount" value="3">3회/주</label>
+										<label class="checkbox-inline"><input type="checkbox" name="meetcount" value="4">4회 이상/주</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>등록일</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" value="">오늘</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">3일이내</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">5일이내</label>
-										<label class="checkbox-inline"><input type="checkbox" value="">1주일이내</label>
+										<label class="checkbox-inline"><input type="checkbox" name="regdate" value="1">오늘</label>
+										<label class="checkbox-inline"><input type="checkbox" name="regdate" value="3">3일이내</label>
+										<label class="checkbox-inline"><input type="checkbox" name="regdate" value="4">5일이내</label>
+										<label class="checkbox-inline"><input type="checkbox" name="regdate" value="7">1주일이내</label>
 									</div>
 								</li>
 							</ul>
@@ -124,11 +158,11 @@
 		
 		<div class="row featurette big_category">
 			<ul class="nav navbar-nav">
-				<li><button class="active btn btn-info" onclick="loadNextPage(1,1)">영 어</button></li>
-				<li><button class="btn btn-info" onclick="loadNextPage(1,2)">외국어</button></li>
-				<li><button class="btn btn-info" onclick="loadNextPage(1,3)">취 업</button></li>
-				<li><button class="btn btn-info" onclick="loadNextPage(1,4)">국가고시<br>공무원</button></li>
-				<li><button class="btn btn-info" onclick="loadNextPage(1,5)">기 타</button></li>
+				<li><button class="active btn btn-info" onclick="loadNextPage(1,1,this)">영 어</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,2,this)">외국어</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,3,this)">취 업</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,4,this)">국가고시<br>공무원</button></li>
+				<li><button class="btn btn-info" onclick="loadNextPage(1,5,this)">기 타</button></li>
 			</ul>
 		</div>
 		
@@ -165,25 +199,30 @@
 						</c:choose>
 					<!-- item -->
 					<li class="result_item">
-						<a href="./groupPage.do?num=${ article.num }&pageNum=${ currentPage }" class="item">
+						<a href="./groupPage.do?groupNum=${ article.groupNum }&pageNum=${ currentPage }" class="item">
 							<figure>
-								<span class="item_category">${ bcategoryKR }&lt;${ article.scategory }</span>
-								<img src="./${ article.imgpath }" />
+								<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
+								<img src="./${ article.imagePath }" />
 								<figcaption class="item_description">
 									<p>
-										<span class="item_title">${ article.title }</span>
-										<span class="item_status label label-primary">${ article.status }</span>
+										<span class="item_title">${ article.groupName }</span>
+										<c:if test="${ (article.maxMember - article.nowMember) > 0 }">
+											<span class="item_status label label-primary">모집중</span>
+										</c:if>
+										<c:if test="${ (article.maxMember - article.nowMember) <= 0 }">
+											<span class="item_status label label-default">모집완료</span>
+										</c:if>
 										<c:if test="${ article.recommendcount >= 20 }">
 											<span class="item_label label label-danger">HOT</span>
 										</c:if>
 										<span class="item_introduce"> - ${ article.introduce } </span>
 									</p>
 									<p>
-										<span class="item_host">${ article.host }</span> | <span class="item_date">${ article.duedate }</span>
+										<span class="item_host">${ article.host }</span> | <span class="item_date">${ article.createDate }</span>
 									</p>
 								</figcaption>
 								<div class="item_entry">
-									<span class="entry_number">${ article.currentnum }</span> / <span class="entry_total">${ article.total }</span> 명
+									<span class="entry_number">${ article.nowMember }</span> / <span class="entry_total">${ article.maxMember }</span> 명
 								</div>
 							</figure>
 						</a>
@@ -199,7 +238,7 @@
 					<c:set var="pageCount" value="${ count / pageSize + (count%pageSize==0 ? 0 : 1) }" />
 					<c:set var="pageBlock" value="${ 5 }" />
 					<fmt:parseNumber var="result" value="${ currentPage / 5 }" integerOnly="true" />
-					<%-- result에 페이지 나눈값 저장. 정수만 입력. --%>
+					<%-- result에 페이지 나눈값 저장. 정수만 입력. --%> 
 					<c:set var="startPage" value="${ result * 5 + 1 }" />
 					<c:set var="endPage" value="${ startPage + pageBlock - 1 }" />
 					<c:if test="${ endPage > pageCount }">
@@ -207,15 +246,15 @@
 					</c:if>
 					<div class="page text-center">
 						<c:if test="${ startPage > 5 }">
-							<a href="./searchGroup.do?pageNum=${ start - 5 }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${start - 5},${bcategoryNum})">[이전]</a>
+							<a href="./searchGroup.do?pageNum=${ start - 5 }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${start - 5},${bcategoryNum},this)">[이전]</a>
 						</c:if>
 						<ul class="pagination">
 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-								<li><a href="./searchGroup.do?pageNum=${ i }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${i},${bcategoryNum})">${ i }</a></li>
+								<li><a href="./searchGroup.do?pageNum=${ i }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${i},${bcategoryNum},this)">${ i }</a></li>
 							</c:forEach>
 						</ul>
 						<c:if test="${ endPage < pageCount }">
-							<a href="./searchGroup.do?pageNum=${ start + 5 }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${start + 5},${ bcategoryNum })">[이후]</a>
+							<a href="./searchGroup.do?pageNum=${ start + 5 }&bcategory=${ bcategoryNum }" onclick="loadNextPage(${start + 5},${ bcategoryNum },this)">[이후]</a>
 						</c:if>
 					</div>
 				</c:if>

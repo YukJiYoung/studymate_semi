@@ -12,14 +12,13 @@ public class ChangePwProAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
+		String email = request.getParameter("email");
 		String name = request.getParameter("name");
-		String jumin1 = request.getParameter("jumin1");
-		String jumin2 = request.getParameter("jumin2");
 		
 		LogonDBBean manager = LogonDBBean.getInstance();
-		String check = manager.changePasswd(id, name, jumin1, jumin2); 
+		String cpasswd = manager.changePasswd(id, email, name); 
 		
-		request.setAttribute("check", check);
+		request.setAttribute("cpasswd", cpasswd);
 		
 		return "/logon/changePwPro.jsp";
 	}

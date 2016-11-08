@@ -3,54 +3,79 @@ package searchGroup;
 import java.sql.Timestamp; 
 
 public class SearchListDTO{
-    private int num;
-    private int bcategory;
-    private String scategory;
-    private String title;
-    private String host;
-    private String status;
+    private int groupNum;
+    private String id;
+    private String groupName;
+    private String imagePath;
+    private Timestamp createDate;
+    private int zzimCount;
+    private int maxMember;
+    private int nowMember;
+    private int meetingCount;
+    private String location;
     private String introduce;
-    private Timestamp duedate;
-    private int recommendcount;
-    private int currentnum;
-    private int total;
-    private String imgpath;
+    private int bcategorycode;
+    private int scategorycode;
     
-	public int getNum() {
-		return num;
+	public int getGroupNum() {
+		return groupNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setGroupNum(int groupNum) {
+		this.groupNum = groupNum;
 	}
-	public int getBcategory() {
-		return bcategory;
+	public String getId() {
+		return id;
 	}
-	public void setBcategory(int bcategory) {
-		this.bcategory = bcategory;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getScategory() {
-		return scategory;
+	public String getGroupName() {
+		return groupName;
 	}
-	public void setScategory(String scategory) {
-		this.scategory = scategory;
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
-	public String getTitle() {
-		return title;
+	public String getImagePath() {
+		return imagePath;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
-	public String getHost() {
-		return host;
+	public Timestamp getCreateDate() {
+		return createDate;
 	}
-	public void setHost(String host) {
-		this.host = host;
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
 	}
-	public String getStatus() {
-		return status;
+	public int getZzimCount() {
+		return zzimCount;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setZzimCount(int zzimCount) {
+		this.zzimCount = zzimCount;
+	}
+	public int getMaxMember() {
+		return maxMember;
+	}
+	public void setMaxMember(int maxMember) {
+		this.maxMember = maxMember;
+	}
+	public int getNowMember() {
+		return nowMember;
+	}
+	public void setNowMember(int nowMember) {
+		this.nowMember = nowMember;
+	}
+	public int getMeetingCount() {
+		return meetingCount;
+	}
+	public void setMeetingCount(int meetingCount) {
+		this.meetingCount = meetingCount;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	public String getIntroduce() {
 		return introduce;
@@ -58,35 +83,17 @@ public class SearchListDTO{
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-	public Timestamp getDuedate() {
-		return duedate;
+	public int getBcategorycode() {
+		return bcategorycode;
 	}
-	public void setDuedate(Timestamp duedate) {
-		this.duedate = duedate;
+	public void setBcategorycode(int bcategorycode) {
+		this.bcategorycode = bcategorycode;
 	}
-	public int getRecommendcount() {
-		return recommendcount;
+	public int getScategorycode() {
+		return scategorycode;
 	}
-	public void setRecommendcount(int recommendcount) {
-		this.recommendcount = recommendcount;
-	}
-	public int getCurrentnum() {
-		return currentnum;
-	}
-	public void setCurrentnum(int currentnum) {
-		this.currentnum = currentnum;
-	}
-	public int getTotal() {
-		return total;
-	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	public String getImgpath() {
-		return imgpath;
-	}
-	public void setImgpath(String imgpath) {
-		this.imgpath = imgpath;
+	public void setScategorycode(int scategorycode) {
+		this.scategorycode = scategorycode;
 	}
     
 }

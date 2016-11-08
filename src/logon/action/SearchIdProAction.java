@@ -17,10 +17,10 @@ public class SearchIdProAction implements CommandAction {
 		String jumin2 = request.getParameter("jumin2");
 		
 		LogonDBBean manager = LogonDBBean.getInstance();
-		String check = manager.searchId(name, jumin1, jumin2);
-		
-		System.out.println(check);
-		request.setAttribute("check", check);
+//		String check = manager.searchId(name, jumin1, jumin2);
+//		
+//		System.out.println(check);
+//		request.setAttribute("check", check);
 		
 		return "/logon/searchIdPro.jsp";
 	}

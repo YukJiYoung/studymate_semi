@@ -71,6 +71,7 @@ public class LogonDataBean {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public String getScategorycode() {
 		return scategorycode;
 	}

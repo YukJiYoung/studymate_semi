@@ -13,18 +13,15 @@ public class LoginProAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		System.out.println(id + "," + passwd);
+		String url = request.getParameter("url");
 		
 		LogonDBBean manager = LogonDBBean.getInstance();
 		int check = manager.userCheck(id, passwd);
-		System.out.println(check);
-		
 		if(check == 1){
 			request.getSession().setAttribute("memId", id);
 		}
-		
+		request.setAttribute("url", url);
 		request.setAttribute("check", new Integer(check));
-		
 		return "/logon/loginPro.jsp";
 	}
 

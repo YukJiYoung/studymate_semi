@@ -7,6 +7,7 @@
 <script src="script.js"></script>
 </head>
 <body class="non_background">
+	
 	<div class="container">
 		<form method="post" name="writeform" action="/semi/customer/writePro.do" onsubmit="return writeSave()">
 			<input type="hidden" name="num" value="${ num }" />

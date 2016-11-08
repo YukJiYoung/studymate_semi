@@ -3,31 +3,31 @@ package logon;
 import java.sql.*;
 import java.util.Vector;
 
-public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙옙 占싹댐옙 클占쏙옙占쏙옙 : DBBean, DAO
-	//클占쏙옙占쏙옙 占싫울옙占쏙옙 占쏙옙체占쏙옙 占싼뱄옙占쏙옙 占쏙옙占쏙옙. getInstance()占쌨쇽옙占쏙옙占� 占쏙옙체占쏙옙 占쌍쇽옙 占쏙옙占쏙옙
+public class LogonDBBean { //DB�� ���õ� ���� �ϴ� Ŭ���� : DBBean, DAO
+	//Ŭ���� �ȿ��� ��ü�� �ѹ��� ����. getInstance()�޼���� ��ü�� �ּ� ����
 	private static LogonDBBean instance = new LogonDBBean();
 //	LogonDBBean m = LogonDBBean.getInstance();
 	public static LogonDBBean getInstance(){
 		return instance;
 	}
 	
-	//占싱깍옙占쏙옙 - 占쏙옙占쏙옙占쌘울옙 private 占쌕울옙占쏙옙
+	//�̱��� - �����ڿ� private �ٿ���
 	private LogonDBBean(){}
 	
-	//커占쌔쇽옙 풀占쏙옙占쏙옙 커占쌔쇽옙 占쏙옙占쏙옙占싶쇽옙 占쏙옙占쏙옙 (占쏙옙 클占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占썩때占쏙옙占쏙옙 private占쏙옙 占쏙옙占쏙옙)
+	//Ŀ�ؼ� Ǯ���� Ŀ�ؼ� �����ͼ� ���� (�� Ŭ���� �������� ���⶧���� private�� ����)
 	private Connection getConnection() throws Exception{
 		String jdbcDriver = "jdbc:apache:commons:dbcp:/pool";
 		return DriverManager.getConnection(jdbcDriver);
 	}
 	
 	/* inputPro.jsp */
-	public void insertMember(LogonDataBean member) throws Exception{ //LogonDataBean 占쏙옙체占쏙옙 占쏙옙티占� 占쏙옙占쏙옙占쏙옙.
+	public void insertMember(LogonDataBean member) throws Exception{ //LogonDataBean ��ü�� ��Ƽ� ������.
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try{
 			conn = getConnection();
-			
+//			DriverManager.getConnection(jdbc:apache:commons:dbcp:/pool);
 			pstmt = conn.prepareStatement("insert into members values (?,?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPasswd());
@@ -40,18 +40,7 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 			pstmt.setString(9, member.getLocation());
 			pstmt.setString(10, member.getScategorycode());
 			pstmt.setString(11, member.getZzimlist());
-			
-			System.out.println(member.getId());
-			System.out.println(member.getPasswd());
-			System.out.println(member.getName());
-			System.out.println(member.getGender());
-			System.out.println(member.getBirthday());
-			System.out.println(member.getTel());
-			System.out.println(member.getRegdate());
-			System.out.println(member.getEmail());
-			System.out.println(member.getLocation());
-			System.out.println(member.getScategorycode());
-			System.out.println(member.getZzimlist());
+	
 			pstmt.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -78,14 +67,13 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 			
 			if(rs.next()){
 				dbpasswd = rs.getString("passwd");
-				System.out.println(dbpasswd);
 				if(dbpasswd.equals(passwd)){
-					x = 1; //id�� 鍮꾨�踰덊샇媛� �씪移섑븷 �븣 
+					x = 1; //id와 비밀번호가 일치할 때 
 				}else{
-					x = 0; //id媛� �떎瑜� �븣
+					x = 0; //id가 다를 때
 				}
 			}else{
-				x = -1; // 鍮꾨�踰덊샇媛� �떎瑜� �븣 
+				x = -1; // 비밀번호가 다를 때 
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -102,7 +90,7 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int x = -1; //占쏙옙占쏙옙占� 占쏙옙
+		int x = -1; //����� ��
 		
 		try{
 			conn = getConnection(); 
@@ -111,9 +99,9 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				x = 1; // �빐�떦 �븘�씠�뵒 �궗�슜遺덇�
+				x = 1; // 해당 아이디 사용불가
 			}else{
-				x = -1; //�빐�떦 �븘�씠�뵒 �궗�슜媛��뒫
+				x = -1; //해당 아이디 사용가능
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -138,11 +126,10 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				member = new LogonDataBean(); //LogonDataBean 占쏙옙체占쏙옙 占쏙옙占� 占쏙옙占쏙옙
+				member = new LogonDataBean(); //LogonDataBean ��ü�� ��� ����
 				member.setId(rs.getString("id"));
 				member.setPasswd(rs.getString("passwd"));
 				member.setName(rs.getString("name"));
-				
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -160,19 +147,11 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 		PreparedStatement pstmt = null;
 		try{
 			conn = getConnection();
-			pstmt = conn.prepareStatement("update members set passwd=?, name=?, gender=?, birthday=?, tel=?, regdate=?, email=?, location=?, scategorycode=?, zzimlist=?" + " where id=?");
-			
-			pstmt.setString(2, member.getPasswd());
-			pstmt.setString(3, member.getName());
-			pstmt.setString(4, member.getGender());
-			pstmt.setString(5, member.getBirthday());
-			pstmt.setString(6, member.getTel());
-			pstmt.setTimestamp(7, member.getRegdate());
-			pstmt.setString(8, member.getEmail());
-			pstmt.setString(9, member.getLocation());
-			pstmt.setString(10, member.getScategorycode());
-			pstmt.setString(11, member.getZzimlist());
-			pstmt.setString(1, member.getId());
+			pstmt = conn.prepareStatement("update members set passwd=?, name=?, email=?, blog=?, zipcode=?, address=?" + " where id=?");
+			pstmt.setString(1, member.getPasswd());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(7, member.getId());
 			
 			pstmt.executeUpdate();
 		}catch(Exception ex){
@@ -192,19 +171,19 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 		
 		try{
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select passwd from members where id = ?");
+			pstmt = conn.prepareStatement("select passwd from members where id = to_char(?)");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
 				dbpasswd = rs.getString("passwd");
-				if(dbpasswd.equals(passwd)){ //passwd占쏙옙占쏙옙 占쏙옙占쏙옙占싶쇽옙 占쏙옙
-					pstmt = conn.prepareStatement("delete from members where id=?");
+				if(dbpasswd.equals(passwd)){ //passwd���� �����ͼ� ��
+					pstmt = conn.prepareStatement("delete from members where id= to_char(?)");
 					pstmt.setString(1, id);
 					pstmt.executeUpdate();
-					x = 1; //회占쏙옙탈占쏙옙 占쏙옙占쏙옙
+					x = 1; //ȸ��Ż�� ����
 				}else{
-					x = 0; //占쏙옙橘占싫� 틀占쏙옙
+					x = 0; //��й�ȣ Ʋ��
 				}
 			}
 		}catch(Exception ex){
@@ -235,7 +214,7 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 				tempZipcode.setArea2(rs.getString("area2"));
 				tempZipcode.setArea3(rs.getString("area3"));
 				tempZipcode.setArea4(rs.getString("area4"));
-				vecList.addElement(tempZipcode); //占쏙옙占쌘듸옙 占쏙옙占쏙옙 占쏙옙 ZipcodeBean 占쏙옙체占쏙옙 占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙쨈占� -> 占쏙옙占쏙옙占쏙옙占� vector占쏙옙체占쏙옙 占쏙옙쨈占�.
+				vecList.addElement(tempZipcode); //���ڵ� ���� �� ZipcodeBean ��ü�� �����ϰ� �������� ��´� -> ������� vector��ü�� ��´�.
 			}
 		}catch(Exception ex){
 			System.out.println("Exception" + ex);
@@ -244,11 +223,11 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 			if(pstmt != null) try {pstmt.close();} catch(SQLException ex) {}
 			if(conn != null) try {conn.close();} catch(SQLException ex) {}
 		}
-		return vecList; //ZipcodeBean 占쏙옙체占쏙옙占쏙옙 占쏙옙占쏙옙 vector 占쏙옙체 占쏙옙占쏙옙
+		return vecList; //ZipcodeBean ��ü���� ���� vector ��ü ����
 	} //end zipcodeRead()
 	
 	/* searchIdPro.jsp */
-	public String searchId(String name, String jumin1, String jumin2) throws Exception{
+	public String searchId(String email, String name) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -257,16 +236,15 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 		try{
 			conn = getConnection();
 			
-			pstmt = conn.prepareStatement("select id from members where name=? and jumin1=? and jumin2=?");
-			pstmt.setString(1, name);
-			pstmt.setString(2, jumin1);
-			pstmt.setString(3, jumin2);
+			pstmt = conn.prepareStatement("select id from members where email=? and name=?");
+			pstmt.setString(1, email);
+			pstmt.setString(2, name);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				id = rs.getString("id"); //id 찾占쏙옙 占쏙옙占쏙옙
+				id = rs.getString("id"); //id ã�� ����
 			}else{
-				id = ""; // 占쌔댐옙 占싱몌옙 占쏙옙占쏙옙.
+				id = ""; // �ش� �̸� ����.
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -279,7 +257,7 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 	} //end userCheck()
 	
 	/* changePwPro.jsp */
-	public String changePasswd(String id, String name, String jumin1, String jumin2) throws Exception{
+	public String changePasswd(String id, String email, String name) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -288,24 +266,23 @@ public class LogonDBBean { //DB占쏙옙 占쏙옙占시듸옙 占쏙옙占쏙�
 		try{
 			conn = getConnection();
 			
-			pstmt = conn.prepareStatement("select passwd from members where id=? and name=? and jumin1=? and jumin2=?");
+			pstmt = conn.prepareStatement("select passwd from members where id=? and email=? and name=?");
 			pstmt.setString(1, id);
-			pstmt.setString(2, name);
-			pstmt.setString(3, jumin1);
-			pstmt.setString(4, jumin2);
+			pstmt.setString(2, email);
+			pstmt.setString(3, name);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
 				for(int i=0; i<6; i++){
 					int x = (int)(Math.random() * 6)+1;
-					cpasswd += x; //random 6占쌘몌옙 占쏙옙橘占싫� 占쏙옙占쏙옙
+					cpasswd += x; //random 6�ڸ� ��й�ȣ ����
 				}
 				pstmt = conn.prepareStatement("update members set passwd=? where id=?");
 				pstmt.setString(1, cpasswd);
 				pstmt.setString(2, id);
 				pstmt.executeUpdate();
 			}else{
-				cpasswd = ""; // 占쌔댐옙 占싱몌옙 占쏙옙占쏙옙.
+				cpasswd = ""; // �ش� �̸� ����.
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();

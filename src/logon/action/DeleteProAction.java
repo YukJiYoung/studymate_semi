@@ -13,7 +13,7 @@ public class DeleteProAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId"); //���ǿ� ����Ǿ� �ִ� id�� �����ͼ� ����.
-		String passwd = request.getParameter("passwd");
+		String passwd = request.getParameter("pw1");
 		
 		LogonDBBean manager = LogonDBBean.getInstance();
 		int check = manager.deleteMember(id, passwd);
