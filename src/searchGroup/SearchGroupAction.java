@@ -15,8 +15,16 @@ public class SearchGroupAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
+		
+		int typeList = 0;
+		String searchInput = null;
+		if(request.getParameter("searchInput") != null){
+			searchInput = request.getParameter("searchInput");
+			typeList = Integer.parseInt(request.getParameter("typeList"));
+		}
 		String searchCheck = "n";
 		if(request.getParameter("searchCheck") != null) searchCheck = request.getParameter("searchCheck");
+		
 		int bcategory = 1;
 		String[] searchCategory = new String[0];
 		int searchMembers = 0;
@@ -41,13 +49,21 @@ public class SearchGroupAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
-		count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate); //전체 글 개수
-		
-		if(count > 0){
-			articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
-//			count = articleList.size();
-		}else { 
-			articleList = Collections.emptyList();
+		if(searchInput != null){
+			count = dbPro.getArticleCount(typeList,searchInput); //전체 글 개수
+			if(count > 0){
+				articleList = dbPro.getArticles(typeList,searchInput);
+//				count = articleList.size();
+			}else { 
+				articleList = Collections.emptyList();
+			}
+		}else{
+			count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate); //전체 글 개수
+			if(count > 0){
+				articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
+			}else { 
+				articleList = Collections.emptyList();
+			}
 		}
 		
 		number = count - (currentPage - 1) * pageSize;
@@ -61,6 +77,7 @@ public class SearchGroupAction implements CommandAction {
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
 		request.setAttribute("bcategoryNum", new Integer(bcategory));
+		request.setAttribute("searchInput", searchInput);
 		
 		return "/searchGroup.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터
 	} //end requestPro()

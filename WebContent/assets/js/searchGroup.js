@@ -1,20 +1,43 @@
-
-/* 상세선택 버튼 추가&삭제 */
-$("#detail_search_collapse label").click(function(){
-		var name = $(this).text();
-		console.log(name);
-		var addspan = "";
-		addspan += "<span class='btn btn-default'>" + name + "</span>";
-		$("#select_detail").append(addspan);
+$(document).ready(function(){
+	
+	/* 상세선택 버튼 추가&삭제 */
+	$("#detail_search_collapse label").click(function(){
+			var name = $(this).text();
+			var checkbox = $(this).find('input');
+			var span = $("#select_detail>span");
+			var addspan = "";
+			if(checkbox.prop('checked',false)){
+				checkbox.prop('checked',true);
+				addspan += "<span class='btn btn-default'>" + name + "</span>";
+				$("#select_detail").append(addspan);
+				return false;
+			}else{
+				checkbox.prop('checked',false);
+				/*
+				span.each(function(){
+					var spanText = $(this).text();
+					var i = $(this).index();
+					if(spanText.match(name)){
+						span.eq(i).remove();
+					}
+				});*/
+				return false;
+			}
+			
+	});
+	
 });
+//span 클릭하면 삭제,check도 해제
 $(document).on('click','#select_detail>span',function(event){
 	var name = $(this).text();
-//	console.log(name);
-//	$(event).remove();
+	var i = $(this).index();
+	
 	$("#detail_search_collapse label").each(function(){
 		var inputText = $(this).text();
+//		console.log(inputText);
 		if(inputText.match(name)){
 			$(this).find('input').prop('checked',false);
+			$("#select_detail>span").eq(i).remove();
 		}
 	});
 	
@@ -30,6 +53,7 @@ function loadNextPage(pageNum,bcategoryNum,event) {
 	var url = "searchGroup.do?" + param;
 	history.pushState(null, null, url); // 페이지의 상태를 history객체에 넣어줌. push라면 젤 끝에 넣어주는것.
 	$('.result_item_wrapper').load("searchGroupAjax.do?" + param);
+	return false;
 }
 //<-버튼으로 이전페이지로 이동할때 그 페이지의 내용을 로드
 $(window).on('popstate', function(event){
@@ -40,4 +64,5 @@ $(window).on('popstate', function(event){
 	//console.log(big_index);
 	//big_category.eq(big_index).addClass("active");
 	$('.result_item_wrapper').load(location.href + ' .result_item_wrapper');
+	return false;
 });

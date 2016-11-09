@@ -20,7 +20,14 @@
 			<form name="searchGroup" action="./searchGroup.do" method="post">
 				<input type="hidden" name="searchCheck" value="y" />
 				<div class="row search">
-					<div class="col-xs-10"><input type="text" class="form-control input-lg" /></div>
+					<div class="col-xs-10">
+						<c:if test="${ searchInput != null }">
+							<input type="text" class="form-control input-lg" value="${ searchInput }" />
+						</c:if>
+						<c:if test="${ searchInput == null }">
+							<input type="text" class="form-control input-lg" placeholder="검색어를 입력해 주세요." />
+						</c:if>
+					</div>
 					<div class="col-xs-2"><button type="submit" class="btn btn-info submit">검색</button></div>
 				</div>
 
@@ -58,7 +65,7 @@
 									<div class="col-sm-10">
 										<label class="checkbox-inline"><input type="checkbox" name="category" value="9">인적성</label>
 										<label class="checkbox-inline"><input type="checkbox" name="category" value="10">면접</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="11">자소서</abel>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="11">자소서</label>
 										<label class="checkbox-inline"><input type="checkbox" name="category" value="12">취업-기타</label>
 									</div>
 								</li>

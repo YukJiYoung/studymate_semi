@@ -34,6 +34,11 @@
 	margin-right:0.2em;
 	background-color:#fafafa;
 }
+.search-detail .panel-heading:after {
+	content:"";
+	display:block;
+	clear:both;
+}
 .search-detail .panel-heading a {
 	float:right;
 }
