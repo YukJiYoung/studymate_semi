@@ -130,8 +130,8 @@
 								<button type="button" class="btn btn-default" onclick="window.location.href='../logon/inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">
-								<button type="button" class="col-sm-6 btn btn-default">ID찾기</button>
-								<button type="button" class="col-sm-6 btn btn-default">Password찾기</button>
+								<button type="button" class="col-sm-6 btn btn-default" onclick="javascript:window.location='./searchIdForm.do'">ID찾기</button>
+								<button type="button" class="col-sm-6 btn btn-default" onclick="javascript:window.location='./changePwForm.do'">Password찾기</button>
 							</div>
 						</form>
 					</div>
@@ -155,10 +155,10 @@
 						<h4 class="modal-title">로그아웃</h4>
 					</div>
 					<div class="modal-body text-center">
-						<form id="logout_form" action="./logon/logout.do" name="logout_form" method="post">
+						<form id="logout_form" action="../logon/logout.do" name="logout_form" method="post">
 							<input type="hidden" name="url" value="<%= url %>" />
 							<div class="text-center">
-								${ memId }">님<br />
+								${ memId } 님<br />
 								로그아웃 하시겠습니까?<br /><br /><br />
 							</div>
 							<div class="row modal_login_btns">
@@ -224,7 +224,7 @@
 						<h4 class="modal-title">탈퇴하기</h4>
 					</div>
 					<div class="modal-body text-center">
-						<form id="leave_form" action="" name="leave_form" method="post">
+						<form id="leave_form" action="../logon/deletePro.do" name="leave_form" method="post">
 							<div class="form-group">
 								<input type="password" placeholder="Password" class="form-control">
 							</div>

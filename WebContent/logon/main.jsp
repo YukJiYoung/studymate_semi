@@ -7,6 +7,7 @@
 	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
 	<link rel="stylesheet" type="text/css" href="../assets/css/searchGroup.css" />
+	<script src="../assets/js/searchGroup.js"></script>
 </head>
 
 <body>
@@ -24,12 +25,12 @@
 		<div class="carousel-inner">
 			<!-- 항목 (1) -->
 			<div class="item active">
-				<a href="../notice.jsp"><img src="../images/index-slide-1.png" alt="[스터디메이트] - 처음 오셨나요?"></a>
+				<a href="../notice/content.do?noticeNum=2&pageNum=1"><img src="../images/index-slide-1.png" alt="[스터디메이트] - 처음 오셨나요?"></a>
 			</div>
 
 			<!-- 항목 (2) -->
 			<div class="item">
-				<a href="../notice.jsp"><img src="../images/index-slide-2.png" alt="[스터디룸 할인이벤트] - 스터디메이트 회원이라면 제휴 스터디룸  50% 특별할인!!"></a>
+				<a href="../notice/content.do?noticeNum=3&pageNum=1"><img src="../images/index-slide-2.png" alt="[스터디룸 할인이벤트] - 스터디메이트 회원이라면 제휴 스터디룸  50% 특별할인!!"></a>
 			</div>
 
 		</div>
@@ -103,43 +104,48 @@
 					<c:if test="${ count > 0 }">
 					<c:forEach var="article" items="${ articleList }"> 
 						<c:choose>
-							<c:when test = "${ article.bcategory == 1 }">
+							<c:when test = "${ article.bcategorycode == 1 }">
 								<c:set var="bcategoryKR" value="영어" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 2 }">
+							<c:when test = "${ article.bcategorycode == 2 }">
 								<c:set var="bcategoryKR" value="외국어" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 3 }">
+							<c:when test = "${ article.bcategorycode == 3 }">
 								<c:set var="bcategoryKR" value="취업" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 4 }">
+							<c:when test = "${ article.bcategorycode == 4 }">
 								<c:set var="bcategoryKR" value="국가고시&공무원" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 5 }">
+							<c:when test = "${ article.bcategorycode == 5 }">
 								<c:set var="bcategoryKR" value="기타" />
 							</c:when>
 						</c:choose>
 					<!-- item -->
 					<li class="result_item">
-						<a href="../groupPage.do?num=${ article.num }&pageNum=${ currentPage }" class="item">
+						<a href="../groupPage.do?num=${ article.groupNum }&pageNum=${ currentPage }" class="item">
 							<figure>
-								<span class="item_category">${ bcategoryKR }&lt;${ article.scategory }</span>
-								<img src="../${ article.imgpath }" />
+								<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
+								<img src="../${ article.imagePath }" />
 								<figcaption class="item_description">
 									<p>
-										<span class="item_title">${ article.title }</span>
-										<span class="item_status label label-primary">${ article.status }</span>
-										<c:if test="${ article.recommendcount >= 20 }">
+										<span class="item_title">${ article.groupName }</span>
+										<c:if test="${ (article.maxMember - article.nowMember) > 0 }">
+											<span class="item_status label label-primary">모집중</span>
+										</c:if>
+										<c:if test="${ (article.maxMember - article.nowMember) <= 0 }">
+											<span class="item_status label label-default">모집완료</span>
+										</c:if>
+										<c:if test="${ article.zzimCount >= 20 }">
 											<span class="item_label label label-danger">HOT</span>
 										</c:if>
 										<span class="item_introduce"> - ${ article.introduce } </span>
 									</p>
 									<p>
-										<span class="item_host">${ article.host }</span> | <span class="item_date">${ article.duedate }</span>
+										<span class="item_host">${ article.id }</span> | <span class="item_date">${ article.createDate }</span>
 									</p>
 								</figcaption>
 								<div class="item_entry">
-									<span class="entry_number">${ article.currentnum }</span> / <span class="entry_total">${ article.total }</span> 명
+									<span class="entry_number">${ article.nowMember }</span> / <span class="entry_total">${ article.maxMember }</span> 명
 								</div>
 							</figure>
 						</a>

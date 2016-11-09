@@ -19,7 +19,7 @@ public class SearchListDAO {
 	}
 
 	// list.jsp : 페이징을 위해서 전체 DB에 입력된 행의수가 필요하다...!!!
-	public int getArticleCount(int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, String searchRegdate) throws Exception {
+	public int getArticleCount(int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, int searchRegdate) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -30,7 +30,7 @@ public class SearchListDAO {
 		try {
 			conn = getConnection();
 			
-			query += "select count(*) from group_list where bcategory="+bcategory;
+			query += "select count(*) from groupinfo where bcategorycode="+bcategory;
 			if(searchMembers == 6){
 				query += " or maxMember>="+searchMembers;
 			}else{
@@ -47,7 +47,7 @@ public class SearchListDAO {
 					query += " or scategorycode=(select scategorycode from scategory where scategoryname like '%"+scategory+"%')";
 				}
 			}
-			query += " order by createDate";
+			System.out.println(query);
 			
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
@@ -78,7 +78,7 @@ public class SearchListDAO {
 		try {
 			conn = getConnection();
 			
-			query += "select count(*) from group_list where bcategory="+bcategory;
+			query += "select count(*) from groupinfo where bcategorycode="+bcategory;
 			
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
@@ -105,7 +105,7 @@ public class SearchListDAO {
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
 		
-		String[] column_name = {"scategory","groupName","location"};
+		String[] column_name = {"scategorycode","groupName","location"};
 		
 		int x = 0;
 		
@@ -113,9 +113,9 @@ public class SearchListDAO {
 		{
 			conn = getConnection();
 			if(n == 0){
-				pstmt = conn.prepareStatement("select count (*) from group_list where scategory like '%"+searchKeyword+"%' or bcategory like '%"+searchKeyword+"%'");
+				pstmt = conn.prepareStatement("select count (*) from groupinfo where scategorycode=(select scategorycode from scategory where scategoryname like '%"+searchKeyword+"%') or bcategory=(select scategorycode from scategory where scategoryname like '%"+searchKeyword+"%')");
 			}else{
-				pstmt = conn.prepareStatement("select count (*) from group_list where "+column_name[n]+" like '%"+searchKeyword+"%'");
+				pstmt = conn.prepareStatement("select count (*) from groupinfo where "+column_name[n]+" like '%"+searchKeyword+"%'");
 			}
 			
 			rs = pstmt.executeQuery();
@@ -141,14 +141,20 @@ public class SearchListDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String query = "";
 		List<SearchListDTO> articleList = null;
 		try {
 			conn = getConnection();
-			String query = "";
+			query = "select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,r "
+					+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,rownum r "
+					+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode from groupinfo where bcategorycode=?"
+					+ ") order by createDate desc) where r >= ? and r <= ?";
+			/*
 			query = "select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath,r "
 					+ "from (select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath,rownum r "
 					+ "from (select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath from group_list where bcategory=?"
 					+ ") order by duedate desc) where r >= ? and r <= ?";
+			*/
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bcategory);
 			pstmt.setInt(2, start);
@@ -196,14 +202,20 @@ public class SearchListDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String query = "";
 		List<SearchListDTO> articleList = null;
 		try {
 			conn = getConnection();
-			String query = "";
+			query = "select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,r "
+					+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,rownum r "
+					+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode from groupinfo where bcategorycode=?"
+					+ ") order by createDate desc) where r <= 5";
+			/*
 			query = "select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath,r "
 					+ "from (select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath,rownum r "
 					+ "from (select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath from group_list where bcategory=?"
 					+ ") order by duedate desc) where r <= 5";
+			*/
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bcategory);
 			
@@ -245,22 +257,45 @@ public class SearchListDAO {
 	}
 
 	public List<SearchListDTO> getArticles(int start, int end, int bcategory, String[] searchCategory,
-			int searchMembers, int searchMeetcount, String searchRegdate) {
+			int searchMembers, int searchMeetcount, int searchRegdate) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String query = "";
 		List<SearchListDTO> articleList = null;
 		try {
 			conn = getConnection();
-			String query = "";
+			
+			query += "select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,r";
+			query += " from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,rownum r";
+			query += " from groupinfo where bcategorycode="+bcategory;
+			if(searchMembers == 6){
+				query += " or maxMember>="+searchMembers;
+			}else{
+				query += " or maxMember<="+searchMembers;
+			}
+			if(searchMeetcount == 4){
+				query += " or meetingCount="+searchMeetcount;
+			}else{
+				query += " or meetingCount>="+searchMeetcount;
+			}
+			query += " or createDate between (sysdate-"+searchRegdate+") and sysdate";
+			if(searchCategory.length > 0){
+				for(String scategory : searchCategory){
+					query += " or scategorycode=(select scategorycode from scategory where scategoryname like '%"+scategory+"%')";
+				}
+			}
+			query += " order by createDate desc) where r >= ? and r <= ?";
+			
+			/*
 			query = "select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath,r "
 					+ "from (select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath,rownum r "
 					+ "from (select num,bcategory,scategory,title,host,status,introduce,duedate,recommendcount,currentnum,total,imgpath from group_list where bcategory=?"
 					+ ") order by duedate desc) where r >= ? and r <= ?";
+			*/
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, bcategory);
-			pstmt.setInt(2, start);
-			pstmt.setInt(3, end);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 

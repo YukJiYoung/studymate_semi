@@ -15,20 +15,22 @@ public class SearchGroupAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
+		String searchCheck = "n";
+		if(request.getParameter("searchCheck") != null) searchCheck = request.getParameter("searchCheck");
 		int bcategory = 1;
-		String[] searchCategory = null;
+		String[] searchCategory = new String[0];
 		int searchMembers = 0;
 		int searchMeetcount = 0;
-		String searchRegdate = "";
+		int searchRegdate = 0;
 		
-		if(request.getParameter("members") != null) searchMembers = Integer.parseInt(request.getParameter("members"));
-		if(request.getParameter("meetcount") != null) searchMeetcount = Integer.parseInt(request.getParameter("meetcount"));
-		if(request.getParameter("regdate") != null) searchRegdate = request.getParameter("regdate");
-		if(request.getParameter("category") != null) searchCategory = request.getParameterValues("category");
-		if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
-		
-		if(pageNum == null)
-			pageNum = "1";
+		if(searchCheck.equals("y")){
+			if(request.getParameter("members") != null) searchMembers = Integer.parseInt(request.getParameter("members"));
+			if(request.getParameter("meetcount") != null) searchMeetcount = Integer.parseInt(request.getParameter("meetcount"));
+			if(request.getParameter("regdate") != null) searchRegdate = Integer.parseInt(request.getParameter("regdate"));
+			if(request.getParameter("category") != null) searchCategory = request.getParameterValues("category");
+			if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
+		}
+		if(pageNum == null) pageNum = "1";
 		
 		int pageSize = 5;
 		int currentPage = Integer.parseInt(pageNum);
@@ -43,7 +45,7 @@ public class SearchGroupAction implements CommandAction {
 		
 		if(count > 0){
 			articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
-			count = articleList.size();
+//			count = articleList.size();
 		}else { 
 			articleList = Collections.emptyList();
 		}
@@ -59,7 +61,6 @@ public class SearchGroupAction implements CommandAction {
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
 		request.setAttribute("bcategoryNum", new Integer(bcategory));
-		
 		
 		return "/searchGroup.jsp"; //같은 패키지 안이기 때문에 webContents 다음 경로부터
 	} //end requestPro()

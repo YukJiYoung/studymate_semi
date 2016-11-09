@@ -9,58 +9,15 @@
 	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
+	<script src="./assets/js/searchGroup.js"></script>
 </head>
 
 <body class="non_background">
-	<script>
-		function loadNextPage(pageNum,bcategoryNum,event) {
-			var big_category = $(".big_category>ul>li>button");
-			big_category.removeClass("active"); 
-			$(event).addClass("active");
-			
-			var param = "pageNum=" + pageNum + "&bcategory=" + bcategoryNum;
-			var url = "searchGroup.do?" + param;
-			history.pushState(null, null, url); // 페이지의 상태를 history객체에 넣어줌. push라면 젤 끝에 넣어주는것.
-			$('.result_item_wrapper').load("searchGroupAjax.do?" + param);
-		}
-		//<-버튼으로 이전페이지로 이동할때 그 페이지의 내용을 로드
-		$(window).on('popstate', function(event){
-			var big_category = $(".big_category>ul>li>button");
-			big_category.removeClass("active");
-			big_category.blur();
-			//var big_index = parseInt('${bcategoryNum}');
-			//console.log(big_index);
-			//big_category.eq(big_index).addClass("active");
-			$('.result_item_wrapper').load(location.href + ' .result_item_wrapper');
-		});
-		
-		$("#detail_search_collapse label").click(function(){
-				var name = $(this).children().text();
-				console.log(name);
-				var addspan = "";
-				addspan += "<span class='btn btn-default'>" + name + "</span>";
-				$("#select_detail").append(addspan);
-		});
-		$(document).on('click','#select_detail>span',function(event){
-			var name = $(this).text();
-			console.log(name);
-			$(event).outerHTML().remove();
-			$("#detail_search_collapse input[type='checkbox']").each(function(){
-				var inputText = $(this).text();
-				
-				if(inputText.match(name)){
-					$(this).removeAttr('checked');
-					
-				}
-			});
-			
-		});
-		
-	</script>
 	<!-- searchGroup 내용영역 -->
 	<div class="container" style="margin-top: 80px; min-height:600px;">
 		<div class="row featurette">
-			<form name="" action="" method="post">
+			<form name="searchGroup" action="./searchGroup.do" method="post">
+				<input type="hidden" name="searchCheck" value="y" />
 				<div class="row search">
 					<div class="col-xs-10"><input type="text" class="form-control input-lg" /></div>
 					<div class="col-xs-2"><button type="submit" class="btn btn-info submit">검색</button></div>
@@ -181,19 +138,19 @@
 					<c:if test="${ count > 0 }">
 					<c:forEach var="article" items="${ articleList }"> 
 						<c:choose>
-							<c:when test = "${ article.bcategory == 1 }">
+							<c:when test = "${ article.bcategorycode == 1 }">
 								<c:set var="bcategoryKR" value="영어" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 2 }">
+							<c:when test = "${ article.bcategorycode == 2 }">
 								<c:set var="bcategoryKR" value="외국어" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 3 }">
+							<c:when test = "${ article.bcategorycode == 3 }">
 								<c:set var="bcategoryKR" value="취업" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 4 }">
+							<c:when test = "${ article.bcategorycode == 4 }">
 								<c:set var="bcategoryKR" value="국가고시&공무원" />
 							</c:when>
-							<c:when test = "${ article.bcategory == 5 }">
+							<c:when test = "${ article.bcategorycode == 5 }">
 								<c:set var="bcategoryKR" value="기타" />
 							</c:when>
 						</c:choose>
@@ -212,13 +169,13 @@
 										<c:if test="${ (article.maxMember - article.nowMember) <= 0 }">
 											<span class="item_status label label-default">모집완료</span>
 										</c:if>
-										<c:if test="${ article.recommendcount >= 20 }">
+										<c:if test="${ article.zzimCount >= 20 }">
 											<span class="item_label label label-danger">HOT</span>
 										</c:if>
 										<span class="item_introduce"> - ${ article.introduce } </span>
 									</p>
 									<p>
-										<span class="item_host">${ article.host }</span> | <span class="item_date">${ article.createDate }</span>
+										<span class="item_host">${ article.id }</span> | <span class="item_date">${ article.createDate }</span>
 									</p>
 								</figcaption>
 								<div class="item_entry">

@@ -15,10 +15,21 @@ public class SearchGroupAjaxAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
+		String searchCheck = "n";
+		if(request.getParameter("searchCheck") != null) searchCheck = request.getParameter("searchCheck");
 		int bcategory = 1;
+		String[] searchCategory = new String[0];
+		int searchMembers = 0;
+		int searchMeetcount = 0;
+		int searchRegdate = 0;
 		
-		if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
-		
+		if(searchCheck.equals("y")){
+			if(request.getParameter("members") != null) searchMembers = Integer.parseInt(request.getParameter("members"));
+			if(request.getParameter("meetcount") != null) searchMeetcount = Integer.parseInt(request.getParameter("meetcount"));
+			if(request.getParameter("regdate") != null) searchRegdate = Integer.parseInt(request.getParameter("regdate"));
+			if(request.getParameter("category") != null) searchCategory = request.getParameterValues("category");
+			if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
+		}
 		if(pageNum == null) pageNum = "1";
 		
 		int pageSize = 5;
@@ -30,10 +41,10 @@ public class SearchGroupAjaxAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
-		count = dbPro.getArticleCount(bcategory); //전체 글 개수	
+		count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate); //전체 글 개수	
 		
 		if(count > 0){
-			articleList = dbPro.getArticles(startRow, endRow, bcategory);
+			articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
 //			count = articleList.size();
 		}else { 
 			articleList = Collections.emptyList();
@@ -52,6 +63,6 @@ public class SearchGroupAjaxAction implements CommandAction {
 		request.setAttribute("bcategoryNum", new Integer(bcategory));
 		
 		return "./searchGroupAjax.jsp";
-	}
+	} //end requestPro()
 
 }
