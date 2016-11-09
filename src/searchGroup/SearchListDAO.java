@@ -41,13 +41,15 @@ public class SearchListDAO {
 			}else{
 				query += " or meetingCount>="+searchMeetcount;
 			}
-			query += " or createDate between (sysdate-"+searchRegdate+") and sysdate";
+			if(searchRegdate > 0){
+				query += " or createDate between (sysdate-"+searchRegdate+") and sysdate";
+			}
 			if(searchCategory.length > 0){
 				for(String scategory : searchCategory){
 					query += " or scategorycode=(select scategorycode from scategory where scategoryname like '%"+scategory+"%')";
 				}
 			}
-			System.out.println(query);
+//			System.out.println(query); //Äõ¸®¹® Ãâ·Â
 			
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
@@ -279,7 +281,9 @@ public class SearchListDAO {
 			}else{
 				query += " or meetingCount>="+searchMeetcount;
 			}
-			query += " or createDate between (sysdate-"+searchRegdate+") and sysdate";
+			if(searchRegdate > 0){
+				query += " or createDate between (sysdate-"+searchRegdate+") and sysdate";
+			}
 			if(searchCategory.length > 0){
 				for(String scategory : searchCategory){
 					query += " or scategorycode=(select scategorycode from scategory where scategoryname like '%"+scategory+"%')";

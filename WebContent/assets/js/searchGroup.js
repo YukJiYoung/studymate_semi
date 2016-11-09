@@ -1,3 +1,26 @@
+
+/* 상세선택 버튼 추가&삭제 */
+$("#detail_search_collapse label").click(function(){
+		var name = $(this).text();
+		console.log(name);
+		var addspan = "";
+		addspan += "<span class='btn btn-default'>" + name + "</span>";
+		$("#select_detail").append(addspan);
+});
+$(document).on('click','#select_detail>span',function(event){
+	var name = $(this).text();
+//	console.log(name);
+//	$(event).remove();
+	$("#detail_search_collapse label").each(function(){
+		var inputText = $(this).text();
+		if(inputText.match(name)){
+			$(this).find('input').prop('checked',false);
+		}
+	});
+	
+});
+
+/* bcategory ajax */
 function loadNextPage(pageNum,bcategoryNum,event) {
 	var big_category = $(".big_category>ul>li>button");
 	big_category.removeClass("active"); 
@@ -17,26 +40,4 @@ $(window).on('popstate', function(event){
 	//console.log(big_index);
 	//big_category.eq(big_index).addClass("active");
 	$('.result_item_wrapper').load(location.href + ' .result_item_wrapper');
-});
-
-$("#detail_search_collapse label").click(function(){
-		var name = $(this).children().text();
-		console.log(name);
-		var addspan = "";
-		addspan += "<span class='btn btn-default'>" + name + "</span>";
-		$("#select_detail").append(addspan);
-});
-$(document).on('click','#select_detail>span',function(event){
-	var name = $(this).text();
-	console.log(name);
-	$(event).outerHTML().remove();
-	$("#detail_search_collapse input[type='checkbox']").each(function(){
-		var inputText = $(this).text();
-		
-		if(inputText.match(name)){
-			$(this).removeAttr('checked');
-			
-		}
-	});
-	
 });

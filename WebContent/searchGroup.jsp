@@ -9,10 +9,11 @@
 	<title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 	
 	<link rel="stylesheet" type="text/css" href="assets/css/searchGroup.css" />
-	<script src="./assets/js/searchGroup.js"></script>
+	
 </head>
 
 <body class="non_background">
+	<script src="./assets/js/searchGroup.js"></script>
 	<!-- searchGroup 내용영역 -->
 	<div class="container" style="margin-top: 80px; min-height:600px;">
 		<div class="row featurette">
