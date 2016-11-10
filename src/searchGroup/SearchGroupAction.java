@@ -15,9 +15,11 @@ public class SearchGroupAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
+		int bcategory = 1;
+		if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
 		
 		int typeList = 0;
-		String searchInput = null;
+		String searchInput = "";
 		if(request.getParameter("searchInput") != null){
 			searchInput = request.getParameter("searchInput");
 			typeList = Integer.parseInt(request.getParameter("typeList"));
@@ -25,7 +27,6 @@ public class SearchGroupAction implements CommandAction {
 		String searchCheck = "n";
 		if(request.getParameter("searchCheck") != null) searchCheck = request.getParameter("searchCheck");
 		
-		int bcategory = 1;
 		String[] searchCategory = new String[0];
 		int searchMembers = 0;
 		int searchMeetcount = 0;
@@ -36,7 +37,8 @@ public class SearchGroupAction implements CommandAction {
 			if(request.getParameter("meetcount") != null) searchMeetcount = Integer.parseInt(request.getParameter("meetcount"));
 			if(request.getParameter("regdate") != null) searchRegdate = Integer.parseInt(request.getParameter("regdate"));
 			if(request.getParameter("category") != null) searchCategory = request.getParameterValues("category");
-			if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
+			if(request.getParameter("searchKeyword") != null) searchInput = request.getParameter("searchKeyword");
+			bcategory = 0;
 		}
 		if(pageNum == null) pageNum = "1";
 		
@@ -49,18 +51,18 @@ public class SearchGroupAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
-		if(searchInput != null){
+		if(searchCheck.equals("n")){
 			count = dbPro.getArticleCount(typeList,searchInput); //전체 글 개수
 			if(count > 0){
-				articleList = dbPro.getArticles(typeList,searchInput);
+				articleList = dbPro.getArticles(startRow,endRow,typeList,searchInput);
 //				count = articleList.size();
 			}else { 
 				articleList = Collections.emptyList();
 			}
 		}else{
-			count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate); //전체 글 개수
+			count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate,searchInput); //전체 글 개수
 			if(count > 0){
-				articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
+				articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate,searchInput);
 			}else { 
 				articleList = Collections.emptyList();
 			}

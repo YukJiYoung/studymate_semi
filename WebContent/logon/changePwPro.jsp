@@ -1,34 +1,28 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="color.jsp" %>
-<% request.setCharacterEncoding("utf-8"); %>
-
-<c:if test="${!check.equals('')}">
+<%@ page import="logon.LogonDBBean" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>비밀번호 변경</title>
+<title>아이디 찾기</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script src="../assets/js/changePw.js"></script>
 </head>
-<body bgcolor="${ bodyback_c }">
-	<form method="post" action="./main.do" name="userinput">
-		<table width="320" border="0" cellspacing="0" cellpadding="5" align="center">
-			<tr bgcolor="${ title_c }">
-				<td height="39" align="center">변경된 비밀번호는 "<b>${ check }</b>" 입니다.</td>
-			</tr>
-			<tr bgcolor="${ title_c }">
-				<td align="center">
-					<input type="button" value="메인으로" onclick="window.location='./main.do'" />
-					<input type="button" value="비밀번호 변경" onclick="window.location='./changePwPro.do'" />
-				</td>
-			</tr>
-		</table>
-	</form>
+
+<body class="non_background">
+<div class="logon_container">
+<c:if test="${ !cpasswd.equals('') }">
+
+		새로운 비밀번호는 ${ cpasswd } 입니다.	
+		<input type="button" value="확인" class="btn btn-default" onclick="checkId()">
+
+		
+		
 </c:if>
-<c:if test="${check.equals('')}">
-	<script>
-		alert("입력정보가 맞지 않습니다.");
-		history.go(-1);
-	</script>
+<c:if test="${ cpasswd.equals('') }">
+	입력하신 정보가 일치하지 않습니다.
+	<input type="button" value="확인" class="btn btn-default" onclick="javascript:self.close()">
 </c:if>
+</div>
 </body>
 </html>

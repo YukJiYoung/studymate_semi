@@ -1,11 +1,6 @@
-/board/
-/jdbc/
-/pool.jocl
-/notice/
-/mvcboard/
-/controller/
-/customer/
 /searchGroup/
-/action/
 /addGroup/
-/logon/
+/groupPage/
+/board/
+/customer/
+/customerboard/

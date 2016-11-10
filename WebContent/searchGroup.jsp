@@ -22,10 +22,10 @@
 				<div class="row search">
 					<div class="col-xs-10">
 						<c:if test="${ searchInput != null }">
-							<input type="text" class="form-control input-lg" value="${ searchInput }" />
+							<input type="text" name="searchKeyword" class="form-control input-lg" value="${ searchInput }" />
 						</c:if>
 						<c:if test="${ searchInput == null }">
-							<input type="text" class="form-control input-lg" placeholder="검색어를 입력해 주세요." />
+							<input type="text" name="searchKeyword" class="form-control input-lg" placeholder="검색어를 입력해 주세요." />
 						</c:if>
 					</div>
 					<div class="col-xs-2"><button type="submit" class="btn btn-info submit">검색</button></div>
@@ -45,42 +45,42 @@
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>영   어</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="1">토익</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="2">토익스피킹</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="3">오픽</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="4">회화</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="토익">토익</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="토익스피킹">토익스피킹</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="오픽">오픽</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="회화">회화</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>외국어</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="5">일본어</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="6">중국어</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="7">프랑스어</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="8">외국어-기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="일본어">일본어</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="중국어">중국어</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="프랑스어">프랑스어</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="외국어-기타">외국어-기타</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>취    업</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="9">인적성</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="10">면접</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="11">자소서</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="12">취업-기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="인적성">인적성</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="면접">면접</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="자소서">자소서</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="취업-기타">취업-기타</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>국가고시/공무원</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="13">국가고시</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="14">공무원</label>
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="15">고시-기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="국가고시">국가고시</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="공무원">공무원</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="고시-기타">고시-기타</label>
 									</div>
 								</li>
 								<li class="row list-group-item">
 									<span class="col-sm-2 big_category_detail"><strong>기   타</strong></span>
 									<div class="col-sm-10">
-										<label class="checkbox-inline"><input type="checkbox" name="category" value="16">기타-기타</label>
+										<label class="checkbox-inline"><input type="checkbox" name="category" value="기타-기타">기타-기타</label>
 									</div>
 								</li>
 								
@@ -148,18 +148,23 @@
 						<c:choose>
 							<c:when test = "${ article.bcategorycode == 1 }">
 								<c:set var="bcategoryKR" value="영어" />
+								<c:set var="imagePath" value="images/item_sample_01.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 2 }">
 								<c:set var="bcategoryKR" value="외국어" />
+								<c:set var="imagePath" value="images/item_sample_02.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 3 }">
 								<c:set var="bcategoryKR" value="취업" />
+								<c:set var="imagePath" value="images/item_sample_03.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 4 }">
 								<c:set var="bcategoryKR" value="국가고시&공무원" />
+								<c:set var="imagePath" value="images/item_sample_04.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 5 }">
 								<c:set var="bcategoryKR" value="기타" />
+								<c:set var="imagePath" value="images/item_sample_05.jpg" />
 							</c:when>
 						</c:choose>
 					<!-- item -->
@@ -167,7 +172,7 @@
 						<a href="./groupPage.do?groupNum=${ article.groupNum }&pageNum=${ currentPage }" class="item">
 							<figure>
 								<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
-								<img src="./${ article.imagePath }" />
+								<img src="./${ imagePath }" />
 								<figcaption class="item_description">
 									<p>
 										<span class="item_title">${ article.groupName }</span>

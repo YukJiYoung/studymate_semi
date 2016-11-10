@@ -6,8 +6,8 @@
 </head>
 <body>
 	<p>
-		<a href="./modifyForm.do">정보수정</a>
-		<a href="./deleteForm.do">탈퇴</a>
+		<a href="/studymate/logon/modifyForm.do">정보수정</a>
+		<a href="/studymate/logon/deleteForm.do">탈퇴</a>
 	</p>
 </body>
 </html>

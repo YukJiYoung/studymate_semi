@@ -15,20 +15,28 @@ public class SearchGroupAjaxAction implements CommandAction {
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
+		int bcategory = Integer.parseInt(request.getParameter("bcategory"));
+		
+		String searchInput = "";
+		if(request.getParameter("searchInput") != null){
+			searchInput = request.getParameter("searchInput");
+		}
 		String searchCheck = "n";
 		if(request.getParameter("searchCheck") != null) searchCheck = request.getParameter("searchCheck");
-		int bcategory = 1;
+		
 		String[] searchCategory = new String[0];
 		int searchMembers = 0;
 		int searchMeetcount = 0;
 		int searchRegdate = 0;
+		
 		
 		if(searchCheck.equals("y")){
 			if(request.getParameter("members") != null) searchMembers = Integer.parseInt(request.getParameter("members"));
 			if(request.getParameter("meetcount") != null) searchMeetcount = Integer.parseInt(request.getParameter("meetcount"));
 			if(request.getParameter("regdate") != null) searchRegdate = Integer.parseInt(request.getParameter("regdate"));
 			if(request.getParameter("category") != null) searchCategory = request.getParameterValues("category");
-			if(request.getParameter("bcategory") != null) bcategory = Integer.parseInt(request.getParameter("bcategory"));
+			if(request.getParameter("searchKeyword") != null) searchInput = request.getParameter("searchKeyword");
+			bcategory = 0;
 		}
 		if(pageNum == null) pageNum = "1";
 		
@@ -41,14 +49,14 @@ public class SearchGroupAjaxAction implements CommandAction {
 		
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
-		count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate); //전체 글 개수	
 		
+		count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate,searchInput); //전체 글 개수
 		if(count > 0){
-			articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate);
-//			count = articleList.size();
+			articleList = dbPro.getArticles(startRow, endRow, bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate,searchInput);
 		}else { 
 			articleList = Collections.emptyList();
 		}
+		
 		
 		number = count - (currentPage - 1) * pageSize;
 		
@@ -61,6 +69,7 @@ public class SearchGroupAjaxAction implements CommandAction {
 		request.setAttribute("number", new Integer(number));
 		request.setAttribute("articleList", articleList);
 		request.setAttribute("bcategoryNum", new Integer(bcategory));
+		request.setAttribute("searchInput", searchInput);
 		
 		return "./searchGroupAjax.jsp";
 	} //end requestPro()

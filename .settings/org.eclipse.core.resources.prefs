@@ -1,2 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/customerboard/action/ContentAction.java=UTF-8
+encoding//src/customerboard/action/DeleteFormAction.java=UTF-8
+encoding//src/customerboard/action/DeleteProAction.java=UTF-8
+encoding//src/customerboard/action/ListAction.java=UTF-8
+encoding//src/customerboard/action/UpdateFormAction.java=UTF-8
+encoding//src/customerboard/action/WriteFormAction.java=UTF-8
+encoding//src/customerboard/action/WriteProAction.java=UTF-8
 encoding//src/logon/LogonDBBean.java=UTF-8

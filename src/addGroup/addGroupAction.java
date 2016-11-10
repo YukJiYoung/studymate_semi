@@ -10,7 +10,7 @@ public class addGroupAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		int groupNum=0, zzimCount=0, nowMember=1;
 		
-		try{ 
+		try{
 			if(request.getParameter("groupNum")!=null){
 				 groupNum=Integer.parseInt(request.getParameter("groupNum"));
 				 zzimCount = Integer.parseInt(request.getParameter("zzimCount"));

@@ -47,9 +47,9 @@
 			<form id="main_search_form" name="main_search_form" action="../searchGroup.do" method="post">
 				<div class="row search">
 					<div class="col-xs-2"><select id="typeList" name="typeList" class="form-control input-lg">
-						<option value="1" selected>카테고리</option>
-						<option value="2">스터디그룹명</option>
-						<option value="3">지역</option>
+						<option value="0" selected>카테고리</option>
+						<option value="1">스터디그룹명</option>
+						<option value="2">지역</option>
 					</select></div>
 					<div class="col-xs-8"><input id="searchInput" name="searchInput" type="text" class="form-control input-lg" placeholder="카테고리로 검색하세요" /></div>
 					<div class="col-xs-2"><button type="submit" class="btn btn-info submit">검색</button></div>
@@ -106,26 +106,31 @@
 						<c:choose>
 							<c:when test = "${ article.bcategorycode == 1 }">
 								<c:set var="bcategoryKR" value="영어" />
+								<c:set var="imagePath" value="images/item_sample_01.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 2 }">
 								<c:set var="bcategoryKR" value="외국어" />
+								<c:set var="imagePath" value="images/item_sample_02.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 3 }">
 								<c:set var="bcategoryKR" value="취업" />
+								<c:set var="imagePath" value="images/item_sample_03.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 4 }">
 								<c:set var="bcategoryKR" value="국가고시&공무원" />
+								<c:set var="imagePath" value="images/item_sample_04.jpg" />
 							</c:when>
 							<c:when test = "${ article.bcategorycode == 5 }">
 								<c:set var="bcategoryKR" value="기타" />
+								<c:set var="imagePath" value="images/item_sample_05.jpg" />
 							</c:when>
 						</c:choose>
 					<!-- item -->
 					<li class="result_item">
-						<a href="../groupPage.do?num=${ article.groupNum }&pageNum=${ currentPage }" class="item">
+						<a href="../groupPage.do?num=${ article.groupNum }" class="item">
 							<figure>
 								<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
-								<img src="../${ article.imagePath }" />
+								<img src="../${ imagePath }" />
 								<figcaption class="item_description">
 									<p>
 										<span class="item_title">${ article.groupName }</span>

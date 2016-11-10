@@ -19,7 +19,7 @@ public class SearchListDAO {
 	}
 
 	/* searchGroup.jsp ==> 전체글 수 */
-	public int getArticleCount(int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, int searchRegdate) throws Exception {
+	public int getArticleCount(int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, int searchRegdate, String searchKeyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -36,7 +36,7 @@ public class SearchListDAO {
 			}else{
 				query += " or maxMember<="+searchMembers;
 			}
-			if(searchMeetcount == 4){
+			if(searchMeetcount == 4 || searchMeetcount == 0){
 				query += " or meetingCount="+searchMeetcount;
 			}else{
 				query += " or meetingCount>="+searchMeetcount;
@@ -46,8 +46,14 @@ public class SearchListDAO {
 			}
 			if(searchCategory.length > 0){
 				for(String scategory : searchCategory){
-					query += " or scategorycode=(select scategorycode from scategory where scategoryname like '%"+scategory+"%')";
+					query += " or scategorycode like '%"+scategory+"%'";
 				}
+			}
+			if(!searchKeyword.equals("")){
+				query += " or bcategorycode=(select bcategorycode from bcategory where bcategoryname like '%"+searchKeyword+"%')";
+				query += " or scategorycode like '%"+searchKeyword+"%'";
+				query += " or groupName like '%"+searchKeyword+"%'";
+				query += " or introduce like '%"+searchKeyword+"%'";
 			}
 //			System.out.println(query); //쿼리문 출력
 			
@@ -116,7 +122,7 @@ public class SearchListDAO {
 		{
 			conn = getConnection();
 			if(n == 0){
-				pstmt = conn.prepareStatement("select count (*) from groupinfo where scategorycode=(select scategorycode from scategory where scategoryname like '%"+searchKeyword+"%') or bcategory=(select scategorycode from scategory where scategoryname like '%"+searchKeyword+"%')");
+				pstmt = conn.prepareStatement("select count (*) from groupinfo where scategorycode like '%"+searchKeyword+"%' or bcategorycode=(select bcategorycode from bcategory where bcategoryname like '%"+searchKeyword+"%')");
 			}else{
 				pstmt = conn.prepareStatement("select count (*) from groupinfo where "+column_name[n]+" like '%"+searchKeyword+"%'");
 			}
@@ -167,7 +173,7 @@ public class SearchListDAO {
 
 					article.setGroupNum(rs.getInt("groupNum"));
 					article.setBcategorycode(rs.getInt("bcategorycode"));
-					article.setScategorycode(rs.getInt("scategorycode"));
+					article.setScategorycode(rs.getString("scategorycode"));
 					article.setGroupName(rs.getString("groupName"));
 					article.setId(rs.getString("id"));
 					article.setIntroduce(rs.getString("introduce"));
@@ -196,7 +202,7 @@ public class SearchListDAO {
 	}
 	/* searchGroup.jsp ==> 검색창 */
 	public List<SearchListDTO> getArticles(int start, int end, int bcategory, String[] searchCategory,
-			int searchMembers, int searchMeetcount, int searchRegdate) {
+			int searchMembers, int searchMeetcount, int searchRegdate, String searchKeyword) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -208,12 +214,14 @@ public class SearchListDAO {
 			query += "select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,r";
 			query += " from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,rownum r";
 			query += " from groupinfo where bcategorycode="+bcategory;
-			if(searchMembers == 6){
+			if(searchMembers == 0){
+				query += " or maxMember="+searchMembers;
+			}else if(searchMembers == 6){
 				query += " or maxMember>="+searchMembers;
 			}else{
 				query += " or maxMember<="+searchMembers;
 			}
-			if(searchMeetcount == 4){
+			if(searchMeetcount == 0 || searchMeetcount == 4){
 				query += " or meetingCount="+searchMeetcount;
 			}else{
 				query += " or meetingCount>="+searchMeetcount;
@@ -223,10 +231,17 @@ public class SearchListDAO {
 			}
 			if(searchCategory.length > 0){
 				for(String scategory : searchCategory){
-					query += " or scategorycode=(select scategorycode from scategory where scategoryname like '%"+scategory+"%')";
+					query += " or scategorycode like '%"+scategory+"%'";
 				}
 			}
+			if(!searchKeyword.equals("")){
+				query += " or bcategorycode=(select bcategorycode from bcategory where bcategoryname like '%"+searchKeyword+"%')";
+				query += " or scategorycode like '%"+searchKeyword+"%'";
+				query += " or groupName like '%"+searchKeyword+"%'";
+				query += " or introduce like '%"+searchKeyword+"%'";
+			}
 			query += " order by createDate desc) where r >= ? and r <= ?";
+			System.out.println(query); //쿼리문 출력
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -241,7 +256,7 @@ public class SearchListDAO {
 					
 					article.setGroupNum(rs.getInt("groupNum"));
 					article.setBcategorycode(rs.getInt("bcategorycode"));
-					article.setScategorycode(rs.getInt("scategorycode"));
+					article.setScategorycode(rs.getString("scategorycode"));
 					article.setGroupName(rs.getString("groupName"));
 					article.setId(rs.getString("id"));
 					article.setIntroduce(rs.getString("introduce"));
@@ -295,7 +310,7 @@ public class SearchListDAO {
 
 					article.setGroupNum(rs.getInt("groupNum"));
 					article.setBcategorycode(rs.getInt("bcategorycode"));
-					article.setScategorycode(rs.getInt("scategorycode"));
+					article.setScategorycode(rs.getString("scategorycode"));
 					article.setGroupName(rs.getString("groupName"));
 					article.setId(rs.getString("id"));
 					article.setIntroduce(rs.getString("introduce"));
@@ -323,7 +338,7 @@ public class SearchListDAO {
 		return articleList;
 	}
 	/* main.jsp ==>  */
-	public List<SearchListDTO> getArticles(int n, String searchKeyword) {
+	public List<SearchListDTO> getArticles(int start, int end, int n, String searchKeyword) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -337,7 +352,7 @@ public class SearchListDAO {
 			if(n == 0){
 				query = "select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,r "
 						+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,rownum r "
-						+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode from groupinfo where scategorycode=(select scategorycode from scategory where scategoryname like '%"+searchKeyword+"%') or bcategory=(select scategorycode from scategory where scategoryname like '%"+searchKeyword+"%')"
+						+ "from (select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode from groupinfo where scategorycode like '%"+searchKeyword+"%' or bcategorycode=(select bcategorycode from bcategory where bcategoryname like '%"+searchKeyword+"%')"
 						+ ") order by createDate desc) where r >= ? and r <= ?";
 			}else{
 				query = "select groupNum,id,groupName,imagePath,createDate,zzimCount,maxMember,nowMember,limitDate,meetingCount,location,introduce,bcategorycode,scategorycode,r "
@@ -346,6 +361,8 @@ public class SearchListDAO {
 						+ ") order by createDate desc) where r >= ? and r <= ?";
 			}
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 
@@ -356,7 +373,7 @@ public class SearchListDAO {
 
 					article.setGroupNum(rs.getInt("groupNum"));
 					article.setBcategorycode(rs.getInt("bcategorycode"));
-					article.setScategorycode(rs.getInt("scategorycode"));
+					article.setScategorycode(rs.getString("scategorycode"));
 					article.setGroupName(rs.getString("groupName"));
 					article.setId(rs.getString("id"));
 					article.setIntroduce(rs.getString("introduce"));

@@ -16,18 +16,23 @@
 				<c:choose>
 					<c:when test = "${ article.bcategorycode == 1 }">
 						<c:set var="bcategoryKR" value="영어" />
+						<c:set var="imagePath" value="images/item_sample_01.jpg" />
 					</c:when>
 					<c:when test = "${ article.bcategorycode == 2 }">
 						<c:set var="bcategoryKR" value="외국어" />
+						<c:set var="imagePath" value="images/item_sample_02.jpg" />
 					</c:when>
 					<c:when test = "${ article.bcategorycode == 3 }">
 						<c:set var="bcategoryKR" value="취업" />
+						<c:set var="imagePath" value="images/item_sample_03.jpg" />
 					</c:when>
 					<c:when test = "${ article.bcategorycode == 4 }">
 						<c:set var="bcategoryKR" value="국가고시&공무원" />
+						<c:set var="imagePath" value="images/item_sample_04.jpg" />
 					</c:when>
 					<c:when test = "${ article.bcategorycode == 5 }">
 						<c:set var="bcategoryKR" value="기타" />
+						<c:set var="imagePath" value="images/item_sample_05.jpg" />
 					</c:when>
 				</c:choose>
 				<!-- item -->
@@ -35,7 +40,7 @@
 					<a href="./groupPage.do?groupNum=${ article.groupNum }&pageNum=${ currentPage }" class="item">
 						<figure>
 							<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
-							<img src="./${ article.imagePath }" />
+							<img src="./${ imagePath }" />
 							<figcaption class="item_description">
 								<p>
 									<span class="item_title">${ article.groupName }</span>

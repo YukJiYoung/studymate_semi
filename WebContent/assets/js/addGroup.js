@@ -19,6 +19,18 @@ function checkAdd(){
 			return false;
 		}
 		
+		if(!groupinput.bc.selectedIndex){
+			alert("스터디 카테고리를 선택하세요.");
+			groupinput.bc.focus();
+			return false;
+		}
+		
+		if(!groupinput.sc.selectedIndex){
+			alert("스터디 카테고리를 선택하세요.");
+			groupinput.sc.focus();
+			return false;
+		}
+		
 		if(!groupinput.groupGoal.selectedIndex){
 			alert("모임 목표를 선택하세요.");
 			groupinput.groupGoal.focus();
@@ -30,6 +42,43 @@ function checkAdd(){
 		
 		return true;		
 	}
+
+//카테고리 selectbox
+function sub_change1() {
+	vn_mnu1 = groupinput.bcategorycode.selectedIndex;
+	if (vn_mnu1 == 1) {
+		groupinput.scategorycode.length = 4;
+		groupinput.scategorycode.options[0].text = '토익';
+		groupinput.scategorycode.options[1].text = '오픽';
+		groupinput.scategorycode.options[2].text = '토익스피킹';
+		groupinput.scategorycode.options[3].text = '영어회화';
+	}
+	if (vn_mnu1 == 2) {
+		groupinput.scategorycode.length = 4;
+		groupinput.scategorycode.options[0].text = '일본어';
+		groupinput.scategorycode.options[1].text = '중국어';
+		groupinput.scategorycode.options[2].text = '프랑스어';
+		groupinput.scategorycode.options[3].text = '기타 언어';
+
+	}
+	if (vn_mnu1 == 3) {
+		groupinput.scategorycode.length = 4;
+		groupinput.scategorycode.options[0].text = '인적성';
+		groupinput.scategorycode.options[1].text = '면접';
+		groupinput.scategorycode.options[2].text = '자기소개서';
+		groupinput.scategorycode.options[3].text = '기타';
+
+	}
+	if (vn_mnu1 == 4) {
+		groupinput.scategorycode.length = 3;
+		groupinput.scategorycode.options[0].text = '공무원';
+		groupinput.scategorycode.options[1].text = '국가고시';
+		groupinput.scategorycode.options[2].text = '기타';
+
+	}
+}
+
+
 
 //input file 이미지만 받게하는 코드
 function fileCheck(obj) {

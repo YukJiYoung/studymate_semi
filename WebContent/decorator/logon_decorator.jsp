@@ -7,8 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>StudyMate :: 맞춤형 스터디 솔루션. 스터디메이트에 오신것을 환영합니다.</title>
 
@@ -93,7 +92,6 @@
 							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
 							<li><a href="#">마이페이지</a></li>
 						</c:if>
-						
 					</ul>
 					<!--// 메인메뉴 -->
 				</div>
@@ -151,7 +149,7 @@
 						<h4 class="modal-title">로그아웃</h4>
 					</div>
 					<div class="modal-body text-center">
-						<form id="logout_form" action="./logon/logout.do" name="logout_form" method="post">
+						<form id="logout_form" action="./logout.do" name="logout_form" method="post">
 							<input type="hidden" name="url" value="<%= url %>" />
 							<div class="text-center">
 								${ memId } 님<br />
@@ -187,7 +185,7 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="../customer/list.do"">고객지원</a></li>
+						<li><a href="../customer.do">고객지원</a></li>
 						<li><a href="#">이용안내</a></li>
 						<li><a href="#">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->

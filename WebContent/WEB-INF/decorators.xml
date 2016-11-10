@@ -14,7 +14,11 @@
 	</decorator>
 	
 	<decorator name="customer" page="customer_decorator.jsp">
-		<pattern>/customer/*</pattern>
+		<pattern>/customerboard/MVC/*</pattern>
+	</decorator>
+	
+	<decorator name="customer_question" page="customer_question.jsp">
+		<pattern>/customerboard/MVC/question/*</pattern>
 	</decorator>
 	
 	<excludes>

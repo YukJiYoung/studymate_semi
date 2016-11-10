@@ -1,8 +1,0 @@
-@charset "utf-8";
-body,td,select,div,form {font-size: 9pt; color:black; line-height:160%; font-family:'굴림', verdana, tahoma;}
-textarea,input {border:1px solid #999999; color:black; font-family:'굴림', verdana; background-color:white;}
-input {height:19px;}
-
-a:link {text-decaration:none; color:#696969;}
-a:hover {text-decoration:yes; color:#66ccff;}
-a:visited {text-decoration:none; color:#330066;}

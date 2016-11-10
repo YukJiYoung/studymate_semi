@@ -4,6 +4,6 @@
 <head>
 </head>
 <body>
-<% response.sendRedirect("./logon/main.do"); %>
+	<% response.sendRedirect("./logon/main.do"); %>
 </body>
 </html>

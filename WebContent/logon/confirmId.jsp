@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="logon.LogonDBBean"%>
-<%@ include file="color.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +9,17 @@
 <script src="../assets/js/inputForm.js"></script>
 </head>
 <body>
+	<div class="logon_container">
 	<c:if test="${ check == 1 }">
 		<div class="row" align="center">
 			
 			<div class="">
-				<h2>${ id }이미사용중인 아이디입니다.</h2>
+				<h2> ${ id } 이미사용중인 아이디입니다.</h2>
 			</div>
 
 		</div>
 		<form name="checkForm" method="post"
-			action="./confirmId.do" onSubmit='return checkIt();'>
+			action="/semi/logon/confirmId.do" onSubmit='return checkIt();'>
 			<%-- 현재 페이지가 계속 refresh --%>
 			<div class="row" align="center">
 				<h2>다른 아이디를 선택하세요.</h2>
@@ -37,7 +37,7 @@
 		<div class="row" align="center">
 			<div class="">
 
-				<h2>입력하신 ${ id } 는 사용하실 수 있는 ID입니다.</h2>
+				<h2>입력하신 ${ id } 는  사용하실 수 있는 ID입니다.</h2>
 			</div>
 			<div class="">
 				<input type="button" class="btn btn-default" value="확인"
@@ -47,7 +47,8 @@
 
 		</div>
 	</c:if>
-<script>
+	</div>
+ <script>
 
 function setid() {
 	opener.document.userinput.id.value = "${id}";
@@ -55,6 +56,6 @@ function setid() {
 	self.close();
 }
 
-</script>
+</script> 
 </body>
 </html>

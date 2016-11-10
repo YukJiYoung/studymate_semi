@@ -15,7 +15,7 @@ public class SearchListDTO{
     private String location;
     private String introduce;
     private int bcategorycode;
-    private int scategorycode;
+    private String scategorycode;
     
 	public int getGroupNum() {
 		return groupNum;
@@ -89,11 +89,19 @@ public class SearchListDTO{
 	public void setBcategorycode(int bcategorycode) {
 		this.bcategorycode = bcategorycode;
 	}
-	public int getScategorycode() {
+	public String getScategorycode() {
 		return scategorycode;
 	}
-	public void setScategorycode(int scategorycode) {
+	public void setScategorycode(String scategorycode) {
 		this.scategorycode = scategorycode;
+	}
+	@Override
+	public String toString() {
+		return "SearchListDTO [groupNum=" + groupNum + ", id=" + id + ", groupName=" + groupName + ", imagePath="
+				+ imagePath + ", createDate=" + createDate + ", zzimCount=" + zzimCount + ", maxMember=" + maxMember
+				+ ", nowMember=" + nowMember + ", meetingCount=" + meetingCount + ", location=" + location
+				+ ", introduce=" + introduce + ", bcategorycode=" + bcategorycode + ", scategorycode=" + scategorycode
+				+ "]";
 	}
     
 }

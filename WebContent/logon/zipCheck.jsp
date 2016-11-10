@@ -27,7 +27,7 @@
 	<center>
 		<b>우편번호 찾기</b>
 		<table>
-		<form name="zipForm" method="post" action="./zipCheck.do">
+		<form name="zipForm" method="post" action="/studymate/logon/zipCheck.do">
 			<tr>
 				<td>
 					 <br />

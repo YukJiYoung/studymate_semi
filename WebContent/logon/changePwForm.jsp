@@ -1,60 +1,42 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="color.jsp" %>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>비밀번호 변경</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<script>
-	function begin(){
-		document.myform.passwd.focus();
-	}
-	function checkIt(){
-		if(!document.myform.id.value){
-			alert("아이디를 입력해주세요.");
-			document.myform.id.focus();
-			return false;
-		}
-		if(!document.myform.name.value){
-			alert("이름을 입력해주세요.");
-			document.myform.name.focus();
-			return false;
-		}
-		if(!document.myform.jumin1.value || !document.myform.jumin2.value){
-			alert("주민등록번호를 입력해주세요.");
-			document.myform.jumin1.focus();
-			return false;
-		}
-	}
-</script>
-</head>
-<body onload="begin()" bgcolor="${ bodyback_c }">
-	<form name="myform" action="./changePwPro.do" method="post" onSubmit="return checkIt()">
-		<table border="1" cellspacing="0" cellpadding="0" width="320" align="center">
-			<tr height="30">
-				<td colspan="2" align="middle" bgcolor="${ title_c }"><font size="+1"><b>비밀번호 변경</b></font></td>
-			</tr>
-			<tr height="30">
-				<td width="120" bgcolor="${ title_c }" align="center">아이디</td>
-				<td width="200" bgcolor="${ value_c }" align="center"><input type="text" name="id" size="17" maxlength="12" /></td>
-			</tr>
-			<tr height="30">
-				<td width="120" bgcolor="${ title_c }" align="center">이름</td>
-				<td width="200" bgcolor="${ value_c }" align="center"><input type="text" name="name" size="17" maxlength="12" /></td>
-			</tr>
-			<tr height="30">
-				<td width="120" bgcolor="${ title_c }" align="center">주민등록번호</td>
-				<td width="200" bgcolor="${ value_c }" align="center"><input type="text" name="jumin1" size="7" maxlength="6" /> - <input type="text" name="jumin2" size="7" maxlength="7" /></td>
-			</tr>
-			<tr height="30">
-				<td colspan="2" align="middle" bgcolor="${ title_c }">
-					<input type="submit" value="비밀번호 변경" />
-					<input type="button" value="취      소" onclick="javascript:window.location='./main.do'" />
-				</td>
-			</tr>
-		</table>
-	</form>
+<title>회원가입</title>
 
+<!-- 
+<link href="/assets/css/groupDetail.css" type="text/css" rel="stylesheet" />
+<link href="/assets/css/font-awesome.min.css" type="text/css" rel="stylesheet" /> -->
+<!-- 나눔고딕 웹 폰트 적용 -->
+<link rel="stylesheet" type="text/css" href="../assets/css/nanumfont.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/inputForm.css" />
+<script src="../assets/js/changePw.js"></script>
+
+</head>
+<body class="non_background">
+<div class="logon_container">
+  <form name="userinput">
+		<div class="row loginform">
+			<div class="formTitle"><span style="color:red">* </span>아이디 
+				<input type="text" class="form-control col-xs-9 formform marginForm" id="id" name="id" placeholder="아이디를입력하세요" autofocus> 
+			</div>
+			<div class="formTitle"><span style="color:red">* </span>Email
+				<input type="text" class="form-control formform" id="email" name="email" placeholder="Email을 입력하세요"> 
+			</div>
+			<div class="formTitle"><span style="color:red">* </span>이름
+				<input type="text" class="form-control formform marginForm" id="name" name="name" placeholder="이름을 입력하세요"	maxlength="8">
+			</div>
+		</div>
+		<div class="loginbtns">
+		
+			<input type="button" name="confirm" class="btn btn-default" value="확인" onclick="checkIt(this.form)" /> 
+			<input type="button" class="btn btn-default" name="cancel" value="취소" onclick="javascript:window.location='/semi/logon/main.do'">
+	
+		</div>
+	</form>
+</div>
 </body>
 </html>

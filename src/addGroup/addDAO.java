@@ -1,8 +1,19 @@
 package addGroup;
 
-import java.sql.*;
 
-import java.sql.Timestamp;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
+
+import addGroup.addDTO;
+
 
 public class addDAO {
 
@@ -15,7 +26,7 @@ public class addDAO {
 	private addDAO() {
 	}
 
-	private Connection getConnection() throws Exception {
+	private Connection getConnection() throws Exception{
 		String jdbcDriver = "jdbc:apache:commons:dbcp:/pool";
 		return DriverManager.getConnection(jdbcDriver);
 	}
@@ -26,52 +37,39 @@ public class addDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		int groupNum = group.getGroupNum();
-		int zzimCount = group.getZzimCount();
-		int maxMember = group.getMaxMember();
-		int nowMember = group.getNowMember();
+		
 	
 		
 		String sql = "";
 
 		try {
 			conn = getConnection();
-			
-			 pstmt = conn.prepareStatement("select max(groupNum) from GroupInfo");
-			    rs = pstmt.executeQuery();
-
-			   
-
+	
 			// 14
-			sql = "insert into groupInfo(groupName,maxMember,money,limitDate,possibleDay,tel,bc,sc";
-			sql += "groupGoal,target,groupImage,location,introduce,createDate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into groupInfo(groupNum, groupName,maxMember,money,limitDate,meetingCount,tel,bcategorycode,scategorycode,";
+			sql += "groupGoal,target,imagePath,location,introduce,createDate) values(groupInfo_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, group.getGroupName());
-			pstmt.setInt(2, maxMember);
-			pstmt.setString(3, group.getMoney());
+			pstmt.setInt(2, group.getMaxMember());
+			pstmt.setInt(3, group.getMoney());
 			pstmt.setString(4, group.getLimitDate());
-			pstmt.setString(5, group.getPossibleDay());
+			pstmt.setString(5, group.getMeetingCount());
 			pstmt.setString(6, group.getTel());
-			pstmt.setString(7, group.getBc());
-			pstmt.setString(8, group.getSc());
+			pstmt.setInt(7, group.getBcategorycode());
+			pstmt.setString(8, group.getScategorycode());
 			pstmt.setString(9, group.getGroupGoal());
 			pstmt.setString(10, group.getTarget());
-			pstmt.setString(11, group.getGroupImage());
+			pstmt.setString(11, group.getImagePath());
 			pstmt.setString(12, group.getLocation());
 			pstmt.setString(13, group.getIntroduce());
-			pstmt.setTimestamp(14, group.getCreateDate());
 
 
 			pstmt.executeUpdate();
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException ex) {
-				}
 			if (pstmt != null)
 				try {
 					pstmt.close();
@@ -80,6 +78,11 @@ public class addDAO {
 			if (conn != null)
 				try {
 					conn.close();
+				} catch (SQLException ex) {
+				}
+			if (rs != null)
+				try {
+					rs.close();
 				} catch (SQLException ex) {
 				}
 		}

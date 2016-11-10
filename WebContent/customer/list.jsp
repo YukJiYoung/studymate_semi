@@ -13,7 +13,7 @@
 	<!-- 공지사항 내용영역 -->
 	<div class="container">
 		<div class="row text-right">
-			<a href="/semi/customer/writeForm.do" class="btn btn-info btn-lg">글쓰기</a>
+			<a href="../writeForm.do" class="btn btn-info btn-lg">글쓰기</a>
 		</div>
 		<div class="table-responsive">
 			<c:if test="${ count == 0 }">
@@ -43,7 +43,7 @@
 									<img src="images/re.gif" />
 								</c:if> <c:if test="${ article.re_level == 0 }">
 									<img src="images/level.gif" width="${ 5*article.re_level }" height="16" />
-								</c:if> <a href="/semi/customer/content.do?num=${ article.num }&pageNum=${ currentPage }">${ article.subject }</a>
+								</c:if> <a href="./content.do?num=${ article.num }&pageNum=${ currentPage }">${ article.subject }</a>
 								<c:if test="${ article.readcount >= 20 }">
 									<span class="label label-danger">HOT</span>
 								</c:if></td>
@@ -69,15 +69,15 @@
 			</c:if>
 			<div class="page text-center">
 				<c:if test="${ startPage > 10 }">
-					<a href="/semi/customer/list.do?pageNum=${ start - 10 }">[이전]</a>
+					<a href=".r/list.do?pageNum=${ start - 10 }">[이전]</a>
 				</c:if>
 				<ul class="pagination">
 					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-						<li><a href="/semi/customer/list.do?pageNum=${ i }">${ i }</a></li>
+						<li><a href="./list.do?pageNum=${ i }">${ i }</a></li>
 					</c:forEach>
 				</ul>
 				<c:if test="${ endPage < pageCount }">
-					<a href="/semi/customer/list.do?pageNum=${ start + 10 }">[이후]</a>
+					<a href="./list.do?pageNum=${ start + 10 }">[이후]</a>
 				</c:if>
 			</div>
 		</c:if>

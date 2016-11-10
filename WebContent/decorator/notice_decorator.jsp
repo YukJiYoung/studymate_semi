@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% String url = String.valueOf(request.getRequestURL()); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +118,6 @@
 					</div>
 					<div class="modal-body text-center">
 						<form id="login_form" action="../logon/loginPro.do" name="login_form" method="post">
-						<% String url = String.valueOf(request.getRequestURL()); %>
 							<input type="hidden" name="url" value="<%= url %>" />
 							<div class="form-group">
 								<input type="text" name="id" placeholder="ID" class="form-control">
@@ -195,7 +195,7 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="../customer/list.do"">고객지원</a></li>
+						<li><a href="../customer.do"">고객지원</a></li>
 						<li><a href="#">이용안내</a></li>
 						<li><a href="#">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->
