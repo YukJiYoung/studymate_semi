@@ -122,7 +122,7 @@
 								<input type="password" name="passwd" placeholder="Password" class="form-control">
 							</div>
 							<div class="row modal_login_btns">
-								<button type="submit" class="col-sm-6 btn btn-default">로그인</button>
+								<button type="submit" class="col-sm-6 btn btn-info">로그인</button>
 								<button type="button" class="btn btn-default" onclick="window.location.href='../../../logon/inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">

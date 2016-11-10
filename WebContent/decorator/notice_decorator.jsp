@@ -126,7 +126,7 @@
 								<input type="password" name="passwd" placeholder="Password" class="form-control">
 							</div>
 							<div class="row modal_login_btns">
-								<button type="submit" class="col-sm-6 btn btn-default">로그인</button>
+								<button type="submit" class="col-sm-6 btn btn-info">로그인</button>
 								<button type="button" class="btn btn-default" onclick="window.location.href='../logon/inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">
@@ -195,8 +195,8 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="../customer.do"">고객지원</a></li>
-						<li><a href="#">이용안내</a></li>
+						<li><a href="../customer.do">고객지원</a></li>
+						<li><a href="../notice/content.do?noticeNum=1&pageNum=1">이용안내</a></li>
 						<li><a href="#">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->
 						<c:if test="${ memId != null }">

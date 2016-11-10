@@ -18,11 +18,10 @@
 			</div>
 
 		</div>
-		<form name="checkForm" method="post"
-			action="/semi/logon/confirmId.do" onSubmit='return checkIt();'>
+		<form name="checkForm" method="post" action="./confirmId.do" onSubmit='return checkIt();'>
 			<%-- 현재 페이지가 계속 refresh --%>
 			<div class="row" align="center">
-				<h2>다른 아이디를 선택하세요.</h2>
+				<h3>다른 아이디를 선택하세요.</h3>
 
 				<input type="text" class="recheckId" size="20" maxlength="12" name="id" />
 				<input type="submit" value="ID중복확인" />
@@ -37,11 +36,10 @@
 		<div class="row" align="center">
 			<div class="">
 
-				<h2>입력하신 ${ id } 는  사용하실 수 있는 ID입니다.</h2>
+				<h3>입력하신 ${ id } 는 <br /> 사용하실 수 있는 ID입니다.</h3>
 			</div>
 			<div class="">
-				<input type="button" class="btn btn-default" value="확인"
-					onclick="setid()" />
+				<input type="button" class="btn btn-default" value="확인" onclick="setid()" />
 			</div>
 
 

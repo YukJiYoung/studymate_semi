@@ -6,6 +6,6 @@
 </head>
 
 <body class="non_background">
-	<% response.sendRedirect("./customerboard/MVC/list.do"); %>
+	<% response.sendRedirect("./customerboard/MVC/list.do"); %> 
 </body>
 </html>

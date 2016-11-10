@@ -8,7 +8,7 @@
 </head>
 <body class="non_background">
 	<div class="container">
-		<form method="post" name="writeform" action="/test/customerboard/MVC/writePro.do" onsubmit="return writeSave()">
+		<form method="post" name="writeform" action="../writePro.do" onsubmit="return writeSave()">
 			<input type="hidden" name="qNum" value="${ qNum }" />
 			<input type="hidden" name="ref" value="${ ref }" />
 			<input type="hidden" name="refStep" value="${ refStep }" />
@@ -46,7 +46,7 @@
 			<div class="row text-right btns">
 				<input class="btn btn-info" type="submit" value="글쓰기" />
 				<input class="btn btn-default" type="reset" value="다시작성" />
-				<input class="btn btn-default" type="button" value="목록보기" onclick="document.location.href='/test/customerboard/MVC/list.do'" />
+				<input class="btn btn-default" type="button" value="목록보기" onclick="document.location.href='../list.do'" />
 			</div>
 		</form>
 	</div>

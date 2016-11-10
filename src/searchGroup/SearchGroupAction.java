@@ -52,12 +52,22 @@ public class SearchGroupAction implements CommandAction {
 		List<SearchListDTO> articleList = null;
 		SearchListDAO dbPro = SearchListDAO.getInstance();
 		if(searchCheck.equals("n")){
-			count = dbPro.getArticleCount(typeList,searchInput); //전체 글 개수
-			if(count > 0){
-				articleList = dbPro.getArticles(startRow,endRow,typeList,searchInput);
-//				count = articleList.size();
-			}else { 
-				articleList = Collections.emptyList();
+			if(request.getParameter("bcategory") != null){
+				count = dbPro.getArticleCount(bcategory); //전체 글 개수
+				if(count > 0){
+					articleList = dbPro.getArticles(bcategory);
+	//				count = articleList.size();
+				}else { 
+					articleList = Collections.emptyList();
+				}
+			}else{
+				count = dbPro.getArticleCount(typeList,searchInput); //전체 글 개수
+				if(count > 0){
+					articleList = dbPro.getArticles(startRow,endRow,typeList,searchInput);
+	//				count = articleList.size();
+				}else { 
+					articleList = Collections.emptyList();
+				}
 			}
 		}else{
 			count = dbPro.getArticleCount(bcategory,searchCategory,searchMembers,searchMeetcount,searchRegdate,searchInput); //전체 글 개수

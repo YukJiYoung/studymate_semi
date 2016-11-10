@@ -1,29 +1,29 @@
 $(document).ready(function(){
 	
 	/* 상세선택 버튼 추가&삭제 */
-	$("#detail_search_collapse label").click(function(){
-			var name = $(this).text();
-			var checkbox = $(this).find('input');
-			var span = $("#select_detail>span");
-			var addspan = "";
-			if(checkbox.prop('checked',false)){
-				checkbox.prop('checked',true);
-				addspan += "<span class='btn btn-default'>" + name + "</span>";
-				$("#select_detail").append(addspan);
-				return false;
-			}else{
-				checkbox.prop('checked',false);
-				/*
-				span.each(function(){
-					var spanText = $(this).text();
-					var i = $(this).index();
-					if(spanText.match(name)){
-						span.eq(i).remove();
-					}
-				});*/
-				return false;
-			}
-			
+	$("#detail_search_collapse label").click(function(event){
+		event.preventDefault();
+		var name = $(this).text();
+		var checkbox = $(this).find('input');
+		var check = checkbox.prop('checked');
+		var span = $("#select_detail>span");
+		var addspan = "";
+		if(!check){
+			checkbox.prop('checked',true);
+			addspan += "<span class='btn btn-default'>" + name + "</span>";
+			$("#select_detail").append(addspan);
+			return false;
+		}else{
+			checkbox.prop('checked',false);
+			span.each(function(){
+				var spanText = $(this).text();
+				var i = $(this).index();
+				if(spanText.match(name)){
+					span.eq(i).remove();
+				}
+			});
+			return false;
+		}
 	});
 	
 });
@@ -40,7 +40,6 @@ $(document).on('click','#select_detail>span',function(event){
 			$("#select_detail>span").eq(i).remove();
 		}
 	});
-	
 });
 
 /* bcategory ajax */
@@ -64,5 +63,4 @@ $(window).on('popstate', function(event){
 	//console.log(big_index);
 	//big_category.eq(big_index).addClass("active");
 	$('.result_item_wrapper').load(location.href + ' .result_item_wrapper');
-	return false;
 });

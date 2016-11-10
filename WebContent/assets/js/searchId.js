@@ -23,20 +23,15 @@ function checkIt(userinput) {
 function openSearchid(userinput) {
 	
 		//url과 사용자 입력 id 조합
-		url = "/semi/logon/searchId.do?email=" + userinput.email.value
-				+ "&name=" + userinput.name.value;
+		url = "./searchId.do?email=" + userinput.email.value + "&name=" + userinput.name.value;
 		//새로운 창 열기
-		open(
-				
-				url,
-				"confirm",
-				"toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, width=300, height=200");
+		open(url, "confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=no, width=300, height=200");
 	} //end openConfirmid()
 
 
 
 function checkId(){
 	if (window.opener && !window.opener.closed)
-	window.opener.location = "/semi/index.jsp";
+	window.opener.location = "./main.do";
 	self.close();
 	}

@@ -1,5 +1,6 @@
 package logon.action;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class MainAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
-
+		
 		int bcategory = 1;
 		if(request.getParameter("bcategory") != null)
 			bcategory = Integer.parseInt(request.getParameter("bcategory"));

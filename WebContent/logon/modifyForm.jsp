@@ -21,19 +21,15 @@
 <body class="non_background">
 <div class="logon_container">
   
-	<form id="Join-Form" method="post"
-		action="/semi/logon/inputPro.do" name="userinput" onSubmit="return checkIt()">
+	<form id="Join-Form" method="post" action="./inputPro.do" name="userinput" onSubmit="return checkIt()">
 
 
 		<div class="Loginbody form-group">
 		
 			<div class="row loginform">
 			<div class="formTitle"><span style="color:red">* </span>아이디</div> 
-				<input type="text" class="form-control col-xs-9 formform marginForm" id="id" name="id"
-					placeholder="아이디를입력하세요"> 
-				<input type="button"
-					name="confirm_id" class="btn btn-default formform" value="ID중복확인"
-					OnClick="openConfirmid(this.form)" />
+				<input type="text" class="form-control col-xs-9 formform marginForm" id="id" name="id" placeholder="아이디를입력하세요"> 
+				<input type="button" name="confirm_id" class="btn btn-default formform" value="ID중복확인" OnClick="openConfirmid(this.form)" />
 			</div>
 			
 			<div class="formTitle"><span style="color:red">* </span>비밀번호</div>
@@ -133,8 +129,7 @@
 		
 			<input type="submit" name="confirm" class="btn btn-default" value="회원가입" /> 
 			<input type="reset" name="reset" class="btn btn-default" value="다시작성" /> 
-			<input type="button" class="btn btn-default" name="cancel" value="가입안함"
-				onclick="javascript:window.location='/semi/logon/main.do'">
+			<input type="button" class="btn btn-default" name="cancel" value="가입안함" onclick="javascript:window.location='./main.do'">
 	
 		</div>
 		<input type="hidden" name="checkId" value="n" />

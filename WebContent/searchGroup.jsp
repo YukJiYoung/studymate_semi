@@ -36,7 +36,7 @@
 				<div class="row panel-group search-detail">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<span id="select_detail" class="select_detail"><span class="btn btn-default">토익</span><span class="btn btn-default">토익스피킹</span></span>
+							<div id="select_detail" class="select_detail"></div>
 							<a data-toggle="collapse" href="#detail_search_collapse"><button type="button" class="btn btn-info">상세검색</button></a>
 						</div>
 						

@@ -1,7 +1,12 @@
 package searchGroup;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchListDAO {
 	private static SearchListDAO instance = new SearchListDAO();
@@ -191,18 +196,14 @@ public class SearchListDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null)
-				try { rs.close(); } catch (SQLException ex) { }
-			if (pstmt != null)
-				try { pstmt.close(); } catch (SQLException ex) { }
-			if (conn != null)
-				try { conn.close(); } catch (SQLException ex) { }
+			if (rs != null) try { rs.close(); } catch (SQLException ex) { }
+			if (pstmt != null) try { pstmt.close(); } catch (SQLException ex) { }
+			if (conn != null) try { conn.close(); } catch (SQLException ex) { }
 		}
 		return articleList;
 	}
 	/* searchGroup.jsp ==> 검색창 */
-	public List<SearchListDTO> getArticles(int start, int end, int bcategory, String[] searchCategory,
-			int searchMembers, int searchMeetcount, int searchRegdate, String searchKeyword) {
+	public List<SearchListDTO> getArticles(int start, int end, int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, int searchRegdate, String searchKeyword) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -241,7 +242,7 @@ public class SearchListDAO {
 				query += " or introduce like '%"+searchKeyword+"%'";
 			}
 			query += " order by createDate desc) where r >= ? and r <= ?";
-			System.out.println(query); //쿼리문 출력
+//			System.out.println(query); //쿼리문 출력
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -274,12 +275,9 @@ public class SearchListDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null)
-				try { rs.close(); } catch (SQLException ex) { }
-			if (pstmt != null)
-				try { pstmt.close(); } catch (SQLException ex) { }
-			if (conn != null)
-				try { conn.close(); } catch (SQLException ex) { }
+			if (rs != null) try { rs.close(); } catch (SQLException ex) { }
+			if (pstmt != null) try { pstmt.close(); } catch (SQLException ex) { }
+			if (conn != null) try { conn.close(); } catch (SQLException ex) { }
 		}
 		return articleList;
 	}
@@ -328,12 +326,9 @@ public class SearchListDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null)
-				try { rs.close(); } catch (SQLException ex) { }
-			if (pstmt != null)
-				try { pstmt.close(); } catch (SQLException ex) { }
-			if (conn != null)
-				try { conn.close(); } catch (SQLException ex) { }
+			if (rs != null) try { rs.close(); } catch (SQLException ex) { }
+			if (pstmt != null) try { pstmt.close(); } catch (SQLException ex) { }
+			if (conn != null) try { conn.close(); } catch (SQLException ex) { }
 		}
 		return articleList;
 	}
@@ -391,12 +386,9 @@ public class SearchListDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			if (rs != null)
-				try { rs.close(); } catch (SQLException ex) { }
-			if (pstmt != null)
-				try { pstmt.close(); } catch (SQLException ex) { }
-			if (conn != null)
-				try { conn.close(); } catch (SQLException ex) { }
+			if (rs != null) try { rs.close(); } catch (SQLException ex) { }
+			if (pstmt != null) try { pstmt.close(); } catch (SQLException ex) { }
+			if (conn != null) try { conn.close(); } catch (SQLException ex) { }
 		}
 		return articleList;
 	}

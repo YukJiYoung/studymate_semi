@@ -13,7 +13,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>StudyMate :: 공지사항 게시판</title>
+<title>StudyMate :: 고객지원 게시판</title>
 
 <!-- 모바일 웹 페이지 설정 -->
 <link rel="shortcut icon" href="../../assets/ico/favicon.png" />
@@ -122,7 +122,7 @@
 								<input type="password" name="passwd" placeholder="Password" class="form-control">
 							</div>
 							<div class="row modal_login_btns">
-								<button type="submit" class="col-sm-6 btn btn-default">로그인</button>
+								<button type="submit" class="col-sm-6 btn btn-info">로그인</button>
 								<button type="button" class="btn btn-default" onclick="window.location.href='../../../logon/inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">

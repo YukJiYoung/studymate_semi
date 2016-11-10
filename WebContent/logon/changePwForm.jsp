@@ -20,20 +20,21 @@
 <div class="logon_container">
   <form name="userinput">
 		<div class="row loginform">
-			<div class="formTitle"><span style="color:red">* </span>아이디 
-				<input type="text" class="form-control col-xs-9 formform marginForm" id="id" name="id" placeholder="아이디를입력하세요" autofocus> 
-			</div>
-			<div class="formTitle"><span style="color:red">* </span>Email
-				<input type="text" class="form-control formform" id="email" name="email" placeholder="Email을 입력하세요"> 
-			</div>
-			<div class="formTitle"><span style="color:red">* </span>이름
-				<input type="text" class="form-control formform marginForm" id="name" name="name" placeholder="이름을 입력하세요"	maxlength="8">
-			</div>
+			<div class="formTitle col-sm-3"><span>* </span>아이디</div>
+			<div class="col-sm-9"><input type="text" class="form-control col-xs-9" id="id" name="id" placeholder="아이디를입력하세요" autofocus></div>
+		</div>
+		<div class="row loginform">
+			<div class="formTitle col-sm-3"><span>* </span>Email</div>
+			<div class="col-sm-9"><input type="text" class="form-control" id="email" name="email" placeholder="Email을 입력하세요"></div>
+		</div>
+		<div class="row loginform">	
+			<div class="formTitle col-sm-3"><span>* </span>이름</div>
+			<div class="col-sm-9"><input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력하세요"	maxlength="8"></div>
 		</div>
 		<div class="loginbtns">
 		
-			<input type="button" name="confirm" class="btn btn-default" value="확인" onclick="checkIt(this.form)" /> 
-			<input type="button" class="btn btn-default" name="cancel" value="취소" onclick="javascript:window.location='/semi/logon/main.do'">
+			<input type="button" name="confirm" class="btn btn-info" value="확인" onclick="checkIt(this.form)" /> 
+			<input type="button" class="btn btn-default" name="cancel" value="취소" onclick="javascript:window.location='./main.do'">
 	
 		</div>
 	</form>
