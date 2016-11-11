@@ -34,7 +34,7 @@ public class BoardDBBean {
         try {
             conn = getConnection();
 
-            pstmt = conn.prepareStatement("select max(qNum) from board");
+            pstmt = conn.prepareStatement("select max(qNum) from question");
 	    rs = pstmt.executeQuery();
 
 	    if (rs.next())
@@ -44,7 +44,7 @@ public class BoardDBBean {
   
 	    if (qNum!=0)
 	    { 
-	      sql="update board set refStep=re_step+1 where ref= ? and refStep> ?";
+	      sql="update question set refStep=re_step+1 where ref= ? and refStep> ?";
 	      pstmt = conn.prepareStatement(sql);
 	      pstmt.setInt(1, ref);
 	      pstmt.setInt(2, refStep);
@@ -58,7 +58,7 @@ public class BoardDBBean {
 	    }
             // ì¿¼ë¦¬ë¥? ?‘?„±
             sql = "insert into board(qNum,qWriter,email,qTitle,passwd,qDate,";
-            sql+="ref,refStep,refLevel,qContent,ip) values(board_Num.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
+            sql+="ref,refStep,refLevel,qContent,ip) values(question_num.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, article.getqWriter());
@@ -93,7 +93,7 @@ public class BoardDBBean {
         try {
             conn = getConnection();
            
-            pstmt = conn.prepareStatement("select count(*) from board");
+            pstmt = conn.prepareStatement("select count(*) from question");
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
@@ -122,7 +122,7 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
 		try
 		{
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select count (*) from board where "+column_name[n]+" like '%"+searchKeyword+"%'");
+			pstmt = conn.prepareStatement("select count (*) from question where "+column_name[n]+" like '%"+searchKeyword+"%'");
 			
 			rs = pstmt.executeQuery();
 			
@@ -155,7 +155,7 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
             "select qNum,qWriter,email,qTitle,passwd,qDate,ref,refstep,refLevel,qContent,ip,readcount,r  " +
             "from (select qNum,qWriter,email,qTitle,passwd,qDate,ref,refStep,refLevel,qContent,ip,readcount,rownum r " +
             "from (select qNum,qWriter,email,qTitle,passwd,qDate,ref,refStep,refLevel,qContent,ip,readcount " +
-            "from board order by ref desc, refStep asc) order by ref desc, refStep asc ) where r >= ? and r <= ? ");
+            "from question order by ref desc, refStep asc) order by ref desc, refStep asc ) where r >= ? and r <= ? ");
             pstmt.setInt(1, start);
             pstmt.setInt(2, end);
             rs = pstmt.executeQuery();
@@ -206,7 +206,7 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
    			String sql = "select qNum,qWriter,email,qTitle,passwd,qDate,ref,refStep,refLevel,qContent,ip,readcount,r "	
    						+ "from (select qNum,qWriter,email,qTitle,passwd,qDate,ref,refStep,refLevel,qContent,ip,readcount,rownum r "
    						+"from (select qNum,qWriter,email,qTitle,passwd,qDate,ref,refStep,refLevel,qContent,ip,readcount "
-   						+"from board order by ref desc, refStep asc) where "+column_name[n]+" like '%"+searchKeyword+"%' order by ref desc, refStep asc ) where r >= ? and r <= ?";
+   						+"from question order by ref desc, refStep asc) where "+column_name[n]+" like '%"+searchKeyword+"%' order by ref desc, refStep asc ) where r >= ? and r <= ?";
    			
    			pstmt = conn.prepareStatement(sql);
    			pstmt.setInt(1, start);
@@ -265,11 +265,11 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
         BoardDataBean article=null;
         try {
             conn = getConnection();
-            pstmt = conn.prepareStatement("update board set readcount=readcount+1 where qNum = ?");
+            pstmt = conn.prepareStatement("update question set readcount=readcount+1 where qNum = ?");
             pstmt.setInt(1, qNum);
             pstmt.executeUpdate();
             pstmt.close();
-            pstmt = conn.prepareStatement("select * from board where qNum = ?");
+            pstmt = conn.prepareStatement("select * from question where qNum = ?");
             pstmt.setInt(1, qNum);
             rs = pstmt.executeQuery();
 
@@ -307,7 +307,7 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
         try {
             conn = getConnection();
 
-            pstmt = conn.prepareStatement("select * from board where qNum = ?");
+            pstmt = conn.prepareStatement("select * from question where qNum = ?");
             pstmt.setInt(1, qNum);
             rs = pstmt.executeQuery();
 
@@ -348,14 +348,14 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
         try {
             conn = getConnection();
            
-            pstmt = conn.prepareStatement("select passwd from board where qNum = ?");
+            pstmt = conn.prepareStatement("select passwd from question where qNum = ?");
             pstmt.setInt(1, article.getqNum());
             rs = pstmt.executeQuery();
            
             if(rs.next()){
             	dbpasswd= rs.getString("passwd");
             	if(dbpasswd.equals(article.getPasswd())){
-            		sql="update board set qWriter=?,email=?,qTitle=?,passwd=?";
+            		sql="update question set qWriter=?,email=?,qTitle=?,passwd=?";
             		sql+=",qContent=? where qNum=?";
             		pstmt = conn.prepareStatement(sql);
 
@@ -392,14 +392,14 @@ public int getArticleCount(int n, String searchKeyword) throws Exception{
 	    conn = getConnection();
 
             pstmt = conn.prepareStatement(
-            "select passwd from board where qNum = ?");
+            "select passwd from question where qNum = ?");
             pstmt.setInt(1, qNum);
             rs = pstmt.executeQuery();
            
             if(rs.next()){
 		dbpasswd= rs.getString("passwd");
 		if(dbpasswd.equals(passwd)){
-		    pstmt = conn.prepareStatement("delete from board where qNum=?");
+		    pstmt = conn.prepareStatement("delete from question where qNum=?");
                     pstmt.setInt(1, qNum);
                     pstmt.executeUpdate();
 		    x= 1; //ê¸??‚­? œ ?„±ê³?

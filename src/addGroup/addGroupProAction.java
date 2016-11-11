@@ -18,6 +18,9 @@ public class addGroupProAction implements CommandAction {
 		String[] targetStr = request.getParameterValues("target");
 		String meetingCount ="";
 		String target = "";
+		String id="";
+		String imagePath = "";
+		if(request.getParameter("id") != null) id = request.getParameter("id");
 	
 		
 		
@@ -40,9 +43,10 @@ public class addGroupProAction implements CommandAction {
 		group.setScategorycode(request.getParameter("scategorycode"));
 		group.setGroupGoal(request.getParameter("groupGoal"));
 		group.setTarget(target);
-		group.setImagePath(request.getParameter("imagePath"));
+		group.setImagePath(imagePath);
 		group.setLocation(request.getParameter("location"));
 		group.setIntroduce(request.getParameter("introduce"));
+		group.setId(id);
 		
 	
 		

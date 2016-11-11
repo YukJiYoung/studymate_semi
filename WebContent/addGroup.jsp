@@ -199,6 +199,8 @@
 
 						<option value="4">공무원/국가고시</option>
 
+						<option value="5">기타</option>
+
 					</select>
 					<select name="scategorycode" onChange="sub_change2()" class="form-control">
 						<option value=" " selected>소분류</option>

@@ -455,8 +455,8 @@
 				</div>
 				<div class="col-sm-8 footer_content text-center">
 					<ul class="nav navbar-nav footer_menu text-center">
-						<li><a href="<c:url value="/customer.do" />">고객지원</a></li>
-						<li><a href="<c:url value="/index.do" />">이용안내</a></li>
+						<li><a href="<c:url value="/customerboard/MVC/list.do" />">고객지원</a></li>
+						<li><a href="<c:url value="/notice/content.do?noticeNum=1&pageNum=1" />">이용안내</a></li>
 						<li><a href="<c:url value="/index.do" />">개인정보 취급방침</a></li>
 						<!-- Trigger the modal with a button -->
 						<li><a href="#" data-toggle="modal" data-target="#leave_modal">탈퇴하기</a></li>

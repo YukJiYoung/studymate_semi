@@ -47,18 +47,29 @@ function checkAdd(){
 function sub_change1() {
 	vn_mnu1 = groupinput.bcategorycode.selectedIndex;
 	if (vn_mnu1 == 1) {
-		groupinput.scategorycode.length = 4;
+		groupinput.scategorycode.length = 5;
 		groupinput.scategorycode.options[0].text = '토익';
 		groupinput.scategorycode.options[1].text = '오픽';
 		groupinput.scategorycode.options[2].text = '토익스피킹';
 		groupinput.scategorycode.options[3].text = '영어회화';
+		groupinput.scategorycode.options[4].text = '영어-기타';
+		
+		groupinput.scategorycode.options[0].value = '토익';
+		groupinput.scategorycode.options[1].value = '오픽';
+		groupinput.scategorycode.options[2].value = '토익스피킹';
+		groupinput.scategorycode.options[3].value = '영어회화';
+		groupinput.scategorycode.options[4].value = '영어-기타';
 	}
 	if (vn_mnu1 == 2) {
 		groupinput.scategorycode.length = 4;
 		groupinput.scategorycode.options[0].text = '일본어';
 		groupinput.scategorycode.options[1].text = '중국어';
 		groupinput.scategorycode.options[2].text = '프랑스어';
-		groupinput.scategorycode.options[3].text = '기타 언어';
+		groupinput.scategorycode.options[3].text = '외국어-기타';
+		groupinput.scategorycode.options[0].value = '일본어';
+		groupinput.scategorycode.options[1].value = '중국어';
+		groupinput.scategorycode.options[2].value = '프랑스어';
+		groupinput.scategorycode.options[3].value = '외국어-기타';
 
 	}
 	if (vn_mnu1 == 3) {
@@ -66,14 +77,27 @@ function sub_change1() {
 		groupinput.scategorycode.options[0].text = '인적성';
 		groupinput.scategorycode.options[1].text = '면접';
 		groupinput.scategorycode.options[2].text = '자기소개서';
-		groupinput.scategorycode.options[3].text = '기타';
+		groupinput.scategorycode.options[3].text = '취업-기타';
+		groupinput.scategorycode.options[0].value = '인적성';
+		groupinput.scategorycode.options[1].value = '면접';
+		groupinput.scategorycode.options[2].value = '자기소개서';
+		groupinput.scategorycode.options[3].value = '기타';
 
 	}
 	if (vn_mnu1 == 4) {
 		groupinput.scategorycode.length = 3;
 		groupinput.scategorycode.options[0].text = '공무원';
 		groupinput.scategorycode.options[1].text = '국가고시';
-		groupinput.scategorycode.options[2].text = '기타';
+		groupinput.scategorycode.options[2].text = '고시-기타';
+		groupinput.scategorycode.options[0].value = '공무원';
+		groupinput.scategorycode.options[1].value = '국가고시';
+		groupinput.scategorycode.options[2].value = '고시-기타';
+
+	}
+	if (vn_mnu1 == 5) {
+		groupinput.scategorycode.length = 1;
+		groupinput.scategorycode.options[0].text = '기타-기타';
+		groupinput.scategorycode.options[0].value = '기타-기타';
 
 	}
 }
