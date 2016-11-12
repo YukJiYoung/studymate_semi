@@ -84,15 +84,20 @@
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="<c:url value="/index.do" />">Home</a></li>
-						<li class="active"><a href="<c:url value="/searchGroup.do" />">스터디그룹</a></li>
-						<li><a href="<c:url value="/addGroup.do" />">그룹등록</a></li>
+						<li class="active"><a href="<c:url value="/searchGroup.do?bcategory=1" />">스터디그룹</a></li>
+						<li><a href="<c:url value="/addGroup/addGroup.do" />">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
 						<c:if test="${ memId == null }">
 							<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
 						</c:if>
 						<c:if test="${ memId != null }">
 							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
-							<li><a href="#">마이페이지</a></li>
+							<c:if test="${ memId ne 'admin' }">
+								<li><a href="#">마이페이지</a></li>
+							</c:if>
+							<c:if test="${ memId eq 'admin' }">
+								<li><a href="#">관리자페이지</a></li>
+							</c:if>
 						</c:if>
 					</ul>
 					<!--// 메인메뉴 -->
@@ -123,11 +128,11 @@
 							</div>
 							<div class="row modal_login_btns">
 								<button type="submit" class="col-sm-6 btn btn-info">로그인</button>
-								<button type="button" class="btn btn-default" onclick="window.location.href='../../../logon/inputForm.do'">회원가입</button>
+								<button type="button" class="btn btn-default" onclick="window.location.href='../../logon/inputForm.do'">회원가입</button>
 							</div>
 							<div class="row modal_login_btns">
-								<button type="button" class="col-sm-6 btn btn-default" onclick="window.location.href='../../../logon/searchIdForm.do'">ID찾기</button>
-								<button type="button" class="col-sm-6 btn btn-default" onclick="window.location.href='../../../logon/changePwForm.do'">Password찾기</button>
+								<button type="button" class="col-sm-6 btn btn-default" onclick="window.location.href='../../logon/searchIdForm.do'">ID찾기</button>
+								<button type="button" class="col-sm-6 btn btn-default" onclick="window.location.href='../../logon/changePwForm.do'">Password찾기</button>
 							</div>
 						</form>
 					</div>
@@ -177,14 +182,14 @@
 
 	<div class="container" style="margin-top:100px; min-height:600px;">
 		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#answer">자주 묻는 질문</a></li>
-			<li><a data-toggle="tab" href="#qnalist">문의/답변 목록</a></li>
-			<li><a href="#question" onclick="window.location.href='./question/writeForm.do';">문의하기</a></li>
+			<li><a data-toggle="tab" href="#answer">자주 묻는 질문</a></li>
+			<li class="active"><a data-toggle="tab" href="#qnalist">문의/답변 목록</a></li>
+			<li><a href="#question" onclick="window.location.href='../../customerboard/MVC/question/writeForm.do';">문의하기</a></li>
 		</ul>
 
 		<div class="tab-content">
 			<!-- 자주 묻는 질문 -->
-			<div id="answer" class="tab-pane fade in active">
+			<div id="answer" class="tab-pane fade">
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -281,7 +286,7 @@
 			<!-- //자주 묻는 질문 -->
 			
 			<!-- qna -->
-			<div id="qnalist" class="tab-pane fade">
+			<div id="qnalist" class="tab-pane fade in active">
 				
 				<decorator:body />
 				
@@ -351,9 +356,9 @@
 		        <h4 class="modal-title">탈퇴하기</h4>
 		      </div>
 		      <div class="modal-body text-center">
-		        <form id="leave_form" action="" name="leave_form" method="post">
-							<div class="form-group"><input type="password" placeholder="Password" class="form-control"></div>
-							<div class="form-group"><input type="password" placeholder="Password 확인" class="form-control"></div>
+		        <form id="leave_form" action="<c:url value="/logon/deletePro.do" />" name="leave_form" method="post">
+							<div class="form-group"><input type="password" placeholder="Password" class="form-control" name="pw1"></div>
+							<div class="form-group"><input type="password" placeholder="Password 확인" class="form-control" name="pw2"></div>
 							
 							<p class="row">탈퇴하시면 고객님의 모든 정보가 삭제됩니다.<br />탈퇴하시겠습니까?</p>
 							

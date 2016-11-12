@@ -1,220 +1,237 @@
 package addGroup;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
-// ½ºÅÍµğ ¸ğÀÓ Á¤º¸ 
+// ìŠ¤í„°ë”” ëª¨ì„ ì •ë³´ 
 public class addDTO {
 
-    // ½ºÅÍµğ ¸ğÀÓ ¹øÈ£ 
+    // ìŠ¤í„°ë”” ëª¨ì„ ë²ˆí˜¸ 
     private Integer groupNum;
 
-    // ±×·ìÀå 
+    // ê·¸ë£¹ì¥ 
     private String id;
 
-    // ¸ğÀÓ¸í 
+    // ëª¨ì„ëª… 
     private String groupName;
 
-    // ÀÌ¹ÌÁö °æ·Î ·¹ÄÚµå »ı¼º ½Ã ±âº»ÀÌ¹ÌÁö °æ·Î ÁöÁ¤
+    // ì´ë¯¸ì§€ ê²½ë¡œ ë ˆì½”ë“œ ìƒì„± ì‹œ ê¸°ë³¸ì´ë¯¸ì§€ ê²½ë¡œ ì§€ì •
     private String imagePath;
 
-    // µî·Ï½Ã°£ 
-    private Date createDate;
+    // ë“±ë¡ì‹œê°„ 
+    private Timestamp createDate;
 
-    // ÂòÈ½¼ö 
+    // ì°œíšŸìˆ˜ 
     private Integer zzimCount;
 
-    // ¸ğÀÓÀÎ¿ø 
+    // ëª¨ì„ì¸ì› 
     private Integer maxMember;
 
-    // ÇöÀçÀÎ¿ø default 1
+    // í˜„ì¬ì¸ì› 
     private Integer nowMember;
 
-    // ¸ğÁı±â°£ 
+    // ëª¨ì§‘ê¸°ê°„ 
     private String limitDate;
 
-    // ¸ğÀÓ¿äÀÏ 
-    private String meetingCount;
+    // ëª¨ì„ìš”ì¼ 
+    private int meetingCount;
 
-    // Àå¼Ò 
+    // ì¥ì†Œ 
     private String location;
 
-    // ´ëÇ¥¿¬¶ôÃ³ 
+    // ëŒ€í‘œì—°ë½ì²˜ 
     private String tel;
 
-    // ¸ğÀÓ¼Ò°³ 
+    // ëª¨ì„ì†Œê°œ 
     private String introduce;
+    
+    
 
-    // Ä«Å×°í¸®ÄÚµå(´ë) 
+    // ì¹´í…Œê³ ë¦¬ì½”ë“œ(ëŒ€) 
     private Integer bcategorycode;
 
-    // Ä«Å×°í¸®ÄÚµå(¼Ò) 
+    // ì¹´í…Œê³ ë¦¬ì½”ë“œ(ì†Œ) 
     private String scategorycode;
-
-    public String getScategorycode() {
-		return scategorycode;
+    
+    //ê·¸ë£¹ ë©¤ë²„
+    private String member;
+    
+    //ê·¸ë£¹ ì‹ ì²­ ëª©ë¡
+    private String person;
+    
+    public String getMember() {
+		return member;
 	}
 
-	public void setScategorycode(String scategorycode) {
-		this.scategorycode = scategorycode;
+	public void setMember(String member) {
+		this.member = member;
 	}
 
-	// È¸ºñ 
+	public String getPerson() {
+		return person;
+	}
+
+	public void setPerson(String person) {
+		this.person = person;
+	}
+
+	public String getScategorycode() {
+      return scategorycode;
+   }
+
+   public void setScategorycode(String scategorycode) {
+      this.scategorycode = scategorycode;
+   }
+
+   // íšŒë¹„ 
     private Integer money;
 
-    // ¸ğÀÓ¸ñÇ¥ 
+    // ëª¨ì„ëª©í‘œ 
     private String groupGoal;
 
-    // ¸ğÁı´ë»ó 
+    // ëª¨ì§‘ëŒ€ìƒ 
     private String target;
 
-	public Integer getGroupNum() {
-		return groupNum;
-	}
+   public Integer getGroupNum() {
+      return groupNum;
+   }
 
-	public void setGroupNum(Integer groupNum) {
-		this.groupNum = groupNum;
-	}
+   public void setGroupNum(Integer groupNum) {
+      this.groupNum = groupNum;
+   }
 
-	public String getId() {
-		return id;
-	}
+   public String getId() {
+      return id;
+   }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+   public void setId(String id) {
+      this.id = id;
+   }
 
-	public String getGroupName() {
-		return groupName;
-	}
+   public String getGroupName() {
+      return groupName;
+   }
 
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
+   public void setGroupName(String groupName) {
+      this.groupName = groupName;
+   }
 
-	public String getImagePath() {
-		return imagePath;
-	}
+   public String getImagePath() {
+      return imagePath;
+   }
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+   public void setImagePath(String imagePath) {
+      this.imagePath = imagePath;
+   }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+   public Timestamp getCreateDate() {
+      return createDate;
+   }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+   public void setCreateDate(Timestamp timestamp) {
+      this.createDate = timestamp;
+   }
 
-	public Integer getZzimCount() {
-		return zzimCount;
-	}
+   public Integer getZzimCount() {
+      return zzimCount;
+   }
 
-	public void setZzimCount(Integer zzimCount) {
-		this.zzimCount = zzimCount;
-	}
+   public void setZzimCount(Integer zzimCount) {
+      this.zzimCount = zzimCount;
+   }
 
-	public Integer getMaxMember() {
-		return maxMember;
-	}
+   public Integer getMaxMember() {
+      return maxMember;
+   }
 
-	public void setMaxMember(Integer maxMember) {
-		this.maxMember = maxMember;
-	}
+   public void setMaxMember(Integer maxMember) {
+      this.maxMember = maxMember;
+   }
 
-	public Integer getNowMember() {
-		return nowMember;
-	}
+   public Integer getNowMember() {
+      return nowMember;
+   }
 
-	public void setNowMember(Integer nowMember) {
-		this.nowMember = nowMember;
-	}
+   public void setNowMember(Integer nowMember) {
+      this.nowMember = nowMember;
+   }
 
-	public String getLimitDate() {
-		return limitDate;
-	}
+   public String getLimitDate() {
+      return limitDate;
+   }
 
-	public void setLimitDate(String limitDate) {
-		this.limitDate = limitDate;
-	}
+   public void setLimitDate(String limitDate) {
+      this.limitDate = limitDate;
+   }
 
-	public String getMeetingCount() {
-		return meetingCount;
-	}
+   public int getMeetingCount() {
+      return meetingCount;
+   }
 
-	public void setMeetingCount(String meetingCount) {
-		this.meetingCount = meetingCount;
-	}
+   public void setMeetingCount(int meetingcount) {
+      this.meetingCount = meetingcount;
+   }
 
-	public String getLocation() {
-		return location;
-	}
+   public String getLocation() {
+      return location;
+   }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+   public void setLocation(String location) {
+      this.location = location;
+   }
 
-	public String getTel() {
-		return tel;
-	}
+   public String getTel() {
+      return tel;
+   }
 
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
+   public void setTel(String tel) {
+      this.tel = tel;
+   }
 
-	public String getIntroduce() {
-		return introduce;
-	}
+   public String getIntroduce() {
+      return introduce;
+   }
 
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
-	}
+   public void setIntroduce(String introduce) {
+      this.introduce = introduce;
+   }
 
-	public Integer getBcategorycode() {
-		return bcategorycode;
-	}
+   
+   
 
-	public void setBcategorycode(Integer bcategorycode) {
-		this.bcategorycode = bcategorycode;
-	}
+   
 
-	
+   public Integer getBcategorycode() {
+      return bcategorycode;
+   }
 
-	public Integer getMoney() {
-		return money;
-	}
+   public void setBcategorycode(Integer bcategorycode) {
+      this.bcategorycode = bcategorycode;
+   }
 
-	public void setMoney(Integer money) {
-		this.money = money;
-	}
+   public Integer getMoney() {
+      return money;
+   }
 
-	public String getGroupGoal() {
-		return groupGoal;
-	}
+   public void setMoney(Integer money) {
+      this.money = money;
+   }
 
-	public void setGroupGoal(String groupGoal) {
-		this.groupGoal = groupGoal;
-	}
+   public String getGroupGoal() {
+      return groupGoal;
+   }
 
-	public String getTarget() {
-		return target;
-	}
+   public void setGroupGoal(String groupGoal) {
+      this.groupGoal = groupGoal;
+   }
 
-	public void setTarget(String target) {
-		this.target = target;
-	}
+   public String getTarget() {
+      return target;
+   }
 
-	@Override
-	public String toString() {
-		return "addDTO [groupNum=" + groupNum + ", id=" + id + ", groupName=" + groupName + ", imagePath=" + imagePath
-				+ ", createDate=" + createDate + ", zzimCount=" + zzimCount + ", maxMember=" + maxMember
-				+ ", nowMember=" + nowMember + ", limitDate=" + limitDate + ", meetingCount=" + meetingCount
-				+ ", location=" + location + ", tel=" + tel + ", introduce=" + introduce + ", bcategorycode="
-				+ bcategorycode + ", scategorycode=" + scategorycode + ", money=" + money + ", groupGoal=" + groupGoal
-				+ ", target=" + target + "]";
-	}
-	
+   public void setTarget(String target) {
+      this.target = target;
+   }
+
     
     
   }

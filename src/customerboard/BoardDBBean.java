@@ -57,7 +57,7 @@ public class BoardDBBean {
 	      refLevel=0;
 	    }
             // ì¿¼ë¦¬ë¥? ?ž‘?„±
-            sql = "insert into board(qNum,qWriter,email,qTitle,passwd,qDate,";
+            sql = "insert into question(qNum,qWriter,email,qTitle,passwd,qDate,";
             sql+="ref,refStep,refLevel,qContent,ip) values(question_num.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
 
             pstmt = conn.prepareStatement(sql);

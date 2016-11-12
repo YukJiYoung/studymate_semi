@@ -127,7 +127,7 @@
 						</c:choose>
 					<!-- item -->
 					<li class="result_item">
-						<a href="../groupPage.do?num=${ article.groupNum }" class="item">
+						<a href="../addGroup/groupPage.do?num=${ article.groupNum }" class="item">
 							<figure>
 								<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
 								<img src="../${ imagePath }" />

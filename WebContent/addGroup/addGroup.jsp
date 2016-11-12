@@ -7,14 +7,12 @@
 <head>
 <title>스터디메이트(StudyMate)-스터디모임을 등록해보세요</title>
 
-<link rel="stylesheet" type="text/css" href="assets/css/addGroup.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/addGroup.css" />
+<script src =code.jquery.com/jquery-3.1.0.min.js></script>
 
-<script src="assets/js/addGroup.js"></script>
 </head>
 
 <body>
-
-
 
 
 	<!-- //내용(모임 등록)-->
@@ -25,11 +23,17 @@
 	</script>
 </c:if>
 <c:if test="${ memId != null }">
+
+
 	<div class="add-container" style="margin-top: 80px;">
-		<form class="form-horizontal" method="post" action="./addGroupPro.do" name="groupinput" onSubmit="return checkAdd()">
-			<input type="hidden" name="id" value="${ memId }" />
+		<form class="form-horizontal" method="post" action="/semi2/addGroup/addGroupPro.do" name="groupinput" onSubmit="return checkAdd()">
+
 			<ul class="add-list">
 			<li style="list-style-type: none">
+
+
+
+
 					<div class="input-header">
 						<span style="color: red">* </span>모임 이름
 					</div>
@@ -44,7 +48,7 @@
 
 
 					<select class="form-control" id="maxMember" name="maxMember">
-						<option selected="" disabled="">인원선택</option>
+						<option>인원선택</option>
 
 						<option value="1">1명</option>
 
@@ -146,34 +150,19 @@
 					</div>
 
 
-					<label class="dayLabel" for="mon"> <input type="checkbox"
-						name="meetingCount" id="mon" value="mon">월
-					</label>
+					<select class="form-control" id="meetcount" name="meetcount">
+						<option selected disabled>모집 횟수를 선택해주세요.</option>
 
+						<option value="1">주 1회</option>
 
-					<label class="dayLabel" for="tue"> <input type="checkbox"
-						name="meetingCount" id="tue" value="tue">화
-					</label>
+						<option value="2">주 2회</option>
 
-					<label class="dayLabel" for="wed"> <input type="checkbox"
-						name="meetingCount" id="wed" value="wed">수
-					</label>
+						<option value="3">주 3회</option>
 
-					<label class="dayLabel" for="thu"> <input type="checkbox"
-						name="meetingCount" id="thu" value="thu">목
-					</label>
+						<option value="4">주 4회 이상</option>
 
-					<label class="dayLabel" for="fri"> <input type="checkbox"
-						name="meetingCount" id="fri" value="fri">금
-					</label>
+					</select>
 
-					<label class="dayLabel" for="sat"> <input type="checkbox"
-						name="meetingCount" id="sat" value="sat">토
-					</label>
-
-					<label class="dayLabel" for="sun"> <input type="checkbox"
-						name="possibleDay" id="sun" value="sun">일
-					</label>
 
 
 
@@ -199,15 +188,12 @@
 
 						<option value="4">공무원/국가고시</option>
 
-						<option value="5">기타</option>
-
 					</select>
 					<select name="scategorycode" onChange="sub_change2()" class="form-control">
 						<option value=" " selected>소분류</option>
 					</select>
-
-
-					<div class="input-header">
+					
+								<div class="input-header">
 						<span style="color: red">* </span>모임 목표
 					</div>
 
@@ -225,7 +211,7 @@
 					</select>
 
 
-					<div class="input-header">모집 대상</div>
+					<div class="input-header"><span style="color: red">*</span>모집 대상</div>
 
 					<label class="checkbox-inline"> <input type="checkbox"
 						id="inlineCheckbox1" name="target" value="대학생">대학생
@@ -239,11 +225,12 @@
 					<label class="checkbox-inline"> <input type="checkbox"
 						id="inlineCheckbox4" name="target" value="일반인">일반인
 					</label>
+					
 
 
 					<div class="input-header">이미지 선택</div>
 					<form id="imgForm">
-						<input type="file" name="groupImage" id="groupImage"
+						<input type="file" name="imagePath" id="groupImage"
 							onchange="fileCheck(this)"
 							accept="image/gif, image/jpeg, image/png" />
 						<p id="text" class="help-block">모임을 대표할 사진을 선택해주세요.</p>
@@ -258,8 +245,9 @@
 					<a href="#" data-toggle="modal" data-target="#inputPlace_modal">
 						<button class="btn btn-default">장소등록</button>
 					</a>
-					<span class="adrText1"></span>
-					<span class="adrText2"></span>
+					<input class="adrText1" id="location1" value="">
+					<input class="adrText2" id="location2" value="">
+					
 					<div id="map_p"></div>
 
 
@@ -276,7 +264,7 @@
 
 
 					<div class="pull-right">
-						<input type="submit" name="confirm" value="스터디 등록하기" />
+						<input type="submit" name="confirm" value="스터디 등록하기" >
 					</div>
 
 				</li>
@@ -287,7 +275,7 @@
 
 	<!-- Modal -->
 	<div id="inputPlace_modal" class="modal fade" role="dialog">
-		<div class="modal-dialog modal-xs">
+		<div class="modal-dialog modal-xs daummap">
 
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -330,7 +318,7 @@
 		</div>
 	</div>
 	<!-- //Modal -->
-	<script type="text/javascript" src="assets/js/addGroup.js"></script>
+	 <script src="../assets/js/addGroup.js"></script>
 	<script type="text/javascript"
 		src="//apis.daum.net/maps/maps3.js?apikey=0a21aad3c63779ac6768c5485927150c&libraries=services"></script>
 </c:if>

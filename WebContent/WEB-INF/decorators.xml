@@ -21,6 +21,11 @@
 		<pattern>/customerboard/MVC/question/*</pattern>
 	</decorator>
 	
+	   <decorator name="group" page="group_decorator.jsp">
+		<pattern>/addGroup/*</pattern>
+		
+	</decorator>
+	
 	<excludes>
 		<pattern>/searchGroupAjax.do*</pattern>
 		<pattern>/logon/loginPro*</pattern>

@@ -84,15 +84,20 @@
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="<c:url value="/index.do" />">Home</a></li>
-						<li class="active"><a href="<c:url value="/searchGroup.do" />">스터디그룹</a></li>
-						<li><a href="<c:url value="/addGroup.do" />">그룹등록</a></li>
+						<li class="active"><a href="<c:url value="/searchGroup.do?bcategory=1" />">스터디그룹</a></li>
+						<li><a href="<c:url value="/addGroup/addGroup.do" />">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
 						<c:if test="${ memId == null }">
 							<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
 						</c:if>
 						<c:if test="${ memId != null }">
 							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
-							<li><a href="#">마이페이지</a></li>
+							<c:if test="${ memId ne 'admin' }">
+								<li><a href="#">마이페이지</a></li>
+							</c:if>
+							<c:if test="${ memId eq 'admin' }">
+								<li><a href="#">관리자페이지</a></li>
+							</c:if>
 						</c:if>
 					</ul>
 					<!--// 메인메뉴 -->
@@ -174,8 +179,7 @@
 
 
 
-
-	<div class="container" style="margin-top:100px; min-height:600px;">
+<div class="container" style="margin-top:100px; min-height:600px;">
 		<ul class="nav nav-tabs">
 			<li><a data-toggle="tab" href="#answer">자주 묻는 질문</a></li>
 			<li><a data-toggle="tab" href="#qnalist">문의/답변 목록</a></li>
@@ -284,8 +288,15 @@
 			<!-- qna -->
 			<div id="qnalist" class="tab-pane fade">
 				
-			<!-- customer -->
-			<div class="container">
+				<!-- customer -->
+		<div class="container">
+
+
+
+			
+			
+			
+			
 			
 			<%!/* 게시판시작 */
 					int pageSize = 10;
@@ -315,7 +326,9 @@
 				%>
 
 
-<div class="container">
+
+				<center>
+					<div class="container">
   <h1>글 목록(전체 글:<%=count%>)</h1>
 
 </div>
@@ -347,11 +360,12 @@
         <th>작성일</th>
         <th>조회</th>
         <th>IP</th>
-      </tr>
+        </tr>
+        </div>
         <%
 							for (int i = 0; i < articleList.size(); i++) {
 									BoardDataBean article = (BoardDataBean) articleList.get(i);
-				%>
+						%>
 <tr height="30">
 							<td align="center" width="50"><%=number--%></td>
 							<td width="250">
@@ -373,11 +387,12 @@
  	}
  %>
 							</td>
-							<td align="center" width="100"><a href="mailto:<%=article.getEmail()%>"><%=article.getqWriter()%></a></td>
+							<td align="center" width="100"><a
+								href="mailto:<%=article.getEmail()%>"><%=article.getqWriter()%></a></td>
 							<td align="center" width="150"><%=sdf.format(article.getqDate())%></td>
 							<td align="center" width="50"><%=article.getReadcount()%></td>
 							<td align="center" width="100"><%=article.getIp()%></td>
-</tr>
+						</tr>
 						<%
 							}
 						%>
@@ -428,9 +443,35 @@
 						</select> <input type="text" size="16" name="keyWord" value="${keyWord }">
 						<input type="button" value="검색" onClick="check()"> <input
 							type="hidden" name="page" value="0">
-						
+						</td>
 					</form>
+				</center>
 				<br>
+					
+					
+    </thead>
+    <tbody>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			</div>
 				
 			</div>
@@ -439,12 +480,17 @@
 			<!-- 문의하기 -->
 			<div id="question" class="tab-pane fade in active">
 
-				<decorator:body/>
-			
-			</div>
+	<decorator:body/>
 			<!-- //문의하기 -->
+		</div>
 	</div>
+
+
+
 </div>
+
+
+
 </div>
 	<!-- 푸터 -->
 	<footer class="footer-wrapper" >
@@ -484,10 +530,10 @@
 					<div class="modal-body text-center">
 						<form id="leave_form" action="<c:url value="/logon/deletePro.do" />" name="leave_form" method="post">
 							<div class="form-group">
-								<input type="password" placeholder="Password" class="form-control">
+								<input type="password" placeholder="Password" class="form-control" name="pw1">
 							</div>
 							<div class="form-group">
-								<input type="password" placeholder="Password 확인" class="form-control">
+								<input type="password" placeholder="Password 확인" class="form-control" name="pw2">
 							</div>
 
 							<p class="row">탈퇴하시면 고객님의 모든 정보가 삭제됩니다.<br />탈퇴하시겠습니까?</p>

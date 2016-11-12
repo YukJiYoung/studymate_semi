@@ -86,8 +86,9 @@ a:focus{
 /** modal :: login
 			-------------------------------------------------- */
 .modal_login_btns .btn {
-	width:130px;
-	margin:0 4px 4px 0;
+	
+	width:48%;
+	margin:0 0.3em 0.3em 0;
 	
 }
 .modal_login_btns .btn-default {
@@ -103,8 +104,8 @@ a:focus{
 	color:#fff;
 }
 .modal_login_btns .btn-info {
-	background-color:#287175;
-	border-color:#287175;
+	background-color:#287175 !important;
+	border-color:#287175 !important;
 }
 .modal_login_btns .btn-info:hover,
 .modal_login_btns .btn-info:active,

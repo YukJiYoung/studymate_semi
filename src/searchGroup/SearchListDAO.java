@@ -23,7 +23,7 @@ public class SearchListDAO {
 		return DriverManager.getConnection(jdbcDriver);
 	}
 
-	/* searchGroup.jsp ==> ÀüÃ¼±Û ¼ö */
+	/* searchGroup.jsp ==> ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ */
 	public int getArticleCount(int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, int searchRegdate, String searchKeyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -60,7 +60,7 @@ public class SearchListDAO {
 				query += " or groupName like '%"+searchKeyword+"%'";
 				query += " or introduce like '%"+searchKeyword+"%'";
 			}
-//			System.out.println(query); //Äõ¸®¹® Ãâ·Â
+//			System.out.println(query); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
@@ -80,7 +80,7 @@ public class SearchListDAO {
 		}
 		return x;
 	}
-	/* main.jsp ==> bigCategoryº° ±Û ¼ö */
+	/* main.jsp ==> bigCategoryï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ */
 	public int getArticleCount(int bcategory) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -112,7 +112,7 @@ public class SearchListDAO {
 		}
 		return x;
 	}
-	/* main.jsp -> searchGroup.jsp ==> °Ë»ö¾î °á°ú ¼ö */
+	/* main.jsp -> searchGroup.jsp ==> ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ */
 	public int getArticleCount(int n, String searchKeyword) throws Exception{
 		
 		Connection conn = null;
@@ -150,7 +150,7 @@ public class SearchListDAO {
 		return x;
 	}
 
-	/* searchGroup.jsp ==> bigCategory ±âÁØ  */
+	/* searchGroup.jsp ==> bigCategory ï¿½ï¿½ï¿½ï¿½  */
 	public List<SearchListDTO> getArticles(int start, int end, int bcategory) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -202,7 +202,7 @@ public class SearchListDAO {
 		}
 		return articleList;
 	}
-	/* searchGroup.jsp ==> °Ë»öÃ¢ */
+	/* searchGroup.jsp ==> ï¿½Ë»ï¿½Ã¢ */
 	public List<SearchListDTO> getArticles(int start, int end, int bcategory, String[] searchCategory, int searchMembers, int searchMeetcount, int searchRegdate, String searchKeyword) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -242,7 +242,7 @@ public class SearchListDAO {
 				query += " or introduce like '%"+searchKeyword+"%'";
 			}
 			query += " order by createDate desc) where r >= ? and r <= ?";
-//			System.out.println(query); //Äõ¸®¹® Ãâ·Â
+//			System.out.println(query); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -282,7 +282,7 @@ public class SearchListDAO {
 		return articleList;
 	}
 	
-	/* main.jsp ==> bigCategory ±âÁØ */
+	/* main.jsp ==> bigCategory ï¿½ï¿½ï¿½ï¿½ */
 	public List<SearchListDTO> getArticles(int bcategory)  throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

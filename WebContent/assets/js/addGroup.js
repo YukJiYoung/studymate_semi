@@ -1,3 +1,4 @@
+
 //필수입력항목 alert창
 function checkAdd(){
 		var groupinput = eval("document.groupinput"); //문자열을 수식으로 변환(eval()사용)
@@ -19,89 +20,66 @@ function checkAdd(){
 			return false;
 		}
 		
-		if(!groupinput.bc.selectedIndex){
-			alert("스터디 카테고리를 선택하세요.");
-			groupinput.bc.focus();
-			return false;
-		}
-		
-		if(!groupinput.sc.selectedIndex){
-			alert("스터디 카테고리를 선택하세요.");
-			groupinput.sc.focus();
-			return false;
-		}
-		
-		if(!groupinput.groupGoal.selectedIndex){
-			alert("모임 목표를 선택하세요.");
-			groupinput.groupGoal.focus();
-			return false;
-		}
 	
-		
-		
+
 		
 		return true;		
 	}
+
+function searchRS(){
+	
+	var location1 = $('#location1').html();
+	var location2 = $('#location2').html();
+	
+	var location = location1 + location2;
+	
+	return location;
+	
+}
+
 
 //카테고리 selectbox
 function sub_change1() {
 	vn_mnu1 = groupinput.bcategorycode.selectedIndex;
 	if (vn_mnu1 == 1) {
 		groupinput.scategorycode.length = 5;
-		groupinput.scategorycode.options[0].text = '토익';
-		groupinput.scategorycode.options[1].text = '오픽';
-		groupinput.scategorycode.options[2].text = '토익스피킹';
-		groupinput.scategorycode.options[3].text = '영어회화';
-		groupinput.scategorycode.options[4].text = '영어-기타';
+		groupinput.scategorycode.options[0].text = '영어';
+		groupinput.scategorycode.options[1].text = '토익';
+		groupinput.scategorycode.options[2].text = '오픽';
+		groupinput.scategorycode.options[3].text = '토익스피킹';
+		groupinput.scategorycode.options[4].text = '영어회화';
 		
-		groupinput.scategorycode.options[0].value = '토익';
-		groupinput.scategorycode.options[1].value = '오픽';
-		groupinput.scategorycode.options[2].value = '토익스피킹';
-		groupinput.scategorycode.options[3].value = '영어회화';
-		groupinput.scategorycode.options[4].value = '영어-기타';
+		
+		
+		
 	}
 	if (vn_mnu1 == 2) {
-		groupinput.scategorycode.length = 4;
-		groupinput.scategorycode.options[0].text = '일본어';
-		groupinput.scategorycode.options[1].text = '중국어';
-		groupinput.scategorycode.options[2].text = '프랑스어';
-		groupinput.scategorycode.options[3].text = '외국어-기타';
-		groupinput.scategorycode.options[0].value = '일본어';
-		groupinput.scategorycode.options[1].value = '중국어';
-		groupinput.scategorycode.options[2].value = '프랑스어';
-		groupinput.scategorycode.options[3].value = '외국어-기타';
+		groupinput.scategorycode.length = 5;
+		groupinput.scategorycode.options[0].text = '외국어';
+		groupinput.scategorycode.options[1].text = '일본어';
+		groupinput.scategorycode.options[2].text = '중국어';
+		groupinput.scategorycode.options[3].text = '프랑스어';
+		groupinput.scategorycode.options[4].text = '기타 언어';
 
 	}
 	if (vn_mnu1 == 3) {
-		groupinput.scategorycode.length = 4;
-		groupinput.scategorycode.options[0].text = '인적성';
-		groupinput.scategorycode.options[1].text = '면접';
-		groupinput.scategorycode.options[2].text = '자기소개서';
-		groupinput.scategorycode.options[3].text = '취업-기타';
-		groupinput.scategorycode.options[0].value = '인적성';
-		groupinput.scategorycode.options[1].value = '면접';
-		groupinput.scategorycode.options[2].value = '자기소개서';
-		groupinput.scategorycode.options[3].value = '기타';
+		groupinput.scategorycode.length = 5;
+		groupinput.scategorycode.options[0].text = '취업';
+		groupinput.scategorycode.options[1].text = '인적성';
+		groupinput.scategorycode.options[2].text = '면접';
+		groupinput.scategorycode.options[3].text = '자기소개서';
+		groupinput.scategorycode.options[4].text = '기타';
 
 	}
 	if (vn_mnu1 == 4) {
-		groupinput.scategorycode.length = 3;
-		groupinput.scategorycode.options[0].text = '공무원';
-		groupinput.scategorycode.options[1].text = '국가고시';
-		groupinput.scategorycode.options[2].text = '고시-기타';
-		groupinput.scategorycode.options[0].value = '공무원';
-		groupinput.scategorycode.options[1].value = '국가고시';
-		groupinput.scategorycode.options[2].value = '고시-기타';
-
-	}
-	if (vn_mnu1 == 5) {
-		groupinput.scategorycode.length = 1;
-		groupinput.scategorycode.options[0].text = '기타-기타';
-		groupinput.scategorycode.options[0].value = '기타-기타';
+		groupinput.scategorycode.length = 4;
+		groupinput.scategorycode.options[0].text = '공무원/국가고시';
+		groupinput.scategorycode.options[1].text = '공무원';
+		groupinput.scategorycode.options[2].text = '국가고시';
+		groupinput.scategorycode.options[3].text = '기타';
 
 	}
 }
-
 
 
 //input file 이미지만 받게하는 코드
@@ -286,12 +264,17 @@ function readURL(input) {
 								$('#text3').html(title);
 							};
 							// modal 창 내 등록버튼 클릭 시 상호명과 주소 가져오기 
-							$('#btnSave').click(function() {
-								$('.adrText1').html(placeTitle);					    					   
-							    $('.adrText2').html(placeAdr);
-							    $('#inputPlace_modal').modal('hide');
-							     	    
-							  });
+							
+							$('#inputPlace_modal').on('hidden.bs.modal', function() {
+								$('#btnSave').click(function() {
+									$('#location1').val(placeTitle);					    					   
+								    $('#location2').val(placeAdr);
+								    $('#inputPlace_modal').modal('hide');
+								     	    
+								  });
+								  
+							}); 
+							
 
  
 							

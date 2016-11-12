@@ -22,7 +22,7 @@
  -->
 <body class="non_background">
 	<div class="container">
-		<form method="post" name="writeform" action="./updatePro.do?pageNum=${ pageNum }" onsubmit="return writeSave()">
+		<form method="post" name="writeform" action="/semi2/customerboard/MVC/updatePro.do?pageNum=${ pageNum }" onsubmit="return writeSave()">
 			<table class="table notice_content_table">
 				<tr>
 					<th>이    름</th>

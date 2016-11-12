@@ -82,15 +82,20 @@
 					<!-- 메인메뉴 -->
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./index.do">Home</a></li>
-						<li><a href="./searchGroup.do">스터디그룹</a></li>
-						<li><a href="./addGroup.do">그룹등록</a></li>
+						<li><a href="./searchGroup.do?bcategory=1">스터디그룹</a></li>
+						<li><a href="./addGroup/addGroup.do">그룹등록</a></li>
 						<!-- Trigger the modal with a button -->
 						<c:if test="${ memId == null }">
 							<li><a href="#" data-toggle="modal" data-target="#login_modal">로그인</a></li>
 						</c:if>
 						<c:if test="${ memId != null }">
 							<li><a href="#" data-toggle="modal" data-target="#logout_modal">로그아웃</a></li>
-							<li><a href="#">마이페이지</a></li>
+							<c:if test="${ memId ne 'admin' }">
+								<li><a href="#">마이페이지</a></li>
+							</c:if>
+							<c:if test="${ memId eq 'admin' }">
+								<li><a href="#">관리자페이지</a></li>
+							</c:if>
 						</c:if>
 						
 					</ul>
@@ -217,10 +222,10 @@
 					<div class="modal-body text-center">
 						<form id="leave_form" action="./logon/deletePro.do" name="leave_form" method="post">
 							<div class="form-group">
-								<input type="password" placeholder="Password" class="form-control">
+								<input type="password" placeholder="Password" class="form-control" name="pw1">
 							</div>
 							<div class="form-group">
-								<input type="password" placeholder="Password 확인" class="form-control">
+								<input type="password" placeholder="Password 확인" class="form-control" name="pw2">
 							</div>
 
 							<p class="row">탈퇴하시면 고객님의 모든 정보가 삭제됩니다.<br />탈퇴하시겠습니까?</p>

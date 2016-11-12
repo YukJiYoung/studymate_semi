@@ -169,7 +169,7 @@
 						</c:choose>
 					<!-- item -->
 					<li class="result_item">
-						<a href="./groupPage.do?groupNum=${ article.groupNum }&pageNum=${ currentPage }" class="item">
+						<a href="./addGroup/groupPage.do?num=${ article.groupNum }&pageNum=${ currentPage }" class="item">
 							<figure>
 								<span class="item_category">${ bcategoryKR }&lt;${ article.scategorycode }</span>
 								<img src="./${ imagePath }" />

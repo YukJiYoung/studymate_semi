@@ -9,8 +9,15 @@ import notice.board.NoticeDTO;
 
 public class ContentAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
-		String pageNum = request.getParameter("pageNum");
+		int noticeNum = 1;
+		int pageNum = 1;
+		if(request.getParameter("noticeNum")!=null) {
+			noticeNum  = Integer.parseInt(request.getParameter("noticeNum"));
+		}
+		if(request.getParameter("pageNum")!=null) {
+			pageNum  = Integer.parseInt(request.getParameter("pageNum"));
+		}
+	
 		
 		NoticeDAO dbPro = NoticeDAO.getInstance();
 		NoticeDTO article = dbPro.getArticle(noticeNum);

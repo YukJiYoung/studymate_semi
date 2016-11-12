@@ -107,7 +107,7 @@
 								<%
 									}
 								%> <a
-								href="/test/customerboard/MVC/content.do?qNum=<%=article.getqNum()%>&pageNum=<%=currentPage%>">
+								href="/semi2/customerboard/MVC/content.do?qNum=<%=article.getqNum()%>&pageNum=<%=currentPage%>">
 									<%=article.getqTitle()%></a> <%
  	if (article.getReadcount() >= 20) {
  %> <img class="customerimg" src="images/hot.gif" border="0" height="16"> <%

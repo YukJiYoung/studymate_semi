@@ -32,7 +32,7 @@
 			</table>
 			
 			<div class="row text-right btns">
-				<input class="btn btn-default" type="button" value="글수정" onclick="./updateForm.do?qNum=${ article.qNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-default" type="button" value="글수정" onclick="document.location.href='/semi2/customerboard/MVC/updateForm.do?qNum=${ article.qNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
 				<input class="btn btn-default" type="button" value="글삭제" onclick="document.location.href='./deleteForm.do?qNum=${ article.qNum }&pageNum=${ pageNum }'" />&nbsp;&nbsp;&nbsp;&nbsp;
 				<input class="btn btn-info" type="button" value="답글쓰기" onclick="document.location.href='./question/writeForm.do?qNum=${ article.qNum }&refStep=${ article.refStep }&refLevel=${ article.refLevel }'" />&nbsp;&nbsp;&nbsp;&nbsp;
 				<input class="btn btn-default" type="button" value="글목록" onclick="document.location.href='./list.do?pageNum=${ pageNum }'" />
